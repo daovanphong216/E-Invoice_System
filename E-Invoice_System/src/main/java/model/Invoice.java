@@ -1,21 +1,58 @@
 package model;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+@Entity(name="invoices")
 public class Invoice {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+		
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="id", nullable= false )
+	private User onwer;
 	
+	@Column(name = "customerCode")
 	private long customerCode;
 	
+	@Column(name = "description")
 	private String description;
 	
-	private long typeId;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="id", nullable= false )
+	@Column(name = "typeId")
+	private InvoiceType type;
 	
+
+	@Column(name = "dateTime")
+	private String dateTime;
+	
+	
+	public String getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
+	}
+
+	@Column(name = "amountOfMoney")
 	private double amountOfMoney;
 	
+	@Column(name = "VAT")
 	private double VAT;
 	
+	@Column(name = "invoiceNo")
 	private String invoiceNo;
 	
 	public long getId() {
@@ -34,6 +71,22 @@ public class Invoice {
 		this.customerCode = customerCode;
 	}
 	
+	public User getOnwer() {
+		return onwer;
+	}
+
+	public void setOnwer(User onwer) {
+		this.onwer = onwer;
+	}
+
+	public InvoiceType getType() {
+		return type;
+	}
+
+	public void setType(InvoiceType type) {
+		this.type = type;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -42,13 +95,6 @@ public class Invoice {
 		this.description = description;
 	}
 	
-	public long getTypeId() {
-		return typeId;
-	}
-	
-	public void setTypeId(long typeId) {
-		this.typeId = typeId;
-	}
 	
 	public double getAmountOfMoney() {
 		return amountOfMoney;

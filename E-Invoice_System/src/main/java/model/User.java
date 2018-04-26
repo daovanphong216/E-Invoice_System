@@ -1,10 +1,19 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 
 @Entity(name="users")
 public class User {
@@ -14,6 +23,30 @@ public class User {
 	
 	@Column(name = "name")
 	private String name;
+	
+	public Set<Invoice> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(Set<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL)
+	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
+		
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="id", nullable= false )
+	private Account account;
+	
 	
 	@Column(name = "email")
 	private String email;

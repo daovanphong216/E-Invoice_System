@@ -16,9 +16,9 @@
 	<tx:annotation-driven />
 	<mvc:annotation-driven/>
 	<context:annotation-config />
-	<context:component-scan base-package="com.csc.controller" />
-	<context:component-scan base-package="com.csc.dao" />
-	<context:component-scan base-package="com.csc.service" />
+	<context:component-scan base-package="src.main.java.controller" />
+	<context:component-scan base-package="src.main.java.dao" />
+	<context:component-scan base-package="src.main.java.service" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
