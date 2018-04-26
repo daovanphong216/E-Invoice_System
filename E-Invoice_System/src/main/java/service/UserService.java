@@ -1,5 +1,7 @@
 package service;
 
-public class UserService {
+import model.User;
 
+public interface UserService {
+	public void saveOrUpdate(User u);
 }

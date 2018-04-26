@@ -9,7 +9,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.csc.model" />
+		<property name="packagesToScan" value="model" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.show_sql">true</prop>
@@ -31,4 +31,10 @@
 		<!-- maybe use define in here <property name="mappingResources"> <property 
 			name="annotatedClasses" > <list> ... </list> </property> -->
 	</bean>
+	<bean id="userDAO" class="dao.UserDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="user" class="model.User">
+	</bean>
+	
 </beans>

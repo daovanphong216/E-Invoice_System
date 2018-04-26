@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -40,11 +41,10 @@ public class User {
 		this.account = account;
 	}
 
-	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="customerCode", cascade = CascadeType.ALL)
 	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
 		
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="id", nullable= false )
+	@OneToMany(mappedBy="userName", cascade = CascadeType.ALL)
 	private Account account;
 	
 	

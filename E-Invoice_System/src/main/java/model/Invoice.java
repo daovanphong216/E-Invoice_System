@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity(name="invoices")
 public class Invoice {
@@ -19,19 +18,30 @@ public class Invoice {
 	private long id;
 		
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="id", nullable= false )
+	@JoinColumn(name="Id", nullable= false )
 	private User onwer;
 	
+	
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name="Id", nullable= false )
+//	private InvoiceType type;
+//	
+//	public InvoiceType getType() {
+//		return type;
+//	}
+//
+//	public void setType(InvoiceType type) {
+//		this.type = type;
+//	}
+
 	@Column(name = "customerCode")
 	private long customerCode;
 	
 	@Column(name = "description")
 	private String description;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="id", nullable= false )
 	@Column(name = "typeId")
-	private InvoiceType type;
+	private long typeId;
 	
 
 	@Column(name = "dateTime")
@@ -79,12 +89,12 @@ public class Invoice {
 		this.onwer = onwer;
 	}
 
-	public InvoiceType getType() {
-		return type;
+	public long getTypeId() {
+		return typeId;
 	}
 
-	public void setType(InvoiceType type) {
-		this.type = type;
+	public void setTypeId(long typeId) {
+		this.typeId = typeId;
 	}
 
 	public String getDescription() {
