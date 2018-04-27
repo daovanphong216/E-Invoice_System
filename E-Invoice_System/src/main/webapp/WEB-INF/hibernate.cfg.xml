@@ -31,10 +31,5 @@
 		<!-- maybe use define in here <property name="mappingResources"> <property 
 			name="annotatedClasses" > <list> ... </list> </property> -->
 	</bean>
-	<bean id="userDAO" class="dao.UserDAO">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="user" class="model.User">
-	</bean>
 	
 </beans>

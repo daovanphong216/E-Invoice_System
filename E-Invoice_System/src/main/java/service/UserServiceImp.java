@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import dao.UserDAO;
@@ -11,10 +13,22 @@ public class UserServiceImp implements UserService {
 
 	UserDAO u;
 	
-	@Override
+
+	public UserDAO getU() {
+		return u;
+	}
+
+	
+	public void setU(UserDAO u) {
+		this.u = u;
+	}
+
 	public void saveOrUpdate(User u) {
-		// TODO Auto-generated method stub
-		
+		getU().saveOrUpdate(u);
+	}
+
+	public List<User> getAll() {
+		return getU().getAll();
 	}
 
 }
