@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity(name="users")
@@ -41,10 +42,11 @@ public class User {
 		this.account = account;
 	}
 
-	@OneToMany(mappedBy="customerCode", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="onwer", cascade = CascadeType.ALL)
 	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
 		
-	@OneToMany(mappedBy="userName", cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	private Account account;
 	
 	

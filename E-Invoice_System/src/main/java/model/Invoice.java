@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name="invoices")
 public class Invoice {
@@ -17,22 +20,21 @@ public class Invoice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 		
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="Id", nullable= false )
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	private User onwer;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	private InvoiceType type;
 	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name="Id", nullable= false )
-//	private InvoiceType type;
-//	
-//	public InvoiceType getType() {
-//		return type;
-//	}
-//
-//	public void setType(InvoiceType type) {
-//		this.type = type;
-//	}
+	public InvoiceType getType() {
+		return type;
+	}
+
+	public void setType(InvoiceType type) {
+		this.type = type;
+	}
 
 	@Column(name = "customerCode")
 	private long customerCode;
