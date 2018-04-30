@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import dao.UserDAO;
-import model.User;
+import dao.AccountDAO;
+import model.Account;
 
 
 @Service
-public class UserServiceImp implements UserService {
+public class AccountServiceImp implements AccountService {
 
 	@Autowired
-	@Qualifier("userDAO")
-	UserDAO userDao;
+	@Qualifier("accountDAO")
+	AccountDAO accountDao;
 	
 
 	/*public UserDAO getU() {
@@ -27,17 +27,17 @@ public class UserServiceImp implements UserService {
 		this.u = u;
 	}*/
 	
-	public void create(User user) {
-		userDao.create(user);
+	public void create(Account account) {
+		accountDao.create(account);
 	}
 
 	
-	public void update(User user) {
-		userDao.update(user);
+	public void update(Account account) {
+		accountDao.update(account);
 	}
 
-	public List<User> getAll() {
-		return userDao.getAll();
+	public List<Account> getAll() {
+		return accountDao.getAll();
 	}
 
 }

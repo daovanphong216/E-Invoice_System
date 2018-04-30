@@ -20,7 +20,7 @@
 				<!-- Echo all executed SQL to stdout -->
 				<prop key="show_sql">true</prop>
 				<prop key="format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop> 
+	<!--  			<prop key="hibernate.hbm2ddl.auto">create</prop> -->
 				<prop key="use_sql_comments">true</prop>
 <!-- 				<prop key="hibernate.default_schema">dbo</prop> -->
 				
@@ -31,5 +31,38 @@
 		<!-- maybe use define in here <property name="mappingResources"> <property 
 			name="annotatedClasses" > <list> ... </list> </property> -->
 	</bean>
+	
+	<!--<bean id="MyHibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>-->
+    <bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	  <bean id="userDAO" class="dao.UserDAOImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="invoiceDAO" class="dao.InvoiceDAOImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="invoiceTypeDAO" class="dao.InvoiceTypeDAOImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="accountDAO" class="dao.AccountDAOImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<bean id="userService" class="service.UserServiceImp">
+	</bean>
+	
+	<bean id="accountService" class="service.AccountServiceImp">
+	</bean>
+	
+	
 	
 </beans>

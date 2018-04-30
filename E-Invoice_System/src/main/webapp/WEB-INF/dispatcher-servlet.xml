@@ -15,6 +15,7 @@
         
 	<tx:annotation-driven />
 	<mvc:annotation-driven/>
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
 	<context:annotation-config />
 	<context:component-scan base-package="controller" />
 	<context:component-scan base-package="dao" />
@@ -34,8 +35,5 @@
 	<import resource="DataSource.xml" />
 	<!-- Hibernate 4 SessionFactory Bean definition -->
 	<import resource="hibernate.cfg.xml" />
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 </beans>

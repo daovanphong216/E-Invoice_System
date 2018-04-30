@@ -9,11 +9,11 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.User;
+import model.Account;
 
 @Repository
 @Transactional(readOnly = false)
-public class UserDAOImp implements UserDAO{
+public class AccountDAOImp implements AccountDAO{
 	private SessionFactory sessionFactory;
 	
 	public SessionFactory getSessionFactory() {
@@ -26,19 +26,19 @@ public class UserDAOImp implements UserDAO{
 	
 	
 	@Override
-	public void create(User u) {
+	public void create(Account account) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(u);;
+		session.save(account);;
 		tx.commit();
 		session.close();
 		
 	}
 	
 	@Override
-	public User findbyId(long id){
+	public Account findbyId(long id){
 		Session session = getSessionFactory().openSession();
-		User user = (User) session.get(User.class, id);
+		Account user = (Account) session.get(Account.class, id);
 		session.close();
 		return user;
 	}	
@@ -47,17 +47,17 @@ public class UserDAOImp implements UserDAO{
 	public void remove(long id) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		User user = (User) session.get(User.class, id);
-		session.delete(user);
+		Account account = (Account) session.get(Account.class, id);
+		session.delete(account);
 		tx.commit();
 		session.close();
 	}
 	
 	@Override
-	public void update(User u) {
+	public void update(Account account) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(u);;
+		session.saveOrUpdate(account);;
 		tx.commit();
 		session.close();
 		
@@ -65,9 +65,9 @@ public class UserDAOImp implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAll() {
+	public List<Account> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<User> list = session.createQuery("from User").list();
+        List<Account> list = session.createQuery("from Account").list();
         session.close();
         return list;
 	}

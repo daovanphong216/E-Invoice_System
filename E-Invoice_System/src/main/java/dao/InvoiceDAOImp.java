@@ -7,13 +7,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import model.User;
+import model.Invoice;
+
 
 @Repository
-@Transactional(readOnly = false)
-public class UserDAOImp implements UserDAO{
+public class InvoiceDAOImp implements InvoiceDAO{
 	private SessionFactory sessionFactory;
 	
 	public SessionFactory getSessionFactory() {
@@ -26,19 +25,19 @@ public class UserDAOImp implements UserDAO{
 	
 	
 	@Override
-	public void create(User u) {
+	public void create(Invoice invoice) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(u);;
+		session.save(invoice);;
 		tx.commit();
 		session.close();
 		
 	}
 	
 	@Override
-	public User findbyId(long id){
+	public Invoice findbyId(long id){
 		Session session = getSessionFactory().openSession();
-		User user = (User) session.get(User.class, id);
+		Invoice user = (Invoice) session.get(Invoice.class, id);
 		session.close();
 		return user;
 	}	
@@ -47,17 +46,17 @@ public class UserDAOImp implements UserDAO{
 	public void remove(long id) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		User user = (User) session.get(User.class, id);
-		session.delete(user);
+		Invoice invoice = (Invoice) session.get(Invoice.class, id);
+		session.delete(invoice);
 		tx.commit();
 		session.close();
 	}
 	
 	@Override
-	public void update(User u) {
+	public void update(Invoice invoice) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(u);;
+		session.saveOrUpdate(invoice);;
 		tx.commit();
 		session.close();
 		
@@ -65,11 +64,13 @@ public class UserDAOImp implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAll() {
+	public List<Invoice> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<User> list = session.createQuery("from User").list();
+        List<Invoice> list = session.createQuery("from Invoice").list();
         session.close();
         return list;
 	}
+	
+	
 	
 }

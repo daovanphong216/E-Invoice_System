@@ -5,6 +5,10 @@ import java.util.List;
 import model.User;
 
 public interface UserDAO {
-	public void saveOrUpdate(User u);
+	
+	public void create(User u);
+	public User findbyId(long id);
+	public void remove(long id);
 	public List<User> getAll();
+	public void update(User u);
 }

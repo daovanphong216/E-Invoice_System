@@ -7,13 +7,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import model.User;
+import model.InvoiceType;
+
 
 @Repository
-@Transactional(readOnly = false)
-public class UserDAOImp implements UserDAO{
+public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	private SessionFactory sessionFactory;
 	
 	public SessionFactory getSessionFactory() {
@@ -26,19 +25,19 @@ public class UserDAOImp implements UserDAO{
 	
 	
 	@Override
-	public void create(User u) {
+	public void create(InvoiceType invoiceType) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(u);;
+		session.save(invoiceType);;
 		tx.commit();
 		session.close();
 		
 	}
 	
 	@Override
-	public User findbyId(long id){
+	public InvoiceType findbyId(long id){
 		Session session = getSessionFactory().openSession();
-		User user = (User) session.get(User.class, id);
+		InvoiceType user = (InvoiceType) session.get(InvoiceType.class, id);
 		session.close();
 		return user;
 	}	
@@ -47,17 +46,17 @@ public class UserDAOImp implements UserDAO{
 	public void remove(long id) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		User user = (User) session.get(User.class, id);
-		session.delete(user);
+		InvoiceType invoiceType = (InvoiceType) session.get(InvoiceType.class, id);
+		session.delete(invoiceType);
 		tx.commit();
 		session.close();
 	}
 	
 	@Override
-	public void update(User u) {
+	public void update(InvoiceType invoiceType) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(u);;
+		session.saveOrUpdate(invoiceType);;
 		tx.commit();
 		session.close();
 		
@@ -65,9 +64,9 @@ public class UserDAOImp implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAll() {
+	public List<InvoiceType> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<User> list = session.createQuery("from User").list();
+        List<InvoiceType> list = session.createQuery("from InvoiceType").list();
         session.close();
         return list;
 	}

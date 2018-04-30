@@ -1,23 +1,14 @@
 package dao;
 
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import java.util.List;
 
 import model.Invoice;
 
-public class InvoiceDAO extends HibernateDaoSupport {
+public interface InvoiceDAO {
 	
-	public Invoice findbyId(long id){
-		return getHibernateTemplate().get(Invoice.class, id);
-	}
-	
-	public void add(Invoice invoice) {
-		getHibernateTemplate().save(invoice);
-	}
-	
-	public void remove(long id) {
-		getHibernateTemplate().delete(findbyId(id));
-	}
-	
-	
-	
+	public void create(Invoice invoice);
+	public Invoice findbyId(long id);
+	public void remove(long id);
+	public List<Invoice> getAll();
+	public void update(Invoice invoice);
 }
