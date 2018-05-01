@@ -9,9 +9,9 @@
     <http use-expressions="true">
         <csrf disabled="true"/>
         
-        <intercept-url pattern="/" access="hasRole('MEMBER')" />
-        <intercept-url pattern="/user" access="hasRole('MEMBER')" />
-        <intercept-url pattern="/admin" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/" access="isAuthenticated()" />
+        <intercept-url pattern="/user" access="hasRole('ROLE_MEMBER')" />
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
  
         <!-- <intercept-url pattern="/userinfo/**" access="hasAnyRole('ROLE_NV', 'ROLE_QL')" />
         <intercept-url pattern="/admin" access="hasRole('ROLE_QL')" />
@@ -25,7 +25,7 @@
         <access-denied-handler error-page="/403" />
  
         <form-login login-page='/login' login-processing-url="/j_spring_security_check"
-            default-target-url="/user" always-use-default-target="false"
+            default-target-url="/" always-use-default-target="false"
             authentication-failure-url="/login?error=true" username-parameter="username"
             password-parameter="password" />
  

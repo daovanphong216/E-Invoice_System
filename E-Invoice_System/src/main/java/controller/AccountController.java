@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +31,23 @@ public class AccountController {
 
 	
 	 @RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	   public String dashboardPage() {
-	       return "loginPage";  
+	 public String dashboardPage(Principal principal, Authentication authentication) {
+		 String userName= principal.getName();
+		 
+		 if (userName.equals("")) {
+			 return "redirect:/login";  
+		 } else {
+			 String role= authentication.getAuthorities().toArray()[0].toString();
+			 switch (role) {
+			 	case "ROLE_MEMBER": 
+			 		return "forward:/user";
+				case "ROLE_ADMIN": 
+				 	return "redirect:/admin";
+				default: 
+				 	return "redirect:/login";
+			 }
+		 }
+		
 	   }
 	 
 	 @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
