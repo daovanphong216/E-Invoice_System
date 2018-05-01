@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity(name="account")
+@Entity(name="accounts")
 public class Account {
 	
 	@Id
