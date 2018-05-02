@@ -28,7 +28,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 	public void create(Invoice invoice) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(invoice);;
+		session.save(invoice);
 		tx.commit();
 		session.close();
 		
@@ -66,7 +66,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 	@Override
 	public List<Invoice> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<Invoice> list = session.createQuery("from Invoice").list();
+        List<Invoice> list = session.createQuery("from invoices").list();
         session.close();
         return list;
 	}

@@ -16,7 +16,7 @@ public class Invoice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 		
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	private User onwer;
 	
@@ -38,10 +38,6 @@ public class Invoice {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "typeId")
-	private long typeId;
-	
-
 	@Column(name = "dateTime")
 	private String dateTime;
 	
@@ -85,14 +81,6 @@ public class Invoice {
 
 	public void setOnwer(User onwer) {
 		this.onwer = onwer;
-	}
-
-	public long getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(long typeId) {
-		this.typeId = typeId;
 	}
 
 	public String getDescription() {

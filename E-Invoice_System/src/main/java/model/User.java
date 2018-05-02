@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 
@@ -35,15 +36,26 @@ public class User {
 	public Account getAccount() {
 		return account;
 	}
+	
+	@Column(name = "limitedMoney")
+	public double limitedMoney;
+
+	public double getLimitedMoney() {
+		return limitedMoney;
+	}
+
+	public void setLimitedMoney(double limitedMoney) {
+		this.limitedMoney = limitedMoney;
+	}
 
 	public void setAccount(Account account) {
 		this.account = account;
 	}
 
-	@OneToMany(mappedBy="onwer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="onwer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
 		
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Account account;
 	

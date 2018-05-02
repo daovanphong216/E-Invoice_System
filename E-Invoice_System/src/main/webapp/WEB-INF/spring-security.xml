@@ -39,7 +39,7 @@
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                 users-by-username-query="select userName, hashPassword, isActive from accounts where userName=?"
-                authorities-by-username-query="Select accounts.userName, concat('ROLE_',accounts.role) role, users.name from accounts, users where userName=?" />
+                authorities-by-username-query="Select accounts.userName, accounts.role role, users.name from accounts, users where userName=?" />
                  <password-encoder hash="bcrypt" />
         </authentication-provider>
  

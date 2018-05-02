@@ -26,10 +26,10 @@ public class UserDAOImp implements UserDAO{
 	
 	
 	@Override
-	public void create(User u) {
+	public void create(User user) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(u);;
+		session.save(user);
 		tx.commit();
 		session.close();
 		
@@ -54,10 +54,10 @@ public class UserDAOImp implements UserDAO{
 	}
 	
 	@Override
-	public void update(User u) {
+	public void update(User user) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(u);;
+		session.saveOrUpdate(user);
 		tx.commit();
 		session.close();
 		
@@ -67,7 +67,7 @@ public class UserDAOImp implements UserDAO{
 	@Override
 	public List<User> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<User> list = session.createQuery("from User").list();
+        List<User> list = session.createQuery("from users").list();
         session.close();
         return list;
 	}

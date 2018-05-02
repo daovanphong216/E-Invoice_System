@@ -1,6 +1,7 @@
 package controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import model.Account;
 import model.User;
-import service.AccountService;
 import service.UserService;
 
 @Controller
@@ -24,10 +23,10 @@ public class AccountController {
 	 @Qualifier("userService")
 	 UserService userService;
 	 
-	 @Autowired
-	 @Qualifier("accountService")
-	 AccountService accountService;
-	
+//	 @Autowired
+//	 @Qualifier("accountService")
+//	 AccountService accountService;
+//	
 
 	
 	 @RequestMapping(value = { "/" }, method = RequestMethod.GET)
@@ -55,40 +54,23 @@ public class AccountController {
 	       return "loginPage";
 	   }
 	 
-	 @RequestMapping(value = { "/register" }, method = RequestMethod.GET)
+	 @RequestMapping(value = { "/register" }, method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	   public String registerPage() {
-	       return "registerPage";
+	     return "registerPage";
 	   }
 	 
 	 @RequestMapping(value = "/register", method = RequestMethod.POST)
 	 public String registerNewUser(  @RequestParam(value="username", required=true) String username, 
 		        @RequestParam(value="password", required=true) String password) {
-		 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			Account account = new Account();
-			User user = new User();
-			
-			account.setActive(true);
-			account.setRole("MEMBER");
-			account.setUserName(username);
-			account.setHashPassword(passwordEncoder.encode(password));
-			accountService.create(account);
-			
-			user.setEmail("123@gmail.com");
-			user.setName("Phong <3");
-			user.setAccount(account);
-			
-			userService.create(user);
+		 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 	
+		 	this.userService.createMember(username, passwordEncoder.encode(password), "tu", "032", "hihi@df", "huhu");
 
-			//String hashedPassword = passwordEncoder.encode(password);
-	        //System.out.println(hashedPassword);
 	       return "redirect:/login";  
 	    }
-	 
 		 @RequestMapping(value = "/logoutsuccessful", method = RequestMethod.GET)
 		   public String logoutSuccessfulPage(Model model) {
 		      return "redirect:/login";   
 		  }
-	 
 		 @RequestMapping(value = "/403", method = RequestMethod.GET)
 		   public String accessDenied(Model model, Principal principal) {
 		        

@@ -7,3 +7,4 @@ target/*
 database.properties
 
 
+/bin/

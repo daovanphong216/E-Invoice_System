@@ -28,7 +28,7 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	public void create(InvoiceType invoiceType) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(invoiceType);;
+		session.save(invoiceType);
 		tx.commit();
 		session.close();
 		
@@ -56,7 +56,7 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	public void update(InvoiceType invoiceType) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(invoiceType);;
+		session.saveOrUpdate(invoiceType);
 		tx.commit();
 		session.close();
 		
@@ -66,7 +66,7 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	@Override
 	public List<InvoiceType> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<InvoiceType> list = session.createQuery("from InvoiceType").list();
+        List<InvoiceType> list = session.createQuery("from invoiceTypes").list();
         session.close();
         return list;
 	}

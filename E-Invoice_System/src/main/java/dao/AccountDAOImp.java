@@ -29,7 +29,7 @@ public class AccountDAOImp implements AccountDAO{
 	public void create(Account account) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(account);;
+		session.save(account);
 		tx.commit();
 		session.close();
 		
@@ -57,7 +57,7 @@ public class AccountDAOImp implements AccountDAO{
 	public void update(Account account) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(account);;
+		session.saveOrUpdate(account);
 		tx.commit();
 		session.close();
 		
@@ -67,7 +67,7 @@ public class AccountDAOImp implements AccountDAO{
 	@Override
 	public List<Account> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<Account> list = session.createQuery("from Account").list();
+        List<Account> list = session.createQuery("from accounts").list();
         session.close();
         return list;
 	}

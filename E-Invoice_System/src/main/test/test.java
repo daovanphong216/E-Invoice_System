@@ -14,7 +14,6 @@ public class test {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		UserDAOImp userDAO = context.getBean(UserDAOImp.class);
-		System.out.println(userDAO.getHibernateTemplate().toString());
 		User u = new User();
 		u.setName("Tu");
 		u.setEmail("levantu.13139@gmail.com");
