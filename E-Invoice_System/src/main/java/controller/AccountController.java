@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +39,8 @@ public class AccountController {
 			 return "redirect:/login";  
 		 } else {
 			 String role= authentication.getAuthorities().toArray()[0].toString();
+			 System.out.println(this.userService.findbyUserName(userName).getId());
+			 
 			 switch (role) {
 			 	case "ROLE_MEMBER": 
 			 		return "forward:/user";

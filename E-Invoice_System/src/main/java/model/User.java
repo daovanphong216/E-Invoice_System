@@ -55,7 +55,7 @@ public class User {
 	@OneToMany(mappedBy="onwer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
 		
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Account account;
 	

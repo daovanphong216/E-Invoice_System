@@ -2,13 +2,17 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.Account;
 import model.User;
 
 @Repository
@@ -70,6 +74,19 @@ public class UserDAOImp implements UserDAO{
         List<User> list = session.createQuery("from users").list();
         session.close();
         return list;
+	}
+
+	@Override
+	public User findbyUserName(String userName) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		Criteria query = session.createCriteria(Account.class);
+		query.add(Restrictions.eq("userName", userName));
+		List<Account> results = query.list();
+		System.out.println(results);
+		tx.commit();
+		session.close();
+		return results.get(0).getUser();
 	}
 	
 }

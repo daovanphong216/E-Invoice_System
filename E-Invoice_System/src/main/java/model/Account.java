@@ -22,6 +22,14 @@ public class Account {
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
 	private User user;
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Column(name = "hashPassword")
 	private String hashPassword;
 	

@@ -65,4 +65,10 @@ public class UserServiceImp implements UserService {
 		return userDao.getAll();
 	}
 
+
+	@Override
+	public User findbyUserName(String userName) {
+		return this.userDao.findbyUserName(userName);
+	}
+
 }
