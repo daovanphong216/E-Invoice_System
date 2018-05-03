@@ -1,0 +1,106 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Invoice Information Input</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="FormStyle.css" rel='stylesheet' type='text/css' />
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+
+        <script src="selectpicker.js"></script>
+        <script type="text/javascript">
+             $(document).ready(function() {
+             $('.selectpicker').selectpicker();
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <div class="col-md-8 form-three">
+            <div class="form-title">
+                <h3>Invoice Information Input</h3>
+            </div>
+
+            <div class="input-group">
+                <div class="form-content form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Type</label>
+                        <div class="col-md-8">
+                            <fieldset>
+                                <select id="invoice_type" title="Select your surfboard" class="selectpicker">
+                                    <option>Select Type</option>
+                                    <option data-thumbnail="image/food.png">Food</option>
+                                    <option data-thumbnail="image/travel.png">Travel</option>
+                                    <option data-thumbnail="image/electric.png">Electric</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">VAT</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-input">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Amount of Money</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-input">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Invoice No</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-input">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Customer Code</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Decriptions</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-input">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Note</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-input">
+
+                        </div>
+                    </div>
+
+                    <button id="add_button" type="button" class="btn btn-info">Add</button>
+
+                </div>
+            </div>
+        </div>
+    </body>
+
+    </html>
