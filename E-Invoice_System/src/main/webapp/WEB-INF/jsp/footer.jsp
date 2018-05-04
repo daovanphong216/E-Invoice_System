@@ -1,7 +1,6 @@
 <footer>
-    <h1>
-        <img id="footerLogo" src="resources/assets/img/teamLogo.png" alt="Team Logo Image">
-    </h1>
-    &copy;
-    <script>document.write(new Date().getFullYear())</script> Beer Team
+    <div class="footer-copyright py-3 text-center">
+        © 2018 Copyright:
+        <a href="#index.jsp"> Bear Team </a>
+    </div>
 </footer>

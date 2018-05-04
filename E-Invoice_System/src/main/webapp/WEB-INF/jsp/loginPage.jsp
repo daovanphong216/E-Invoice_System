@@ -1,95 +1,62 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-    <html>
+<html>
 
-    <head>
-        <title>Login</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Bootstrap Styles-->
-        <link href="<c:url value="./resources/css/bootstrap.css" />" rel="stylesheet">
-        <!-- FontAwesome Styles-->
-        <link href="<c:url value="./resources/css/font-awesome.css" />" rel="stylesheet">
-        <!-- Morris Chart Styles-->
+<head>
+<title>E-Invoice System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+	name='viewport' />
+<meta name="viewport" content="width=device-width" />
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-        <!-- Custom Styles-->
-        <link href="<c:url value="./resources/css/custom-styles.css" />" rel="stylesheet">
-        <!-- Google Fonts-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-        <!-- TABLE STYLES-->
-        <link href="<c:url value="./resources/js/dataTables/dataTables.bootstrap.css" />" rel="stylesheet">
-    </head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="<c:url value='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>" />
 
-    <body>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <div id="page-wrapper">
-            <div id="page-inner">
-                <div class="row">
-                     <div class="col-lg-12 text-center">
-                        <h2>Login</h2>
-                        <br> </br>
-                    </div>
-                </div>             
-                <!-- /. ROW  -->
-                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <c:if test="${param.error == 'true'}">
-                            <div style="color:red;margin:10px 0px;">
 
-                                   Login Failed!!!<br />
-                                   Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 
-                            </div>
-                       </c:if>
-                    </div>
-                </div> 
-               <div class="row">
-                     <div class="col-lg-12 text-center">
-                        <!-- Advanced Tables -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                               Enter user name and password:
-                            </div>
-                            <div class="panel-body">
-                                <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                        </div>
-                                        <div class="col-lg-6 ">
-                                           <div class="form-group">
-                                                <label>Username</label>
-                                                <input type='text' name='username' class="form-control" value=''>
-                                            </div>
-                                            <div class="form-group">
-                                                 <label>Password</label>
-                                                <input type='password' name='password' class="form-control" />
-                                            </div>  
-                                        </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 text-center">
-                                        <input name="submit" type="submit" value="Login" class = "btn btn-primary"/>
-                                        </div>
-                                    </div>
-                                      <div class="row">
-                                        <div class="col-lg-12 text-center">
-                                        <a href="./register">Register new account</a>
-                                        </div>
-                                    </div>
-                                </form>
+<link rel="stylesheet"
+	href="<c:url value='././resources/assets/css/HeaderFooterStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='././resources/assets/css/LoginStyle.css'/>" />
 
-                            </div>
-                        </div>
-                        <!--End Advanced Tables -->
-                    </div>
-                </div>
-            </div>
-        </div>
+</head>
+<body>
+	<%@ include file="header.jsp"%>
+	<form>
+		<div class="container">
+			<h2 style="margin-bottom: 40px;">Login Form</h2>
 
-        
-   <script src="resources/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
-    <script src="resources/js/bootstrap.min.js"></script>
+			<label for="uname"><b>User Name</b></label><br> <input
+				type="text" placeholder="Enter User Name" name="uname" required><br>
 
-    </body>
+			<label for="psw"><b>Password</b></label><br> <input
+				type="password" placeholder="Enter Password" name="psw" required><br>
+			<div class="form-group">
+				<div class="checkbox">
+					<label><input type="checkbox" name="remember">
+						Remember me</label>
+				</div>
+
+				<button type="submit">Submit</button>
+				<br>
+			</div>
+		</div>
+	</form>
+	<div class="container signin">
+		<p>
+			No account? <a href="./register">Create one!</a>.
+		</p>
+	</div>
+	<%@ include file="footer.jsp"%>
+</body>
 </html>
