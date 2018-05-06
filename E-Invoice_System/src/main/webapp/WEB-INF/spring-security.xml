@@ -28,9 +28,15 @@
             default-target-url="/" always-use-default-target="false"
             authentication-failure-url="/login?error=true" username-parameter="username"
             password-parameter="password" />
+            
+ 		<remember-me 
+		    token-validity-seconds="1209600"
+			remember-me-parameter="remember-me"  
+			 />
  
         <logout logout-url="/logout" logout-success-url="/logoutsuccessful"
             delete-cookies="JSESSIONID" invalidate-session="true" />
+            
  
     </http>
  

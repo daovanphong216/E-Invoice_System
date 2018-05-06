@@ -86,7 +86,11 @@ public class UserDAOImp implements UserDAO{
 		System.out.println(results);
 		tx.commit();
 		session.close();
-		return results.get(0).getUser();
+		if (results.isEmpty()) {
+			return null;
+		}else{
+				return results.get(0).getUser();
+			}
 	}
 	
 }

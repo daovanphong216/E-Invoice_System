@@ -32,22 +32,35 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<form>
+	<form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
 		<div class="container">
 			<h2 style="margin-bottom: 40px;">Login Form</h2>
+			<div class="row">
+                    <div class="col-md-12 ">
+                        <c:if test="${param.error == 'true'}">
+                            <div style="color:red;margin:10px 0px;">
 
-			<label for="uname"><b>User Name</b></label><br> <input
-				type="text" placeholder="Enter User Name" name="uname" required><br>
+                                   Login Failed!!!<br />
+                                   Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 
-			<label for="psw"><b>Password</b></label><br> <input
-				type="password" placeholder="Enter Password" name="psw" required><br>
+                            </div>
+                       </c:if>
+                    </div>
+                </div> 
+			<label for="uname"><b>User Name</b></label><br> 
+			<input
+				type="text" placeholder="Enter User Name" name="username" required><br>
+
+			<label for="psw"><b>Password</b></label><br> 
+			<input
+				type="password" placeholder="Enter Password" name="password" required><br>
 			<div class="form-group">
 				<div class="checkbox">
-					<label><input type="checkbox" name="remember">
+					<label><input type="checkbox" name="remember-me">
 						Remember me</label>
 				</div>
 
-				<button type="submit">Submit</button>
+				<button type="submit">Login</button>
 				<br>
 			</div>
 		</div>

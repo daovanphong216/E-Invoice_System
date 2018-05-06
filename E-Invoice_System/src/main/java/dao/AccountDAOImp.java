@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,6 +44,7 @@ public class AccountDAOImp implements AccountDAO{
 		return user;
 	}	
 	
+		
 	@Override
 	public void remove(long id) {
 		Session session = getSessionFactory().openSession();

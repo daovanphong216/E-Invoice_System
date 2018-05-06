@@ -38,7 +38,17 @@ public class UserServiceImp implements UserService {
 	}
 	
 	
+	public boolean checkDuplicatedUser(String username){
+		User user  = this.userDao.findbyUserName(username);
+		if (user !=null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public void createMember(String userName, String hashPassword, String name, String phoneNumber, String email, String address) {
+				
 		User newUser = new User();
 		Account newAccount = new Account();
 		newAccount.setActive(true);

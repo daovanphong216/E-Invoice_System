@@ -37,7 +37,7 @@
                             <div style="color:red;margin:10px 0px;">
 
                                    Register Failed!!!<br />
-                                   Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                                   Reason :  ${message}
 
                             </div>
                        </c:if>
