@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,14 +32,14 @@ public class AccountController {
 	//
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String dashboardPage(Principal principal, Authentication authentication) {
+	public String dashboardPage(Model model, Principal principal, Authentication authentication) {
 		String userName = principal.getName();
 
 		if (userName.equals("")) {
 			return "redirect:/login";
 		} else {
 			String role = authentication.getAuthorities().toArray()[0].toString();
-			System.out.println(this.userService.findbyUserName(userName).getId());
+			// System.out.println(this.userService.findbyUserName(userName).getId());
 
 			switch (role) {
 			case "ROLE_MEMBER":
@@ -63,21 +64,21 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerNewUser(Model model,@RequestParam(value = "username", required = true) String username,
-			@RequestParam(value = "password", required = true) String password, 
+	public String registerNewUser(Model model, @RequestParam(value = "username", required = true) String username,
+			@RequestParam(value = "password", required = true) String password,
 			@RequestParam(value = "email", required = true) String email,
 			@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "address", required = true) String address,
 			@RequestParam(value = "telNo", required = true) String telNo) {
-		
+
 		boolean checkDupplicate = this.userService.checkDuplicatedUser(username);
 		if (checkDupplicate) {
-			model.addAttribute("message","Username dupplicated!" );
-			model.addAttribute("error",true );
+			model.addAttribute("message", "Username dupplicated!");
+			model.addAttribute("error", true);
 			return "registerPage";
 		} else {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		this.userService.createMember(username, passwordEncoder.encode(password), name, telNo, email, address);
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			this.userService.createMember(username, passwordEncoder.encode(password), name, telNo, email, address);
 
 			return "redirect:/login";
 		}
@@ -88,6 +89,38 @@ public class AccountController {
 		return "redirect:/login";
 	}
 
+	@RequestMapping(value = "/userinfo/{id}", method = RequestMethod.GET)
+	public String userInfo(Model model, @PathVariable("id") String idStr, Principal principal,
+			Authentication authentication) {
+		long id = Long.parseLong(idStr, 10);
+		User user = userService.findbyId(id);
+		if (user == null) {
+			return "redirect:/nofounded";
+		} else {
+			String role = authentication.getAuthorities().toArray()[0].toString();
+			if (role.equals("ROLE_ADMIN")) {
+				model.addAttribute("user",user);
+				return "userInfoPage";
+			} else {
+				if (user.getAccount().getUserName().equals(principal.getName())) {
+				//if (true) {
+					model.addAttribute("user", user);
+					return "userInfoPage";
+					
+				} else {
+					return "redirect:/403";
+				}
+			}
+		}
+	}
+
+	
+	@RequestMapping(value = "/nofounded", method = RequestMethod.GET)
+	public String noFounded(Model model, Principal principal) {
+			model.addAttribute("message", "No founded");
+		return "403Page";
+	}
+	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model, Principal principal) {
 
@@ -95,7 +128,7 @@ public class AccountController {
 			model.addAttribute("message",
 					"Hi " + principal.getName() + "<br> You do not have permission to access this page!");
 		} else {
-			model.addAttribute("msg", "You do not have permission to access this page!");
+			model.addAttribute("message", "You do not have permission to access this page!");
 		}
 		return "403Page";
 	}

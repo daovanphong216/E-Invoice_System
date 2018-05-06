@@ -12,7 +12,8 @@
         <intercept-url pattern="/" access="isAuthenticated()" />
         <intercept-url pattern="/user" access="hasRole('ROLE_MEMBER')" />
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
- 
+ 	    <intercept-url pattern="/userinfo/**" access="isAuthenticated()" />
+        
         <!-- <intercept-url pattern="/userinfo/**" access="hasAnyRole('ROLE_NV', 'ROLE_QL')" />
         <intercept-url pattern="/admin" access="hasRole('ROLE_QL')" />
         <intercept-url pattern="/staff" access="hasRole('ROLE_NV')" />

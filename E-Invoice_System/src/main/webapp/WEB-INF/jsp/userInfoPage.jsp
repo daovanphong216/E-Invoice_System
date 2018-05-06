@@ -32,8 +32,10 @@
 
 <title>E-Invoice System</title>
 
-<link rel="stylesheet" href="<c:url value='././resources/assets/css/HeaderFooterStyle.css'/>" />
-<link rel="stylesheet" href="<c:url value='././resources/assets/css/UserInfoStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -52,7 +54,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-3 col-lg-3 " align="center">
-									<img alt="User Pic" src="resources/assets/img/userpic.png"
+									<img alt="User Pic" src="../resources/assets/img/userpic.png"
 										class="img-circle img-responsive">
 								</div>
 
@@ -61,20 +63,18 @@
 										<tbody>
 											<tr>
 												<td>Username:</td>
-												<td>ABC XYZ</td>
+												<td>${user.name}</td>
 											<tr>
 												<td>Address</td>
-												<td>Tran Duy Hung, Ha Noi</td>
+												<td>${user.address}</td>
 											</tr>
 											<tr>
 												<td>Email</td>
-												<td><a
-													href="https://www.google.com.vn/webhp?hl=vi&ictx=2&sa=X&ved=0ahUKEwiYrcralOvaAhVW6LwKHadeCWAQPQgD">searchgoogle@gmail.com</a></td>
+												<td>${user.email}</td>
 											</tr>
-											<td>Phone Number</td>
-											<td>123-4567-890 (Tel)<br>
-											<br>555-4567-890 (Mobile)
-											</td>
+											<tr>
+												<td>Phone Number</td>
+												<td>${user.phoneNumber}</td>
 											</tr>
 
 										</tbody>

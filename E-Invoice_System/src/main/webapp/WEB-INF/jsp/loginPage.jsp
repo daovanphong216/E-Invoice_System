@@ -25,9 +25,9 @@
 
 
 <link rel="stylesheet"
-	href="<c:url value='././resources/assets/css/HeaderFooterStyle.css'/>" />
+	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
-	href="<c:url value='././resources/assets/css/LoginStyle.css'/>" />
+	href="<c:url value='/resources/assets/css/LoginStyle.css'/>" />
 
 </head>
 <body>

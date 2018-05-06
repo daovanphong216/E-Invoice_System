@@ -80,5 +80,10 @@ public class UserServiceImp implements UserService {
 	public User findbyUserName(String userName) {
 		return this.userDao.findbyUserName(userName);
 	}
-
+	
+	@Override
+	public User findbyId(long id){
+		return this.userDao.findbyId(id);
+		
+	}
 }
