@@ -59,5 +59,8 @@
 	
 	<bean id="userService" class="service.UserServiceImp">
 	</bean>
+	
+	<bean id="invoiceService" class="service.InvoiceServiceImp">
+	</bean>
 			
 </beans>

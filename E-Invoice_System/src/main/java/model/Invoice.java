@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +20,7 @@ public class Invoice {
 		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
-	private User onwer;
+	private User owner;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
@@ -39,14 +41,14 @@ public class Invoice {
 	private String description;
 	
 	@Column(name = "dateTime")
-	private String dateTime;
+	private Date dateTime;
 	
 	
-	public String getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
 
-	public void setDateTime(String dateTime) {
+	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
 
@@ -59,6 +61,9 @@ public class Invoice {
 	@Column(name = "invoiceNo")
 	private String invoiceNo;
 	
+	/**
+	 * @return
+	 */
 	public long getId() {
 		return id;
 	}
@@ -75,12 +80,12 @@ public class Invoice {
 		this.customerCode = customerCode;
 	}
 	
-	public User getOnwer() {
-		return onwer;
+	public User getOwner() {
+		return owner;
 	}
 
-	public void setOnwer(User onwer) {
-		this.onwer = onwer;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 	public String getDescription() {

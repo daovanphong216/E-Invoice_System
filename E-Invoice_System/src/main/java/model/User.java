@@ -52,7 +52,7 @@ public class User {
 		this.account = account;
 	}
 
-	@OneToMany(mappedBy="onwer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
 		
 	@ManyToOne(fetch = FetchType.LAZY)

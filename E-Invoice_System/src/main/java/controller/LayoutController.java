@@ -17,5 +17,9 @@ public class LayoutController {
 	   public String adminPage(Principal principal, Authentication authentication) {
 	       return "userInfo";  
 	   }
+	@RequestMapping(value = { "/invoices" }, method = RequestMethod.GET)
+	   public String invoices(Principal principal, Authentication authentication) {
+	       return "invoices";  
+	   }
 
 }
