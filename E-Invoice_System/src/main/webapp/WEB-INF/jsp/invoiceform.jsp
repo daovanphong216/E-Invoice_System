@@ -14,14 +14,14 @@
 
 <div class="ucontainer">
   <h2>Invoice Form</h2>
-  <form action="/action_page.php">
+  <form action="./CreateInvoice">
     <div class="form-group">
       <label for="customerCode">Customer Code:</label>
       <input type="number" class="form-control" id="customerCode" placeholder="Enter Customer Code" name="customerCode">
     </div>
     <div class="form-group">
       <label for="invoiceNo">Invoice No:</label>
-      <input type="number" class="form-control" id="invoiceNo" placeholder="Enter Invoice No" name="invoiceNo">
+      <input type="text" class="form-control" id="invoiceNo" placeholder="Enter Invoice No" name="invoiceNo">
     </div>
     <div class="form-group">
       <label for="dateTime">Date Time:</label>
@@ -37,7 +37,7 @@
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
-      <input type="text" class="form-control" id="description" placeholder="Enter Description" name="invoiceNo">
+      <input type="text" class="form-control" id="description" placeholder="Enter Description" name="description">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
