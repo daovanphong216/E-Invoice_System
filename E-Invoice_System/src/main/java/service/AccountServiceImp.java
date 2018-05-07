@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import dao.AccountDAO;
 import model.Account;
+import model.User;
 
 
 @Service
@@ -36,6 +37,12 @@ public class AccountServiceImp implements AccountService {
 		accountDao.update(account);
 	}
 
+	@Override
+	public Account findbyId(long id){
+		return this.accountDao.findbyId(id);
+		
+	}
+	
 	public List<Account> getAll() {
 		return accountDao.getAll();
 	}
