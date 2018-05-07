@@ -1,0 +1,37 @@
+{
+	"students":[
+			{"name":"Pham Thanh Phong",
+				"dateofbirth":"12/7/1994",
+				"gender":"Male"
+			},
+			{
+				"name":"Nguyen Hung Thinh",
+				"dateofbirth":"13/2/1985",
+				"gender":"Male"
+			},
+			{
+				"name":"Doan Van Hoi",
+				"dateofbirth":"4/4/1992",
+				"gender":"Male"
+			},
+			{
+				"name":"Nguyen Thi Ngoc Han",
+				"dateofbirth":"12/7/1996",
+				"gender":"Female"
+			},
+			{
+				"name":"Do Cao Thu",
+				"dateofbirth":"11/3/1992",
+				"gender":"Female"
+			},
+			{
+				"name":"Le Thi Buoi",
+				"dateofbirth":"4/7/1998",
+				"gender":"Female"
+			},
+			{
+				"name":"Tran Thi Thanh Tam",
+				"dateofbirth":"24/5/1963",
+				"gender": "Female"
+			}
+]}

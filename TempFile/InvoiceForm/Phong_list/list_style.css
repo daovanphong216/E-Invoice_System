@@ -1,0 +1,103 @@
+.modal-header, h4, .close {
+		background-color: #5cb85c;
+		color:white !importance;
+		text-align: center;
+		font-size: 30px;
+	}
+	
+	.modal-footer {
+		background-color: #f9f9f9;
+	}
+	
+	body{
+		max-width: 800px;
+		min-width:500px;
+		min-height: 800px;
+	}
+	
+	/* Full-width input fields */
+	input[type=text], input[type=password],input[type=email],input[type=name],input[type=tel] {
+		width: 100%;
+		padding: 5px;
+		margin: 5px 0 22px 0;
+		display: inline-block;
+		border: none;
+		background: white;
+		box-shadow: 2px 2px 5px black;
+	}
+
+input[type=text]:focus, 
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=name]:focus,input[type=tel]:focus {
+		background-color: #f1f1f1;
+		outline: none;
+
+}
+
+container{
+		margin-left:160px;
+}
+	
+.i-circle {
+		background: #318b8fb3;
+		color: #fff;
+		padding: 6px 0px;
+		border-radius: 100%;
+		font-size: 30px;
+		text-align: center;
+		width: 57px;
+}
+	
+.col-lg-9 {
+		width: 80%;
+}
+	
+.rows{
+		margin-top: 30px;
+		margin-left:30px;
+		width: 500px;
+}
+	
+.list-group{
+		width: 500px;
+}
+	
+.list-detal{
+		margin-top: 50px;
+}
+
+.P-List-invoice{
+		align: center;
+		width: 100%;
+}
+	
+ul li{
+		height: 80px;
+		width: 600px;
+}
+	
+li.borderless {
+	  border-left: none;
+	  border-right: none;
+}
+	
+.center{
+		margin-top: auto;
+		margin-bottom: auto;
+
+}
+span.delete{
+		color:#ad1515;
+		width:5px;
+		height:5px;
+}
+span.edit{
+		color:#78a779;
+		width:5px;
+		height:5px;
+}
+.center {
+		margin:auto;
+		magin-top: 50px !importance;
+}
