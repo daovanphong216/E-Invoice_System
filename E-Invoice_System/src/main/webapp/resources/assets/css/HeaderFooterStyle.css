@@ -1,46 +1,40 @@
-
 body {
-    margin-top: 100px;
-    background-color: white;
+	margin-top: 100px;
+	background-color: white;
 }
 
-footer
-{
+footer {
 	height: 77px;
-    position: fixed;
-    right: 0;
-    bottom: 0px;
-    left: 0;
-    padding-top: 33px;
-    padding-bottom: 0px;
-    background-color: #484A4D;
-    text-align: center;
-    color: #9d9d9d;
-    
+	position: fixed;
+	right: 0;
+	bottom: 0px;
+	left: 0;
+	padding-top: 33px;
+	padding-bottom: 0px;
+	background-color: #484A4D;
+	text-align: center;
+	color: #9d9d9d;
 }
 
-#headerLogo
-{
-
-    margin-top: -15px;
-    margin-left: -6px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    height: auto;
-    width: 10%;
+#headerLogo {
+	margin-top: -19px;
+	margin-left: -6px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	height: auto;
+	width: 40%;
 }
 
-#footerLogo
-{
-    margin-top: -10px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: -6px;
-    height: auto;
-    width: 5%;
+}
+#footerLogo {
+	margin-top: -10px;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: -6px;
+	height: auto;
+	width: 5%;
 }
 /* Top Navigation */
-
 .top-nav {
     padding: 0 15px;
 }
@@ -107,7 +101,7 @@ ul.alert-dropdown {
         border-radius: 0;
         overflow-y: auto;
         background-color: #222;
-        bottom: 0px;
+        bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
     }
@@ -136,14 +130,4 @@ ul.alert-dropdown {
 
 .side-nav>li>ul>li>a:hover {
     color: #fff;
-}
-
-.t-sidebar a
-{
-	color: #9d9d9d;
-}
-
-footer a
-{
-	color: white;
 }

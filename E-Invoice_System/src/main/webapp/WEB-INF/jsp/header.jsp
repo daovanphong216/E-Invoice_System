@@ -7,7 +7,7 @@
 			<a class="navbar-brand" href="index.html"> <span> <img
 					id="headerLogo"
 					src="${pageContext.request.contextPath}/resources/assets/img/webLogo.PNG"
-					alt="E-Invoice System Logo">E-Invoice System
+					alt="E-Invoice System Logo">
 			</span>
 			</a>
 		</div>
