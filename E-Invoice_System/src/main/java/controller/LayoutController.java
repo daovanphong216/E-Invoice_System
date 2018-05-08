@@ -13,13 +13,14 @@ public class LayoutController {
 	       return "List_invoice";  
 	   }
 	
-	@RequestMapping(value = { "/info" }, method = RequestMethod.GET)
-	   public String adminPage(Principal principal, Authentication authentication) {
-	       return "userInfo";  
-	   }
 	@RequestMapping(value = { "/invoices" }, method = RequestMethod.GET)
 	   public String invoices(Principal principal, Authentication authentication) {
 	       return "invoices";  
+	   }
+	
+	@RequestMapping(value = { "/invoiceItem" }, method = RequestMethod.GET)
+	   public String invoiceItem(Principal principal, Authentication authentication) {
+	       return "invoiceItem";  
 	   }
 
 }

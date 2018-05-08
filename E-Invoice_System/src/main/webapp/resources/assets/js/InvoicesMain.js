@@ -1,5 +1,3 @@
-var invoicesdata;
-
 function getSolutionjson() {
     var str;
     $.ajax({
@@ -21,15 +19,24 @@ function getSolutionjson() {
 };
 
 
-function listDataArray(data){
-	$('.page-container').append('haha');
-};
-
-
-
 
 $(document).ready(function(){
 	invoicesdata = getSolutionjson();
-	listDataArray(invoicesdata);
 	console.log(invoicesdata);
+	
+	
+	
+
+});
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope) {
+	$scope.table = getSolutionjson();
+	$scope.removeElem = function(e){
+		console.log(e);
+		$scope.table.splice($scope.table.indexOf(e), 1);
+		
+		
+		
+		
+	};
 });

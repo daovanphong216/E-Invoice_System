@@ -1,4 +1,3 @@
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -40,12 +39,12 @@
 	<%@ include file="header.jsp"%>
 	<div class="page-body">
 		<div class="container">
-			<h1 style="text-align: center;">Register</h1>
-			<p style="text-align: center;">Please fill in this form to create
+			<h1 class="center_title">Register</h1>
+			<p class="center_title">Please fill in this form to create
 				an account.</p>
 			<div class="col-md-12 text-center">
 				<c:if test="${error == 'true'}">
-					<div style="color: red; margin: 10px 0px;">
+					<div class="error">
 
 						Register Failed!!!<br /> Reason : ${message}
 
@@ -54,25 +53,26 @@
 			</div>
 			<form name='f' action="./register" method='POST'>
 
+<label for="email"><b>Email</b></label><br>
+    <input type="email" placeholder="Enter Email" name="email" required>
 
-				<label for="email"><b>Email</b></label><br> <input type="email"
-					placeholder="Enter Email" name="email" required><br> <label
-					for="uname"><b>User Name</b></label><br> <input type="text"
-					placeholder="Enter User Name" name="username" required><br>
+	<label for="uname"><b>User Name</b></label><br>
+    <input type="text" placeholder="Enter User Name" name="username" pattern=".{0}|.{5,25}" required title="Must 5 or more chars (max 25)" maxlength="25">
 
-				<label for="name"><b>Full Name</b></label><br> <input
-					type="name" placeholder="Enter Your Name" name="name" required>
+	<label for="name"><b>Full Name</b></label><br>
+    <input type="name" placeholder="Enter Your Name" name="name" pattern=".{0}|.{5,50}" required title="Must 5 or more chars (max 50)" maxlength="50">
 
-				<label for="add"><b>Address</b></label><br> <input type="text"
-					placeholder="Enter Address" name="address" required><br>
-				<label for="telNo"><b>Phone Number</b></label><br> <input
-					type="tel" placeholder="090xxxxxxx" name="telNo" required size="20"
-					minlength="10" maxlength="14"><br> <label for="psw"><b>Password</b></label><br>
-				<input type="password" placeholder="Enter Password" name="password"
-					required><br> <label for="psw-repeat"><b>Confirm
-						Password</b></label><br> <input type="password"
-					placeholder="Confirm Password" name="psw-repeat" required><br>
+	<label for="add"><b>Address</b></label><br>
+    <input type="text" placeholder="Enter Address" name="address" required>
 
+	<label for="telNo"><b>Phone Number</b></label><br>
+    <input type="tel" placeholder="090xxxxxxx" name="telNo" required size="20" minlength="10" maxlength="14">
+
+    <label for="psw"><b>Password</b></label><br>
+    <input name="password" placeholder="Enter Password" required="required" type="password" id="password" />
+
+    <label for="psw-repeat"><b>Confirm Password</b></label><br>
+    <input name="password_confirm" placeholder="Confirm Password" required="required" type="password" id="password_confirm" onblur="checkPassword();" />
 
 				<button type="submit" class="registerbtn btn btn-default">Done</button>
 
@@ -89,4 +89,5 @@
 
 	<%@ include file="footer.jsp"%>
 </body>
+<script src="./resources/assets/js/RegisterFunction.js" ></script>
 </html>
