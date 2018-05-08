@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import model.User;
+import service.AccountService;
 import service.UserService;
 
 @Controller
@@ -26,10 +28,8 @@ public class AccountController {
 	@Qualifier("userService")
 	UserService userService;
 
-	// @Autowired
-	// @Qualifier("accountService")
-	// AccountService accountService;
-	//
+
+	
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String dashboardPage(Model model, Principal principal, Authentication authentication) {
@@ -92,26 +92,25 @@ public class AccountController {
 	@RequestMapping(value = "/userinfo/{id}", method = RequestMethod.GET)
 	public String userInfo(Model model, @PathVariable("id") String idStr, Principal principal,
 			Authentication authentication) {
+		
 		long id = Long.parseLong(idStr, 10);
 		User user = userService.findbyId(id);
 		if (user == null) {
 			return "redirect:/nofounded";
 		} else {
-			String role = authentication.getAuthorities().toArray()[0].toString();
-			if (role.equals("ROLE_ADMIN")) {
+			
 				model.addAttribute("user",user);
 				return "userInfoPage";
-			} else {
-				if (user.getAccount().getUserName().equals(principal.getName())) {
-				//if (true) {
-					model.addAttribute("user", user);
-					return "userInfoPage";
-					
-				} else {
-					return "redirect:/403";
-				}
-			}
+			
 		}
+	}
+	
+	@RequestMapping(value = "/userinfo", method = RequestMethod.GET)
+	public String userInfo(Model model, Principal principal,
+			Authentication authentication) {
+		User user = userService.findbyUserName(principal.getName());
+		model.addAttribute("user", user);
+		return "userInfoPage";
 	}
 
 	

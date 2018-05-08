@@ -41,13 +41,11 @@ public class InvoiceController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 @SuppressWarnings("deprecation")
-			Date date = new Date(dateTime);
+			 Date date = new Date();
 			 long cCode = Long.parseLong(customerCode);
 			 double money = Double.parseDouble(amountOfMoney);
 			 double vat =  Double.parseDouble(VAT);		 
 			 this.invoiceService.createInvoice(description, date, money, cCode, invoiceNo, vat, currentuser);	 
-	
 		 }		
 	   }
 }

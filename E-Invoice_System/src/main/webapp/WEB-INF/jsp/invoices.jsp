@@ -35,6 +35,8 @@
 		</div>
 
 	</div>
+	
+	<script src="././resources/assets/js/InvoicesMain.js"></script>
 
 </body>
 </html>

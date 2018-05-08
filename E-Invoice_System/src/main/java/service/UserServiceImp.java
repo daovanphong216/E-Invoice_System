@@ -74,6 +74,11 @@ public class UserServiceImp implements UserService {
 	public List<User> getAll() {
 		return userDao.getAll();
 	}
+	
+	
+	public List<Account> getAllAccount() {
+		return accountDao.getAll();
+	}
 
 
 	@Override

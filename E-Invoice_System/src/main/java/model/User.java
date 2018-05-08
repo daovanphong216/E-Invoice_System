@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 
@@ -33,9 +32,7 @@ public class User {
 		this.invoices = invoices;
 	}
 
-	public Account getAccount() {
-		return account;
-	}
+
 	
 	@Column(name = "limitedMoney")
 	public double limitedMoney;

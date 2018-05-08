@@ -117,97 +117,101 @@ span.edit {
 </head>
 
 <body>
-
-	<div class="container align-items-center">
-		<div class="container ">
-
-			<!-- Trigger the modal with a button -->
-			<button type="button" class="btn btn-default btn-lg align-bottom"
-				id="myBtn">Create</button>
-
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" role="dialog">
-				<div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header" style="padding: 35px 50px;">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4>
-								<span class="glyphicon glyphicon-lock"></span> Create Invoice
-							</h4>
-						</div>
-						<div class="modal-body" style="padding: 40px 50px;">
-							<form role="form" id="createinvoiceform">
-
-								<label for="email"><b>Email</b></label><br> <input
-									type="email" placeholder="Enter Email" name="email" required><br>
-
-								<label for="uname"><b>User Name</b></label><br> <input
-									type="text" placeholder="Enter User Name" name="uname" required><br>
-
-								<label for="name"><b>Full Name</b></label><br> <input
-									type="name" placeholder="Enter Your Name" name="name" required>
-								<br> <label for="add"><b>Address</b></label><br> <input
-									type="text" placeholder="Enter Address" name="add" required><br>
-
-								<label for="telNo"><b>Phone Number</b></label><br> <input
-									type="tel" placeholder="090xxxxxxx" name="telNo" required
-									size="20" minlength="10" maxlength="14"><br> <label
-									for="psw"><b>Password</b></label><br> <input
-									type="password" placeholder="Enter Password" name="psw"
-									required><br> <label for="psw-repeat"><b>Confirm
-										Password</b></label><br> <input type="password"
-									placeholder="Confirm Password" name="psw-repeat" required><br>
-								<button type="submit" class="btn btn-success btn-block">
-									<span class="glyphicon glyphicon-off"></span> Login
-								</button>
-							</form>
-						</div>
-					</div>
-
-				</div>
+<div class="container align-items-center">
+<div class="container ">
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header" style="padding:35px 50px;">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4><span class="glyphicon glyphicon-lock"></span> Create Invoice</h4>
 			</div>
-		</div>
+			<div class="modal-body" style="padding:40px 50px;">
+			  <form role="form" id="createinvoiceform">
+				
+				<label for="text"><b>Invoice Name</b></label><br>
+				<input type="email" placeholder="Enter Email" name="invoice_name" required><br>
 
-		<div class="P-List-invoice">
-			<ul class="list-group list-detal center">
+				<label for="uname"><b>User Name</b></label><br>
+				<input type="text" placeholder="Enter User Name" name="uname" required><br>
 
-			</ul>
+				<label for="name"><b>Full Name</b></label><br>
+				<input type="name" placeholder="Enter Your Name" name="name" required>
+				<br>
+
+				<label for="add"><b>Address</b></label><br>
+				<input type="text" placeholder="Enter Address" name="add" required><br>
+
+				<label for="telNo"><b>Phone Number</b></label><br>
+				<input type="tel" placeholder="090xxxxxxx" name="telNo" required size="20" minlength="10" maxlength="14"><br>
+
+				<label for="psw"><b>Password</b></label><br>
+				<input type="password" placeholder="Enter Password" name="psw" required><br>
+
+				<label for="psw-repeat"><b>Confirm Password</b></label><br>
+				<input type="password" placeholder="Confirm Password" name="psw-repeat" required><br>
+				<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Create </button>
+			  </form>
+			</div>
+		  </div>
+		  
 		</div>
 	</div>
-	<script>
-		var array = ['1','2','3','4','5','6','7','8','9','10'];
-		var array2 = ["Phong","TenTen","La","Thang","Loc","Huu","Ma","Thien","Thang","Tam"];
-		var array3 = [23,25,26,46,44,11,22,33,44,55];
-		var arrayType = ["Dien","Nuoc","Thue","Su dung sin hoat","Xang","Tiet kiem"];
+	<!-- Modal -->
+	<div class="modal fade" id="myInvoiceDetail" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header" style="padding:35px 50px;">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4><span class="glyphicon glyphicon-lock"></span> Create Invoice</h4>
+			</div>
+			<div class="modal-body" style="padding:40px 50px;">
+			  <form role="form" id="createinvoiceform">
+				
+				<label for="text"><b>Invoice Name</b></label><br>
+				<input type="email" placeholder="Enter Email" name="invoice_name" required><br>
 
-		$(document).ready(function(){
-            $('.container .P-List-invoice .list-group').ready(function(){
-				for(var i = 0; i < array.length; i++){
-					var markup = "<li class='list-group-item d-flex justify-content-between align-items-center borderless'>"+"<span class='i-circle align-self-center col-sm-4 col-lg-4 col-xs-4'>"+
-					array[i]+"</span>"
-				+"<span class='align-self-center col-xs-9 col-lg-9 P-info-invoice' valign='center'><b style='font-size:20px'>"
-				+ array2[i]
-				+"</b></br>"
-				+ "|" + array3[i] 
-				+ "|" + arrayType[i]+
-				"</span>"
-				+"<span class='align-self-center col-xs-1 col-lg-1' valign='center'>"
-				+"<span class='glyphicon glyphicon-remove delete'/>"
-				+"</br>"
-				+"<span class='glyphicon glyphicon-edit edit'/>"
-				+"</span></li>";
-         
-					$(".container .P-List-invoice .list-group").append(markup);
-				}
-            });
+				<label for="uname"><b>User Name</b></label><br>
+				<input type="text" placeholder="Enter User Name" name="uname" required><br>
+
+				<label for="name"><b>Full Name</b></label><br>
+				<input type="name" placeholder="Enter Your Name" name="name" required>
+				<br>
+
+				<label for="add"><b>Address</b></label><br>
+				<input type="text" placeholder="Enter Address" name="add" required><br>
+
+				<label for="telNo"><b>Phone Number</b></label><br>
+				<input type="tel" placeholder="090xxxxxxx" name="telNo" required size="20" minlength="10" maxlength="14"><br>
+
+				<label for="psw"><b>Password</b></label><br>
+				<input type="password" placeholder="Enter Password" name="psw" required><br>
+
+				<label for="psw-repeat"><b>Confirm Password</b></label><br>
+				<input type="password" placeholder="Confirm Password" name="psw-repeat" required><br>
+				<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Create </button>
+			  </form>
+			</div>
+		  </div>
+		  
+		</div>
+	</div>  
+</div>
+	
+	<div class="P-List-invoice">
+		<ul class="list-group list-detal center">
 			
-			$("#myBtn").click(function(){
-					$("#myModal").modal('show');
-			});
-		});
-</script>
-
+		</ul>
+	</div>
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-default btn-lg align-middle-bottom" id="myBtn">Create</button>
+</div>
+<script src="././resources/assets/js/InvoicesMain.js"></script>
+ 
 </body>
 </html>

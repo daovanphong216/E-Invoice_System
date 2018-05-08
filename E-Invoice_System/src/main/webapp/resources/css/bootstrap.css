@@ -172,6 +172,7 @@ input::-moz-focus-inner {
 
 input {
     line-height: normal;
+    width:100%;
 }
 
 input[type="checkbox"],
@@ -861,29 +862,18 @@ pre code {
 }
 
 .container {
+	width: 80% !important;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: auto;""
+    height:
 }
 
-@media (min-width: 768px) {
-    .container {
-        width: 750px;
-    }
-}
 
-@media (min-width: 992px) {
-    .container {
-        width: 970px;
-    }
-}
 
-@media (min-width: 1200px) {
-    .container {
-        width: 1170px;
-    }
-}
+
+
 
 .container-fluid {
     padding-right: 15px;
@@ -2007,7 +1997,7 @@ output {
 
 .form-control {
     display: block;
-    width: 100%;
+    width: 50%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -2065,6 +2055,7 @@ input[type="date"] {
 
 .form-group {
     margin-bottom: 15px;
+        width: 50%;
 }
 
 .radio,
@@ -6892,6 +6883,14 @@ button.close {
         display: none !important;
     }
 }
-
+input {
+    
+    height: auto !important;
+    width: 100% !important;
+}
+.invoice-form{
+	height:auto;
+	width:100%;
+}
 
 /*# sourceMappingURL=bootstrap.css.map */

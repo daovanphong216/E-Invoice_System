@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+	body {
+		font-family: "Lato", sans-serif;
+	}
+	
+	/* Fixed sidenav, full height */
+	.sidenav {
+		height: 100%;
+		width: 160px;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #111;
+		overflow-x: hidden;
+		padding-top: 20px;
+	}
+
+	.sidenav a {
+		padding: 6px 8px 6px 16px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181;
+		display: block;
+	}
+
+	.sidenav a:hover {
+		color: #f1f1f1;
+	}
+	
+	/* Style the sidenav links and the dropdown button */
+	.sidenav a, .dropdown-btn {
+		padding: 6px 8px 6px 16px;
+		text-decoration: none;
+		font-size: 20px;
+		color: #818181;
+		display: block;
+		border: none;
+		background: none;
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+		outline: none;
+	}
+	
+	/* Style the sidenav links and the dropdown button */
+	.sidenav a, .dropdown-btn {
+	  padding: 6px 8px 6px 16px;
+	  text-decoration: none;
+	  font-size: 20px;
+	  color: #818181;
+	  display: block;
+	  border: none;
+	  background: none;
+	  width:100%;
+	  text-align: left;
+	  cursor: pointer;
+	  outline: none;
+	}
+
+	/* On mouse-over */
+	.sidenav a:hover, .dropdown-btn:hover {
+	  color: #f1f1f1;
+	}
+
+	/* Main content */
+	.main {
+	  margin-left: 200px; /* Same as the width of the sidenav */
+	  font-size: 20px; /* Increased text to enable scrolling */
+	  padding: 0px 10px;
+	}
+
+	/* Add an active class to the active dropdown button */
+	.active {
+	  background-color: green;
+	  color: white;
+	}
+	
+	/* Add an active class to the active dropdown button */
+	.active {
+		background-color: green;
+		color: white;
+	}
+
+	/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+	.dropdown-container {
+		display: none;
+		background-color:#818181;
+		padding-left: 8px;
+	}
+
+	/* Optional: Style the caret down icon */
+	.fa-caret-down {
+		float: right;
+		padding-right: 8px;
+	}
+	
+	/* Optional: Style the caret down icon */
+	.fa-caret-down {
+	  float: right;
+	  padding-right: 8px;
+	}
+
+	.main {
+		margin-left: 150px; /* Same as the width of the sidenav */
+		font-size: 28px; /* Increased text to enable scrolling */
+		min-height:100%;
+	}
+	
+	.main #page{
+		overflow:hidden;
+		overflow-x:hidden;
+		overflow-y:hidden;
+		height:100%;
+		width:100%;
+		position:absolute;
+		top:0px;
+		left:0px;
+		right:0px;
+		bottom:0px;
+		height:100%;
+		width:100%;
+		padding-left:160px;
+	}
+
+	@media screen and (max-height: 450px) {
+		.sidenav {padding-top: 15px;}
+		.sidenav a {font-size: 18px;}
+	}
+</style>
+<script>
+	//change src ifame
+	$(document).ready(function(){
+		$("a").click(function(e) {
+			e.preventDefault();
+			
+			$("#page").attr("src", $(this).attr("href"));
+		})
+	});
+	$(document).ready(function(){
+		$("#xyz").click(function(e) {
+			e.preventDefault();
+			
+			$("#page").attr("src", $(this).attr("href"));
+		})
+	});
+	
+</script>
+</head>
+<body>
+
+<div class="sidenav">
+	
+</div>
+
+<div class="main" style="height:100%;">
+	
+	<iframe id="page" src="List_invoice.html" frameborder="0">
+	</iframe>
+ </div>
+     
+</body>
+</html> 

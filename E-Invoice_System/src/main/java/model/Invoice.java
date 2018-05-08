@@ -80,9 +80,9 @@ public class Invoice {
 		this.customerCode = customerCode;
 	}
 	
-	public User getOwner() {
-		return owner;
-	}
+//	public User getOwner() {
+//		return owner;
+//	}
 
 	public void setOwner(User owner) {
 		this.owner = owner;
