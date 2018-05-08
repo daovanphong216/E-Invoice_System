@@ -32,9 +32,8 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
 		<div class="container">
-			<h2 style="margin-bottom: 40px;">Login Form</h2>
+			<h2  class = "center_title">Login</h2>
 			<div class="row">
                     <div class="col-md-12 ">
                         <c:if test="${param.error == 'true'}">
@@ -47,6 +46,7 @@
                        </c:if>
                     </div>
                 </div> 
+          <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
 			<label for="uname"><b>User Name</b></label><br> 
 			<input
 				type="text" placeholder="Enter User Name" name="username" required><br>
@@ -60,12 +60,13 @@
 						Remember me</label>
 				</div>
 
-				<button type="submit">Login</button>
+				<button type="submit" class = "center_button">Login</button>
 				<br>
 			</div>
+			</form>
 		</div>
-	</form>
-	<div class="container signin">
+	
+	<div class="center_link">
 		<p>
 			No account? <a href="./register">Create one!</a>.
 		</p>
