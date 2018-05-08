@@ -13,6 +13,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+	
+<link rel="stylesheet"
+	href="<c:url value='././resources/assets/css/InvoiceItem.css'/>">
 </head>
 <body>
 
@@ -22,20 +29,35 @@
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#myModal">Open Modal</button>
 
+
+		<div ng-app="myApp" ng-controller="customersCtrl">
+
+			<div data-ng-repeat="i in table">
+				<div ng-include src="'invoiceItem'"></div>
+			</div>
+		</div>
+
+		<script>
+			
+		</script>
+
+
+
+
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
 				<div class="modal-content">
-					<%@ include file="invoiceform.jsp" %>
+					<%@ include file="invoiceform.jsp"%>
 				</div>
 
 			</div>
 		</div>
 
 	</div>
-	
+
 	<script src="././resources/assets/js/InvoicesMain.js"></script>
 
 </body>
