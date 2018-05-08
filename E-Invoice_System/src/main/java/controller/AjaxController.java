@@ -33,7 +33,7 @@ public class AjaxController {
 			return this.userService.findbyUserName(userName).getInvoices();
 		 }		
 	   }
-	@RequestMapping(value = { "/getAllUser" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/getAllUsers" }, method = RequestMethod.GET)
 	public List<User> getAllUser(Principal principal, Authentication authentication) {
 		 String userName= principal.getName();
 		 if (userName.equals("")) {
@@ -43,7 +43,17 @@ public class AjaxController {
 		 }		
 	   }
 	
-	@RequestMapping(value = { "/getAllAccount" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/searchUser" }, method = RequestMethod.POST)
+	public List<Account> searchUser(Principal principal, Authentication authentication) {
+		String userName= principal.getName();
+		 if (userName.equals("")) {
+			 return null;  
+		 } else {
+			return this.userService.getAllAccount();
+		 }			
+	   }
+
+	@RequestMapping(value = { "/getAllAccounts" }, method = RequestMethod.GET)
 	public List<Account> getAllAccount(Principal principal, Authentication authentication) {
 		 String userName= principal.getName();
 		 if (userName.equals("")) {
