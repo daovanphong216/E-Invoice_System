@@ -53,6 +53,14 @@ hr {
     opacity: 1;
 }
 
+.center_title{
+	text-align: center;
+}
+
+.error{
+	color: red; 
+	margin: 10px 0px;
+}
 /* Add a blue text color to links */
 a {
     color: dodgerblue;

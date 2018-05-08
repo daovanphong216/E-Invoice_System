@@ -39,12 +39,12 @@
 	<%@ include file="header.jsp"%>
 	<div class="page-body">
 		<div class="container">
-			<h1 style="text-align: center;">Register</h1>
-			<p style="text-align: center;">Please fill in this form to create
+			<h1 class="center_title">Register</h1>
+			<p class="center_title">Please fill in this form to create
 				an account.</p>
 			<div class="col-md-12 text-center">
 				<c:if test="${error == 'true'}">
-					<div style="color: red; margin: 10px 0px;">
+					<div class="error">
 
 						Register Failed!!!<br /> Reason : ${message}
 
