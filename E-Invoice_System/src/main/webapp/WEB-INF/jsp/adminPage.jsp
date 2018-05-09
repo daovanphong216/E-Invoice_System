@@ -79,7 +79,7 @@
 								data-date-format="dd MM yyyy - HH:ii p">
 								<input id="datetimepicker"
 									placeholder="Click to setting time alert" class="form-control"
-									size="16" type="text" readonly> <span
+									size="16" type="text" readonly value=${trigger}> <span
 									class="input-group-addon"> <span
 									class="glyphicon glyphicon-time"></span>
 								</span>
@@ -150,5 +150,5 @@
 	<%@ include file="footer.jsp"%>
 </body>
 <script src="./resources/assets/js/RegisterFunction.js"></script>
-<script src="./resources/assets/js/jquery.twbsPagination.min.js"></script>
+<!--  <script src="./resources/assets/js/jquery.twbsPagination.min.js"></script>-->
 </html>
