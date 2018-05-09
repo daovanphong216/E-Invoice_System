@@ -1,6 +1,44 @@
+function getInvoicejsonByDate(dateStr) {
+    var str;
+    $.ajax({
+        url: "http://localhost:8080/E-Invoice_System/getInvoiceFromUser/"+dateStr,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+};
+
+
 $(document).ready(function () {
     var currentDate = new Date();
     selectedDay = currentDate;
+    $('.selectedView').html(selectedDay);
+   // generateList(selectedDay);
+    
+    function generateList(sd){
+    	var sdd= sd.getDate();
+    	var sdm= sd.getMonth()+1;
+    	var sdy= sd.getFullYear();
+    	
+    	var datestr = sdy+'-'+sdm+'-'+sdd;
+    	
+    	jsonData = getInvoicejsonByDate(datestr);
+    	$('.selectedView').html(jsonData);
+    	console.log(jsonData);
+    	
+    };
+    
+    
     function generateCalendar(d) {
         function monthDays(month, year) {
             var result = [];
@@ -56,6 +94,7 @@ $(document).ready(function () {
             selectedDay.setMonth(this.getAttribute("mm"));
             selectedDay.setFullYear(this.getAttribute("yy"));
             $('.selectedView').html(selectedDay);
+         //   generateList(selectedDay);
         });
     }
     $('#left').click(function () {
