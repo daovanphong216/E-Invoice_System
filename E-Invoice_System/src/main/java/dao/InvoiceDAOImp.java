@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import model.Invoice;
+import model.User;
 
 
 @Repository
@@ -43,7 +44,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 	}	
 	
 	@Override
-	public void remove(long id) {
+	public void remove(long id, User user) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 		Invoice invoice = (Invoice) session.get(Invoice.class, id);

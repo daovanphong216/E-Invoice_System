@@ -21,6 +21,7 @@ import model.Account;
 import model.Invoice;
 import model.User;
 import service.AccountService;
+import service.InvoiceService;
 import service.UserService;
 
 @RestController
@@ -32,7 +33,10 @@ public class AjaxController {
 	@Autowired
 	 @Qualifier("accountService")
 	 AccountService accountService;
-
+	
+	@Autowired
+	 @Qualifier("invoiceService")
+	 InvoiceService invoiceService;
 
 	
 	@RequestMapping(value = { "/getInvoiceFromUser" }, method = RequestMethod.GET)
@@ -63,6 +67,21 @@ public class AjaxController {
 					e.printStackTrace();
 				}
 			return this.userService.findbyUserName(userName).getInvoices(date);
+		 }		
+	   }
+	
+	
+	@RequestMapping(value = { "/removeinvoice/{id}" }, method = RequestMethod.GET)
+	public String removeinvoice(Principal principal, Authentication authentication,
+			@PathVariable("id") long id) {
+		System.out.println(id);
+		 String userName= principal.getName();
+		 if (userName.equals("")) {
+			 return "/status-fail";  
+		 } else {
+			 User user = this.userService.findbyUserName(userName);
+			 this.invoiceService.remove(id, user);
+			 return "/status-ok";  
 		 }		
 	   }
 	

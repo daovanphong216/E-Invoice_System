@@ -19,11 +19,95 @@ function getInvoicejsonByDate(dateStr) {
 };
 
 
+function removeinvoice(dateStr) {
+    var str;
+    $.ajax({
+        url: "http://localhost:8080/E-Invoice_System/removeinvoice/"+dateStr,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+};
+
+
+
 $(document).ready(function () {
+	
+	
+	//----------------------------------------------------------------------
+	
+	
+
+
+	function listDataArray(data){
+		var noValue;
+		var spendingmoney;
+				for(var i = 0; i < data.length; i++){
+					var markup =`
+					<div item-div-id='${data[i].id}' class="l-item">
+						<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
+							<span class='glyphicon glyphicon-level-up'>${data[i].description[0]}</span>
+							<span class='glyphicon glyphicon-level-up'>..</span>
+						</div>
+						<div class="item-col item-detail">
+							<div class="item-desc">${data[i].description}</div>
+							<div class="item-info">${data[i].invoiceNo} | ${data[i].amountOfMoney}</div>
+						</div>
+						<div class="item-col item-buttons">
+							<button item-id='${data[i].id}' class='btn btn-default btn-sm item-button removeItem'>
+								<span class='glyphicon glyphicon-remove-sign'></span>
+							</button>
+                        	<button item-id='${data[i].id}' type='button' class='btn btn-default btn-sm' class='updateItem'>
+                            	<span class='glyphicon glyphicon-level-up'></span>
+                        	</button>    
+						</div>
+						<hr>
+					</div>			
+					`
+					$(".selectedView").append(markup);
+					
+				};
+		
+		
+		
+		$('.removeItem').click(function(){
+	
+			var index=this.getAttribute("item-id");
+			var item = `[item-div-id=${index}]`
+			$(item).remove();
+			removeinvoice(index);
+			console.log(index);
+
+		});
+		
+		
+	};	
+	
+	
+	//-------------------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
     var currentDate = new Date();
     selectedDay = currentDate;
     $('.selectedView').html(selectedDay);
-   // generateList(selectedDay);
+    generateList(selectedDay);
     
     function generateList(sd){
     	var sdd= sd.getDate();
@@ -35,6 +119,7 @@ $(document).ready(function () {
     	jsonData = getInvoicejsonByDate(datestr);
     	$('.selectedView').html(jsonData);
     	console.log(jsonData);
+    	listDataArray(jsonData);
     	
     };
     
@@ -55,7 +140,7 @@ $(document).ready(function () {
         var details = {
             // totalDays: monthDays(d.getMonth(), d.getFullYear()),
             totalDays: d.monthDays(),
-            weekDays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            weekDays: ['Su', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         };
         var start = new Date(d.getFullYear(), d.getMonth()).getDay();
@@ -94,7 +179,7 @@ $(document).ready(function () {
             selectedDay.setMonth(this.getAttribute("mm"));
             selectedDay.setFullYear(this.getAttribute("yy"));
             $('.selectedView').html(selectedDay);
-         //   generateList(selectedDay);
+            generateList(selectedDay);
         });
     }
     $('#left').click(function () {
