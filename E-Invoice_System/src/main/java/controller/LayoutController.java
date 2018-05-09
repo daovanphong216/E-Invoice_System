@@ -17,7 +17,10 @@ public class LayoutController {
 	   public String invoices(Principal principal, Authentication authentication) {
 	       return "invoices";  
 	   }
-	
+	@RequestMapping(value = { "/dailyinvoices" }, method = RequestMethod.GET)
+	   public String dailyIncoices(Principal principal, Authentication authentication) {
+	       return "DailyInvoices";  
+	   }
 	@RequestMapping(value = { "/invoiceItem" }, method = RequestMethod.GET)
 	   public String invoiceItem(Principal principal, Authentication authentication) {
 	       return "invoiceItem";  
