@@ -56,6 +56,15 @@ public class InvoiceServiceImp implements InvoiceService{
 		return user.getInvoices();
 	}
 
+	@Override
+	public void remove(long id, User user) {
+		Invoice invoice = this.invoiceDAO.findbyId(id);
+		user.getInvoices().remove(invoice);
+		this.userDao.update(user);
+		this.invoiceDAO.remove(id, user);
+		
+	}
+
 
 
 

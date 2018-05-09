@@ -1,6 +1,9 @@
 package controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +44,13 @@ public class InvoiceController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
+			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
 			 Date date = new Date();
+			try {
+				date = formatter.parse(dateTime+ ", 00:00:00.000");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			 long cCode = Long.parseLong(customerCode);
 			 double money = Double.parseDouble(amountOfMoney);
 			 double vat =  Double.parseDouble(VAT);		 
