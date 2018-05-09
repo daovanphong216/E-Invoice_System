@@ -11,6 +11,8 @@ import model.User;
 	
 	
 	public void createInvoice(String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner);
+	public void Invoice (String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner);
+	public Invoice MakeInvoice (String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner);
 	
 	public Set<Invoice> getAll();
 	public Set<Invoice> getAllFromUser(User user);

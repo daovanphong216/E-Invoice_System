@@ -26,3 +26,7 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+.item-ava .glyphicon-level-up:before{
+	    content: "";
+
+}

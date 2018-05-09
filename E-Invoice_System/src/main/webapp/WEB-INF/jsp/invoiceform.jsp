@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Bootstrap Example</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="././resources/assets/css/Invoices.css">
-
-</head>
-<body>
 
 	<div class="ucontainer">
 		<h2>Invoice Form</h2>
-		<form action="./CreateInvoice">
+		<form class="invoiceform">
 			<div class="form-group">
 				<label for="customerCode">Customer Code:</label> <input
 					type="number" class="form-control" id="customerCode"
@@ -52,12 +36,12 @@
 			</div>
 			<div class="form-group">
 				<label for="description">Description:</label> <input type="text"
-					class="form-control" id="description"
+					class="form-control" id="description" required
 					placeholder="Enter Description" name="description">
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
+			      <input class="submit" type="submit" value="Submit">
+		
+			<input type="button" value="Create" class="btn btn-default create-button"/>
 		</form>
 	</div>
 
-</body>
-</html>

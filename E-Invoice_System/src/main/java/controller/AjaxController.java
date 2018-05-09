@@ -57,7 +57,63 @@ public class AjaxController {
 	   }
 	
 	
+	@RequestMapping(value = { "/CreateInvoice" }, method = RequestMethod.GET)
+	public String createInvoice(Principal principal, Authentication authentication,
+			@RequestParam(value="description", required=true) String description, 
+	        @RequestParam(value="dateTime", required=true) String dateTime, 
+	        @RequestParam(value="amountOfMoney", required=true) String amountOfMoney, 
+	        @RequestParam(value="customerCode", required=true) String customerCode,
+	        @RequestParam(value="invoiceNo", required=true) String invoiceNo,
+	        @RequestParam(value="VAT", required=true) String VAT
+	        ) {
+		 String userName= principal.getName();
+		 
+		 if (userName.equals("")) {
+		 } else {
+			 User currentuser = this.userService.findbyUserName(userName);
+			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 Date date = new Date();
+			try {
+				date = formatter.parse(dateTime+ ", 00:00:00.000");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			 long cCode = Long.parseLong(customerCode);
+			 double money = Double.parseDouble(amountOfMoney);
+			 double vat =  Double.parseDouble(VAT);		 
+			 this.invoiceService.createInvoice(description, date, money, cCode, invoiceNo, vat, currentuser);	 
+		 }		
+		 return "{'msg': 'success'}";
+	   }
 	
+	@RequestMapping(value = { "/makeInvoice" }, method = RequestMethod.GET)
+	public Invoice makeInvoice(Principal principal, Authentication authentication,
+			@RequestParam(value="description", required=true) String description, 
+	        @RequestParam(value="dateTime", required=true) String dateTime, 
+	        @RequestParam(value="amountOfMoney", required=true) String amountOfMoney, 
+	        @RequestParam(value="customerCode", required=true) String customerCode,
+	        @RequestParam(value="invoiceNo", required=true) String invoiceNo,
+	        @RequestParam(value="VAT", required=true) String VAT
+	        ) {
+		 String userName= principal.getName();
+		 Invoice newinvoice = null;
+		 if (userName.equals("")) {
+		 } else {
+			 User currentuser = this.userService.findbyUserName(userName);
+			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 Date date = new Date();
+			try {
+				date = formatter.parse(dateTime+ ", 00:00:00.000");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			 long cCode = Long.parseLong(customerCode);
+			 double money = Double.parseDouble(amountOfMoney);
+			 double vat =  Double.parseDouble(VAT);		 
+			 newinvoice = this.invoiceService.MakeInvoice(description, date, money, cCode, invoiceNo, vat, currentuser);	 
+		 }		
+		 return newinvoice;
+	   }
 	
 	@RequestMapping(value = { "/getInvoiceFromUser/{dateTime}" }, method = RequestMethod.GET)
 	public Set<Invoice> getInvoiceFromUser(Principal principal, Authentication authentication,
@@ -84,11 +140,11 @@ public class AjaxController {
 		System.out.println(id);
 		 String userName= principal.getName();
 		 if (userName.equals("")) {
-			 return "/status-fail";  
+			 return "{'msg': 'fail'}";  
 		 } else {
 			 User user = this.userService.findbyUserName(userName);
 			 this.invoiceService.remove(id, user);
-			 return "/status-ok";  
+			 return "{'msg': 'success'}";  
 		 }		
 	   }
 	

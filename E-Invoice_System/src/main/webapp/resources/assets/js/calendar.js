@@ -56,8 +56,8 @@ $(document).ready(function () {
 					var markup =`
 					<div item-div-id='${data[i].id}' class="l-item">
 						<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
-							<span class='glyphicon glyphicon-level-up'>${data[i].description[0]}</span>
-							<span class='glyphicon glyphicon-level-up'>..</span>
+							<span class='glyphicon glyphicon-level-up'>${data[i].description[0]}</span><br>
+							<span class='glyphicon glyphicon-level-up'>&nbsp;</span>
 						</div>
 						<div class="item-col item-detail">
 							<div class="item-desc">${data[i].description}</div>
