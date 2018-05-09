@@ -115,6 +115,11 @@
 	    <version>${springsecurity.version}</version>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>${springsecurity.version}</version>
+		</dependency>
 		<!-- fasterxml Jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

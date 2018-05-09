@@ -15,4 +15,7 @@ import model.User;
 	public Set<Invoice> getAll();
 	public Set<Invoice> getAllFromUser(User user);
 
+
+	public void remove(long id, User user);
+
 }
