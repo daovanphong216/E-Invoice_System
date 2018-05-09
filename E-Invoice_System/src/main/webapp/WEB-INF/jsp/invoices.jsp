@@ -11,8 +11,11 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
+	<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="././resources/assets/css/Invoices.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script
@@ -27,7 +30,7 @@
 		<h2>Modal Example</h2>
 		<!-- Trigger the modal with a button -->
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModal">Open Modal</button>
+			data-target="#CreateInvoiceFormModal">Open Modal</button>
 
 
 		<div ng-app="myApp" ng-controller="customersCtrl">
@@ -45,7 +48,7 @@
 
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="CreateInvoiceFormModal" role="dialog">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -59,6 +62,7 @@
 	</div>
 
 	<script src="././resources/assets/js/InvoicesMain.js"></script>
+	<script type="text/javascript" src="././resources/assets/js/InvoiceForm.js"></script>
 
 </body>
 </html>
