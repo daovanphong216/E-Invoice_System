@@ -46,5 +46,14 @@ public class AccountServiceImp implements AccountService {
 	public List<Account> getAll() {
 		return accountDao.getAll();
 	}
+	
+	@Override
+	public boolean updateActive(int id, boolean status){
+		return accountDao.updateActive(id, status);
+	}
+	@Override
+	public List<Account> searchAccount(String username, String type){
+		return accountDao.searchAccount(username, type);
+	}
 
 }

@@ -9,6 +9,8 @@ public interface AccountDAO {
 	public void create(Account account);
 	public Account findbyId(long id);
 	public void remove(long id);
+	public boolean updateActive(int id, boolean status);
+	public List<Account> searchAccount(String username, String type);
 	public List<Account> getAll();
 	public void update(Account account);
 }

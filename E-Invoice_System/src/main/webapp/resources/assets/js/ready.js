@@ -3,7 +3,7 @@ function getUser() {
 	var type = $("#select-option").val();
 	$.ajax({
 		type : "POST",
-		url : "/E-Invoice_System/searchUser",
+		url : "/E-Invoice_System/searchAccount",
 		data : {
 			'username' : username,
 			'type' : type
