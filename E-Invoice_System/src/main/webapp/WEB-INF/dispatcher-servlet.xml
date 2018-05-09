@@ -20,6 +20,7 @@
 	<context:component-scan base-package="controller" />
 	<context:component-scan base-package="dao" />
 	<context:component-scan base-package="service" />
+	<context:component-scan base-package="config" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -35,5 +36,14 @@
 	<import resource="DataSource.xml" />
 	<!-- Hibernate 4 SessionFactory Bean definition -->
 	<import resource="hibernate.cfg.xml" />
+	
+	<bean id="adminService" class="service.AdminService">
+	</bean>
+	
+	<!-- <bean id="adminService" class="service.AdminService">
+	</bean>
+	
+	<bean id="adminService" class="service.AdminService">
+	</bean> -->
 	
 </beans>

@@ -74,10 +74,6 @@ public class AccountDAOImp implements AccountDAO{
         return list;
 	}
 	
-	@Override
-	public boolean updateActive(int id, boolean status){
-		return true;
-	}
 	
 	@Override
 	public List<Account> searchAccount(String username, String type){
