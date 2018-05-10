@@ -37,12 +37,28 @@
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
+<script
+	src="<c:url value='/resources/assets/js/userEdit.js'/>"></script>
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/css/userForm.css'/>" />
+
 </head>
 <body>
 	<%@ include file="header.jsp"%>
 	<%@ include file="sideBar.jsp"%>
 	<div class="page-body">
+		
 		<div class="container">
+			 <!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+				
+				  <!-- Modal content-->
+				  <div class="modal-content">
+						<%@ include file="userEdit.jsp" %>
+				  </div>
+				  </div>
+			</div>
 			<div class="row">
 				<div
 					class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
@@ -85,9 +101,9 @@
 							</div>
 						</div>
 						<div class="panel-footer">
-							<span class="pull-right"> <a href="edit.html"
+							<span class="pull-right"> <a href="#"
 								data-original-title="Edit this user" data-toggle="tooltip"
-								type="button" class="btn btn-sm btn-warning"><i
+								type="button" class="modalstart btn btn-sm btn-warning" ><i
 									class="glyphicon glyphicon-edit"></i></a>
 							</span>
 						</div>
