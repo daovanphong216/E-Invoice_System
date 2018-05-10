@@ -78,7 +78,7 @@ public class AjaxController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 			 Date date = new Date();
 			try {
 				date = formatter.parse(dateTime+ ", 00:00:00.000");
@@ -107,7 +107,7 @@ public class AjaxController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 			 Date date = new Date();
 			try {
 				date = formatter.parse(dateTime+ ", 00:00:00.000");
@@ -131,13 +131,36 @@ public class AjaxController {
 		 } else {
 			 Date date = new Date();
 				try {
-					 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+					 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+					
 					date = formatter.parse(dateTime+ ", 00:00:00.000");
+					 System.out.println(date);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+				System.out.println(this.userService.findbyUserName(userName).getMoneyReport(2018,1));
 			return this.userService.findbyUserName(userName).getInvoices(date);
 		 }		
+	   }
+	
+	
+	@RequestMapping(value = { "/getreport/{year}/{month}" }, method = RequestMethod.GET)
+	public double[] getreport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year,
+			@PathVariable("month") int month) {
+		 String userName= principal.getName();
+	
+			return this.userService.findbyUserName(userName).getMoneyReport(year,month);
+
+	   }
+	
+	@RequestMapping(value = { "/getreport/{year}" }, method = RequestMethod.GET)
+	public double[] getreport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year) {
+		 String userName= principal.getName();
+	
+			return this.userService.findbyUserName(userName).getMoneyReport(year);
+
 	   }
 	
 	
