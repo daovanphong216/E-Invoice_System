@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,11 +32,14 @@ public class User {
 	}
 	
 	public Set<Invoice> getInvoices(Date dateTime) {
-		System.out.println(dateTime.toString());
+		LocalDate localDate = dateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
 		Set<Invoice> results = new HashSet<Invoice>(	0);
 		for(Invoice i: this.getInvoices()) {
-			System.out.println(i.getDateTime().toString());
-			if(i.getDateTime().compareTo(dateTime)==0) {
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			System.out.println(localDate+" | "+localDatetemp);
+			if(localDatetemp.equals(localDate)) {
+				
 				results.add(i);
 			}
 		}

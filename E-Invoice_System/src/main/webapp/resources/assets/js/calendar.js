@@ -16,7 +16,7 @@ function getInvoicejsonByDate(dateStr) {
 
     });
     return str;
-};
+}
 
 
 function removeinvoice(dateStr) {
@@ -37,8 +37,35 @@ function removeinvoice(dateStr) {
 
     });
     return str;
-};
+}
 
+
+
+function updateItemToViewList(item){
+	console.log(item);
+	var markup =`
+		<div item-div-id='${item.id}' class="l-item">
+			<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
+				<span class='glyphicon glyphicon-level-up'>${item.description[0]}</span><br>
+				<span class='glyphicon glyphicon-level-up'>&nbsp;</span>
+			</div>
+			<div class="item-col item-detail">
+				<div class="item-desc">${item.description}</div>
+				<div class="item-info">${item.invoiceNo} | ${item.amountOfMoney}</div>
+			</div>
+			<div class="item-col item-buttons">
+				<button item-id='${item.id}' class='btn btn-default btn-sm item-button removeItem'>
+					<span class='glyphicon glyphicon-remove-sign'></span>
+				</button>
+            	<button item-id='${item.id}' type='button' class='btn btn-default btn-sm' class='updateItem'>
+                	<span class='glyphicon glyphicon-level-up'></span>
+            	</button>    
+			</div>
+			<hr>
+		</div>			
+		`;
+		$(".selectedView").append(markup);
+}
 
 
 $(document).ready(function () {
@@ -52,30 +79,8 @@ $(document).ready(function () {
 	function listDataArray(data){
 		var noValue;
 		var spendingmoney;
-				for(var i = 0; i < data.length; i++){
-					var markup =`
-					<div item-div-id='${data[i].id}' class="l-item">
-						<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
-							<span class='glyphicon glyphicon-level-up'>${data[i].description[0]}</span><br>
-							<span class='glyphicon glyphicon-level-up'>&nbsp;</span>
-						</div>
-						<div class="item-col item-detail">
-							<div class="item-desc">${data[i].description}</div>
-							<div class="item-info">${data[i].invoiceNo} | ${data[i].amountOfMoney}</div>
-						</div>
-						<div class="item-col item-buttons">
-							<button item-id='${data[i].id}' class='btn btn-default btn-sm item-button removeItem'>
-								<span class='glyphicon glyphicon-remove-sign'></span>
-							</button>
-                        	<button item-id='${data[i].id}' type='button' class='btn btn-default btn-sm' class='updateItem'>
-                            	<span class='glyphicon glyphicon-level-up'></span>
-                        	</button>    
-						</div>
-						<hr>
-					</div>			
-					`
-					$(".selectedView").append(markup);
-					
+				for(var i in data){
+					updateItemToViewList(data[i])
 				};
 		
 		
@@ -110,11 +115,13 @@ $(document).ready(function () {
     generateList(selectedDay);
     
     function generateList(sd){
-    	var sdd= sd.getDate();
-    	var sdm= sd.getMonth()+1;
-    	var sdy= sd.getFullYear();
+//    	var sdd= sd.getDate();
+//    	var sdm= sd.getMonth()+1;
+//    	var sdy= sd.getFullYear();
+//    	
+//    	var datestr = sdy+'-'+sdm+'-'+sdd;
     	
-    	var datestr = sdy+'-'+sdm+'-'+sdd;
+    	var datestr = getSelectedDateString(sd)
     	
     	jsonData = getInvoicejsonByDate(datestr);
     	$('.selectedView').html(jsonData);
@@ -180,7 +187,9 @@ $(document).ready(function () {
             selectedDay.setFullYear(this.getAttribute("yy"));
             $('.selectedView').html(selectedDay);
             generateList(selectedDay);
+            $( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
         });
+        
     }
     $('#left').click(function () {
         $('table').text('');
@@ -205,4 +214,4 @@ $(document).ready(function () {
     generateCalendar(currentDate);
     
     
-});
+})

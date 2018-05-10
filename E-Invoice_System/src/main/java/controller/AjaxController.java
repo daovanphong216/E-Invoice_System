@@ -71,7 +71,7 @@ public class AjaxController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 			 Date date = new Date();
 			try {
 				date = formatter.parse(dateTime+ ", 00:00:00.000");
@@ -100,7 +100,7 @@ public class AjaxController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 			 Date date = new Date();
 			try {
 				date = formatter.parse(dateTime+ ", 00:00:00.000");
@@ -124,8 +124,10 @@ public class AjaxController {
 		 } else {
 			 Date date = new Date();
 				try {
-					 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+					 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+					
 					date = formatter.parse(dateTime+ ", 00:00:00.000");
+					 System.out.println(date);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
