@@ -12,8 +12,6 @@
 .calendar-title {
     padding-top: 10px;
     padding-bottom: 14px;
-    margin-top: 32px;
-    margin-left: 18px;
     background-color: #1abc9c;
 }
 
@@ -28,7 +26,6 @@
 }
 
 .btn-info {
-   float: right;
     color: #fff;
     background-color: #5bc0de;
     border-color: #46b8da;
@@ -50,4 +47,10 @@
 .modal-content
 {
 	margin-top: 77px;
+}
+.list-container{
+	width: 45%;
+	display: inline-block;
+	float: left;
+    padding: 5px;
 }

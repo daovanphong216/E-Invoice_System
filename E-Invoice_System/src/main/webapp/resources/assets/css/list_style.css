@@ -35,11 +35,10 @@
 .item-ava .glyphicon-level-up:before {
 	content: "";
 }
-
-.list-group {
-	display: inline-block;
-	width: 49%;
-	float: right;
-	margin-top: 20px;
+.list-title{
+	padding-top: 10px;
+    padding-bottom: 14px;
+	background-color:#1abc9c;
+	color: white;
 }
 
