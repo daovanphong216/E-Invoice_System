@@ -131,8 +131,29 @@ public class AjaxController {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+				System.out.println(this.userService.findbyUserName(userName).getMoneyReport(2018,1));
 			return this.userService.findbyUserName(userName).getInvoices(date);
 		 }		
+	   }
+	
+	
+	@RequestMapping(value = { "/getreport/{year}/{month}" }, method = RequestMethod.GET)
+	public double[] getreport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year,
+			@PathVariable("month") int month) {
+		 String userName= principal.getName();
+	
+			return this.userService.findbyUserName(userName).getMoneyReport(year,month);
+
+	   }
+	
+	@RequestMapping(value = { "/getreport/{year}" }, method = RequestMethod.GET)
+	public double[] getreport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year) {
+		 String userName= principal.getName();
+	
+			return this.userService.findbyUserName(userName).getMoneyReport(year);
+
 	   }
 	
 	
