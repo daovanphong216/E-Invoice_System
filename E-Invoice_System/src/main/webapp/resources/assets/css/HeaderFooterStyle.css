@@ -70,7 +70,7 @@ footer {
 	width: 100%;
 }
 .header-space{
-	width: 65%;
+	width: 63%;
 }
 .t-sidebar{
 	padding: 0;
@@ -83,4 +83,8 @@ footer {
 }
 .t-sidebar ul li a{
 	color: white;
+}
+.header-account-control ul li{
+	display: inline-block;
+	padding-right: 15px;
 }

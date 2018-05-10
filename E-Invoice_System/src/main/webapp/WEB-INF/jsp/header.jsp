@@ -12,14 +12,26 @@
 		</div>
 		
 		<div class="header-col header-account-control">
-				<ul>
-					<li>
-						<a href="${pageContext.request.contextPath}/logout">
-						 	Log Out
-						</a>
-					</li>
-					
-				</ul>
-			    
-		</div>
+		<ul>
+			<sec:authorize access="isAuthenticated()">
+				<li><a href="${pageContext.request.contextPath}/logout">
+						Log Out </a></li>
+			</sec:authorize>
+			<c:if test="${user != null}">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> <i>${user.name}</i>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/userinfo/${user.id}">
+								Profile </a></li>
+						<li><a href="#}"> Inbox </a></li>
+						<li><a href="#"> Settings </a></li>
+						<li class="divider"></li>
+					</ul></li>
+			</c:if>
+
+		</ul>
+
+	</div>
 </header>
