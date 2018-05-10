@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,83 +38,86 @@
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
-<script
-	src="<c:url value='/resources/assets/js/userEdit.js'/>"></script>
+<script src="<c:url value='/resources/assets/js/userEdit.js'/>"></script>
 
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/userForm.css'/>" />
 </head>
 <body>
-	<%@ include file="header.jsp"%>
-	<%@ include file="sideBar.jsp"%>
-	<div class="page-body">
-		
-		<div class="container">
-			 <!-- Modal -->
-			<div class="modal fade" id="myModal" role="dialog">
-				<div class="modal-dialog">
-				
-				  <!-- Modal content-->
-				  <div class="modal-content">
-						<%@ include file="userEdit.jsp" %>
-				  </div>
-				  </div>
-			</div>
-			<div class="row">
-				<div
-					class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+	<div class="flex-container">
+		<%@ include file="header.jsp"%>
+		<%@ include file="sideBar.jsp"%>
+		<article class="page-body article">
 
+			<div class="">
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
 
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title">${user.name}</h3>
+						<!-- Modal content-->
+						<div class="modal-content">
+							<%@ include file="userEdit.jsp"%>
 						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-md-3 col-lg-3 " align="center">
-									<img alt="User Pic" src="${pageContext.request.contextPath}/resources/assets/img/userpic.png"
-										class="img-circle img-responsive">
-								</div>
+					</div>
+				</div>
+				<div class="row">
+					<div
+						class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 
-								<div class=" col-md-9 col-lg-9 ">
-									<table class="table table-user-information">
-										<tbody>
-											<tr>
-												<td>Username:</td>
-												<td>${username}</td>
-											<tr>
-												<td>Address</td>
-												<td>${user.address}</td>
-											</tr>
-											<tr>
-												<td>Email</td>
-												<td>${user.email}</td>
-											</tr>
-											<tr>
-												<td>Phone Number</td>
-												<td>${user.phoneNumber}</td>
-											</tr>
 
-										</tbody>
-									</table>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">${user.name}</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-3 col-lg-3 " align="center">
+										<img alt="User Pic"
+											src="${pageContext.request.contextPath}/resources/assets/img/userpic.png"
+											class="img-circle img-responsive">
+									</div>
 
+									<div class=" col-md-9 col-lg-9 ">
+										<table class="table table-user-information">
+											<tbody>
+												<tr>
+													<td>Username:</td>
+													<td>${username}</td>
+												<tr>
+													<td>Address</td>
+													<td>${user.address}</td>
+												</tr>
+												<tr>
+													<td>Email</td>
+													<td>${user.email}</td>
+												</tr>
+												<tr>
+													<td>Phone Number</td>
+													<td>${user.phoneNumber}</td>
+												</tr>
+
+											</tbody>
+										</table>
+
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="panel-footer">
-							<span class="pull-right"> <a href="#"
-								data-original-title="Edit this user" data-toggle="tooltip"
-								type="button" class="modalstart btn btn-sm btn-warning" ><i
-									class="glyphicon glyphicon-edit"></i></a>
-							</span>
-						</div>
+							<div class="panel-footer">
+								<span class="pull-right"> <a href="#"
+									data-original-title="Edit this user" data-toggle="tooltip"
+									type="button" class="modalstart btn btn-sm btn-warning"><i
+										class="glyphicon glyphicon-edit"></i></a>
+								</span>
+							</div>
 
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</article>
+
+		<%@ include file="footer.jsp"%>
 	</div>
 
-	<%@ include file="footer.jsp"%>
 </body>
 </html>
