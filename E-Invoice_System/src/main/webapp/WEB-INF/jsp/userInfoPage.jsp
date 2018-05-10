@@ -39,9 +39,9 @@
 	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
 <script
 	src="<c:url value='/resources/assets/js/userEdit.js'/>"></script>
+
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/userForm.css'/>" />
-
 </head>
 <body>
 	<%@ include file="header.jsp"%>

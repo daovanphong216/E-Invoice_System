@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LayoutController {
 	@RequestMapping(value = { "/test" }, method = RequestMethod.GET)
 	   public String adminPag(){
-	       return "List_invoice";  
+	       return "userInfoPage";  
 	   }
 	
 	@RequestMapping(value = { "/invoices" }, method = RequestMethod.GET)
