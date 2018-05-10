@@ -56,6 +56,37 @@ public class InvoiceServiceImp implements InvoiceService{
 		return user.getInvoices();
 	}
 
+	@Override
+	public void remove(long id, User user) {
+		Invoice invoice = this.invoiceDAO.findbyId(id);
+		user.getInvoices().remove(invoice);
+		this.userDao.update(user);
+		this.invoiceDAO.remove(id, user);
+		
+	}
+
+	@Override
+	public void Invoice(String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo,
+			double VAT, User owner) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Invoice MakeInvoice(String description, Date dateTime, double amountOfMoney, long customerCode,
+			String invoiceNo, double VAT, User owner) {
+		Invoice newInvoice = new Invoice();
+		newInvoice.setDescription(description);
+		newInvoice.setAmountOfMoney(amountOfMoney);
+		newInvoice.setDateTime(dateTime);
+		newInvoice.setInvoiceNo(invoiceNo);
+		newInvoice.setCustomerCode(customerCode);
+		newInvoice.setVAT(VAT);
+		newInvoice.setOwner(owner);
+		this.invoiceDAO.create(newInvoice);
+		return newInvoice;
+	}
+
 
 
 

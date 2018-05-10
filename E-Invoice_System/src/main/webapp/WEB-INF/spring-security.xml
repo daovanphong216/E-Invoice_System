@@ -11,7 +11,7 @@
         
         <intercept-url pattern="/" access="isAuthenticated()" />
         <intercept-url pattern="/user" access="hasRole('ROLE_MEMBER')" />
-        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/admin" access="hasRole('ROLE_MEMBER')" />
  	    <intercept-url pattern="/userinfo" access="hasRole('ROLE_MEMBER')" />
  	    <intercept-url pattern="/userinfo/**" access="hasRole('ROLE_ADMIN')" />
         

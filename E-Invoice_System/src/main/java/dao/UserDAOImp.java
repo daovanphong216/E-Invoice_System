@@ -83,7 +83,6 @@ public class UserDAOImp implements UserDAO{
 		Criteria query = session.createCriteria(Account.class);
 		query.add(Restrictions.eq("userName", userName));
 		List<Account> results = query.list();
-		System.out.println(results);
 		tx.commit();
 		session.close();
 		if (results.isEmpty()) {
@@ -92,5 +91,7 @@ public class UserDAOImp implements UserDAO{
 				return results.get(0).getUser();
 			}
 	}
+
+
 	
 }

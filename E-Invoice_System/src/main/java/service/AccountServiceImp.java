@@ -46,5 +46,19 @@ public class AccountServiceImp implements AccountService {
 	public List<Account> getAll() {
 		return accountDao.getAll();
 	}
+	
+	@Override
+	public void updateActive(long id, boolean status){
+		Account account = accountDao.findbyId(id);	
+		if (account!=null){
+			account.setActive(status);
+			accountDao.update(account);
+		}
+	}
+	
+	@Override
+	public List<Account> searchAccount(String username, String type){
+		return accountDao.searchAccount(username, type);
+	}
 
 }

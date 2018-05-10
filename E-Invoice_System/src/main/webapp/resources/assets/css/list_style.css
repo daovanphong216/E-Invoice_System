@@ -1,0 +1,32 @@
+.item-col{
+	display: inline-block;
+}
+.item-button{
+	display: block;
+}
+.l-item{
+	padding-top: 10px;
+	width: 100%;
+	min-width: 355px;
+}
+.item-ava{
+	width: 45px;
+	height: 45px;
+	background: #318b8fb3;
+	color: #fff;
+	border-radius: 100%;
+	text-align: center;
+	padding-top: 14px;
+}
+.item-detail{
+	width: 75%;
+	padding-left: 40px;
+}
+.item-desc{
+	font-size: 30px;
+	font-weight: bold;
+}
+.item-ava .glyphicon-level-up:before{
+	    content: "";
+
+}

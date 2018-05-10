@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +28,19 @@ public class User {
 	public Set<Invoice> getInvoices() {
 		return invoices;
 	}
+	
+	public Set<Invoice> getInvoices(Date dateTime) {
+		System.out.println(dateTime.toString());
+		Set<Invoice> results = new HashSet<Invoice>(	0);
+		for(Invoice i: this.getInvoices()) {
+			System.out.println(i.getDateTime().toString());
+			if(i.getDateTime().compareTo(dateTime)==0) {
+				results.add(i);
+			}
+		}
+		
+		return results;
+	}
 
 	public void setInvoices(Set<Invoice> invoices) {
 		this.invoices = invoices;
@@ -49,7 +63,7 @@ public class User {
 		this.account = account;
 	}
 
-	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Invoice> invoices = new HashSet<Invoice>(	0);
 		
 	@ManyToOne(fetch = FetchType.LAZY)

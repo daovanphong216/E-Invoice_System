@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 
 <head>
@@ -79,7 +80,7 @@
 			</form>
 			<div class="container signin">
 				<p>
-					Already have an account? <a href="./login">Sign in</a>.
+					Already have an account? <a href="./login">Login</a>.
 				</p>
 			</div>
 		</div>

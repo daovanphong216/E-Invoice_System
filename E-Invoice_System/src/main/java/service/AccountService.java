@@ -11,4 +11,6 @@ public interface AccountService {
 	public void update(Account account);
 	public Account findbyId(long id);
 	public List<Account> getAll();
+	public void updateActive(long id, boolean status);
+	public List<Account> searchAccount(String username, String type);
 }
