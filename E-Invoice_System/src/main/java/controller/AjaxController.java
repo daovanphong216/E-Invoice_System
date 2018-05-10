@@ -13,6 +13,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -222,6 +223,23 @@ public class AjaxController {
 		response.add("success");
 		return response;
 	}
+	
+	@RequestMapping(value = { "/createAdmin" }, method = RequestMethod.POST)
+	public List<String> createAdmin(Principal principal, Authentication authentication, @RequestParam String username,  @RequestParam String password){ 
+		Account account = accountService.findbyUserName(username);
+		   if (account ==null){
+			   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			   accountService.create(username, passwordEncoder.encode(password), "ROLE_ADMIN");
+		   }
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
+	}
+	
+	@RequestMapping(value = { "/getAllAdmins" }, method = RequestMethod.GET)
+	public List<Account> getAllAdmins(Principal principal, Authentication authentication) {
+			return this.accountService.getAllAdmins();	
+	   }
 	
 	@RequestMapping(value = { "/getAllAccounts" }, method = RequestMethod.GET)
 	public List<Account> getAllAccount(Principal principal, Authentication authentication) {

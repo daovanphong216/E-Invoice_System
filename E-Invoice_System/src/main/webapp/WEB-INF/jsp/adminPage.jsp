@@ -25,7 +25,7 @@
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/adminPageStyle.css'/>" />
-<script src="./resources/assets/js/AdminPage.js"></script>
+
 
 
 
@@ -97,12 +97,11 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4">
-				<h5>Please enter a search or view all users</h5>
+			<div class="col-lg-6" id="general_info">
 			</div>
 		</div>
 	</div>
-
+	
 
 	<div class="row">
 		<div class="tableGroup">
@@ -134,4 +133,5 @@
 	<%@ include file="footer.jsp"%>
 </body>
 <script src="./resources/assets/js/RegisterFunction.js"></script>
+<script src="./resources/assets/js/AdminPage.js"></script>
 </html>

@@ -105,6 +105,17 @@ public class AccountDAOImp implements AccountDAO{
 	}
 	
 	@Override
+	public List<Account> getAllAdmins(){
+		Session session = getSessionFactory().openSession();
+		Query query= session.createQuery("select ac from accounts ac where ac.role= :role");
+	    query.setParameter("role", "ROLE_ADMIN");
+        List<Account> list = query.list();
+        session.close();
+        return list;
+	}
+	
+	
+	@Override
 	public Account findbyUserName(String userName) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();

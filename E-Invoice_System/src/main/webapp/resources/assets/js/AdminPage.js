@@ -1,4 +1,8 @@
 $("document").ready(function() {
+	$(".listTable").hide();
+	var totalUsers = 0;
+	var activeUsers = 0;
+	var deactiveUsers = 0;
 	var results = [];
 	var totalRecords = 0;
 	var totalPages = 0;
@@ -10,6 +14,9 @@ $("document").ready(function() {
 	const beginActiveStr="<li class='page-item active'><a class='page-link' href='#'>";
 	const beginNomalStr="<li class='page-item'><a class='page-link' href='#'>";
 	const endStr="</a></li>";
+	
+	
+	
 	
 	function getUser() {
 		var username = $("#input-search").val();
@@ -44,8 +51,12 @@ $("document").ready(function() {
 			success : function(data) {
 				if (status=='active'){
 					results[pos].active=false;
+					activeUsers--;
+					deactiveUsers++;
 				} else{
 					results[pos].active=true;
+					activeUsers++;
+					deactiveUsers--;
 				}
 				generate_table();
 			}
@@ -60,25 +71,26 @@ $("document").ready(function() {
 			$.each(displayResults	, function(key, value) {
 				data_get += '<tr>';
 				data_get += '<td>' + (+key+1 + 10*(currentPage-1)) + '</td>';
-				data_get += '<td>' + value.userName + '</td>';
+				data_get += "<td><a href='./userinfo/" +value.id+"'>"+value.userName+"</a></td>";
 				if (value.active==true){
 					data_get += '<td>' + "Active" + '</td>';
 					//data_get += '<td>' + "Deactive" + '</td>';
 					data_get += "<td><a href='#' account_id='" + value.id + "' status='active' pos='" + key + "'>Deactive this user</a></td>";
 				} else {
 					data_get += '<td>' + "Dective" + '</td>';
-					data_get += "<td><a href='#' account_id='" + value.id + "' status='deactive'pos='" + key + "'>Active this user</a></td>";
+					data_get += "<td><a href='#' account_id='" + value.id + "' status='deactive' pos='" + key + "'>Active this user</a></td>";
 				}
 				data_get += '</tr>';
 			});
 			$('#table_body').append(data_get);
+			$(".listTable").show();
+			setGeneralInfo();
 			$('#table_body a').click(function() {
 				var id = $(this).attr("account_id");
 				var status = $(this).attr("status");
 				var pos = $(this).attr("pos");
 				changeActive(id,status, pos);
 			});
-			$(".listTable").show();
 		}
 		
 
@@ -103,7 +115,10 @@ $("document").ready(function() {
 
 	}
 	
-	
+	function setGeneralInfo(){
+		$("#general_info").empty();
+		$("#general_info").append("<h5>Total users: " + totalUsers + " &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp Actived users: " + activeUsers + " &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp Deactived users: " + deactiveUsers +"</h5>" );
+	}
 	
 	$.ajax({
 		type : "POST",
@@ -116,6 +131,15 @@ $("document").ready(function() {
 		success : function(data) {
 			results = data;
 			totalRecords = results.length;
+			totalUsers=totalRecords;
+			for (var i=0; i<totalRecords; i++){
+				if (results[i].active){
+					activeUsers++;
+				} else {
+					deactiveUsers ++;
+				}
+			}
+			console.log("Total users: " + totalUsers + "  |  Actived users: " + activeUsers + "  |  Deactived users: " + deactiveUsers  );
 			totalPages = Math.ceil(totalRecords / recPerPage);
 			currentPage= (totalPages>0) * 1;
 			setData();
@@ -264,9 +288,8 @@ $("document").ready(function() {
 	
 	
 	
-	
 	// $("#datetimepicker").val("hihi");
-	$(".listTable").hide();
+	
 	$("#button-search").click(function() {
 		getUser();
 	});
@@ -288,27 +311,6 @@ $("document").ready(function() {
 	
 	
 	
-	/*
-	 * var $pagination = $('#pagination'), totalRecords = 0, records = [],
-	 * displayRecords = [], recPerPage = 10, page = 1, totalPages = 0;
-	 */
-       
-	/*
-	 * $.ajax({ url: "http://dummy.restapiexample.com/api/v1/employees", async:
-	 * true, dataType: 'json', success: function (data) { records = data;
-	 * console.log(records); totalRecords = records.length; totalPages =
-	 * Math.ceil(totalRecords / recPerPage); apply_pagination(); } }); function
-	 * generate_table() { var tr; $('#emp_body').html(''); for (var i = 0; i <
-	 * displayRecords.length; i++) { tr = $('<tr/>'); tr.append("<td>" +
-	 * displayRecords[i].employee_name + "</td>"); tr.append("<td>" +
-	 * displayRecords[i].employee_salary + "</td>"); tr.append("<td>" +
-	 * displayRecords[i].employee_age + "</td>"); $('#emp_body').append(tr); } }
-	 * function apply_pagination() { $pagination.twbsPagination({ totalPages:
-	 * totalPages, visiblePages: 6, onPageClick: function (event, page) {
-	 * displayRecordsIndex = Math.max(page - 1, 0) * recPerPage; endRec =
-	 * (displayRecordsIndex) + recPerPage; console.log(displayRecordsIndex +
-	 * 'ssssssssss'+ endRec); displayRecords =
-	 * records.slice(displayRecordsIndex, endRec); generate_table(); } }); }
-	 */
+	
 
 });

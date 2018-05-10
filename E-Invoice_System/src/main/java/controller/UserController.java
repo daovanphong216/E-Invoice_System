@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import model.Account;
 import model.User;
+import service.AccountService;
 import service.UserService;
 
 @Controller
@@ -23,6 +25,7 @@ public class UserController {
 			Authentication authentication) {
 		User user = userService.findbyUserName(principal.getName());
 		model.addAttribute("user", user);
+		model.addAttribute("username", principal.getName());
 		return "userInfoPage";
 	}
 	

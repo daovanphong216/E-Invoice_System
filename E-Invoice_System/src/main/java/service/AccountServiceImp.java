@@ -61,6 +61,12 @@ public class AccountServiceImp implements AccountService {
 		}
 	}
 	
+
+	@Override
+	public List<Account> getAllAdmins(){
+		return accountDao.getAllAdmins();
+	}
+	
 	@Override
 	public List<Account> searchAccount(String username, String type){
 		return accountDao.searchAccount(username, type);

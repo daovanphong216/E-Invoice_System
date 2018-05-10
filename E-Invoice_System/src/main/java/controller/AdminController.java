@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import model.Account;
 import model.User;
 import service.AccountService;
 import service.AdminService;
@@ -40,8 +41,9 @@ public class AdminController {
 			if (user == null) {
 				return "redirect:/nofounded";
 			} else {
-				
+					String username = accountService.findbyId(id).getUserName();
 					model.addAttribute("user",user);
+					model.addAttribute("username",username);
 					return "userInfoPage";
 				
 			}

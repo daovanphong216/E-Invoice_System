@@ -66,7 +66,7 @@
 
 					<div class="panel panel-info">
 						<div class="panel-heading">
-							<h3 class="panel-title">Name Nguyen</h3>
+							<h3 class="panel-title">${user.name}</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -80,7 +80,7 @@
 										<tbody>
 											<tr>
 												<td>Username:</td>
-												<td>${user.name}</td>
+												<td>${username}</td>
 											<tr>
 												<td>Address</td>
 												<td>${user.address}</td>

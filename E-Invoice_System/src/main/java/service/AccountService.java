@@ -13,5 +13,6 @@ public interface AccountService {
 	public List<Account> getAll();
 	public void updateActive(long id, boolean status);
 	public List<Account> searchAccount(String username, String type);
+	public List<Account> getAllAdmins();
 	public Account findbyUserName(String userName);
 }
