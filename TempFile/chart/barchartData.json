@@ -1,0 +1,21 @@
+
+ {
+    "cols": [
+          {"id":"","label":"Month","type":"string"},
+          {"id":"","label":"Money","type":"number"}
+        ],
+    "rows": [
+          {"c":[{"v":"January"},{"v":300}]},
+          {"c":[{"v":"February"},{"v":5500}]},
+          {"c":[{"v":"March"},{"v":1000}]},
+          {"c":[{"v":"April"},{"v":3600}]},
+          {"c":[{"v":"May"},{"v":3600}]},
+          {"c":[{"v":"June"},{"v":3600}]},
+          {"c":[{"v":"August"},{"v":3600}]},
+          {"c":[{"v":"September"},{"v":3600}]},
+          {"c":[{"v":"October"},{"v":3600}]},
+          {"c":[{"v":"November"},{"v":3600}]},
+          {"c":[{"v":"December"},{"v":3600}]}
+        ]
+  }
+  

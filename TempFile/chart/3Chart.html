@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawPieChart);
+    // Draw the chart and set the chart values
+    function drawPieChart() {
+      var pieData = $.ajax({
+        url: "piechartData.json",
+        dataType: "json",
+        async: false
+      }).responseText;
+      console.log(pieData);
+      var data = new google.visualization.DataTable(pieData);
+      // Optional; add a title and set the width and height of the chart
+      var options = { 'width': 550, 'height': 400 };
+      // Display the chart inside the <div> element with id="piechart"
+      //https://developers.google.com/chart/interactive/docs/gallery chart types
+      document.getElementById('pie').addEventListener('click', function () {
+        //$("#barchart").empty();
+        var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
+        piechart.draw(data, options);
+      }, true);
+      document.getElementById('pie').addEventListener('dblclick', function () {
+        $("#piechart").empty();
+      }, true);
+    }
+    google.charts.setOnLoadCallback(drawBarChart);
+    function drawBarChart() {
+      var barData = $.ajax({
+        url: "barchartData.json",
+        dataType: "json",
+        async: false
+      }).responseText;
+      console.log(barData);
+      var bardata = new google.visualization.DataTable(barData);
+      // Optional; add a title and set the width and height of the chart
+      var options = { 'width': 550, 'height': 400 };
+      // Display the chart inside the <div> element with id="piechart"
+      //https://developers.google.com/chart/interactive/docs/gallery chart types
+      document.getElementById('bar').addEventListener('click', function () {
+        //$("#barchart").empty();
+        var barchart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+        barchart.draw(bardata, options);
+      }, true);
+      document.getElementById('bar').addEventListener('dblclick', function () {
+        $("#barchart").empty();
+      }, true);
+      google.charts.setOnLoadCallback(drawLineChart);
+    function drawLineChart() {
+      var lineData = $.ajax({
+        url: "linechartData.json",
+        dataType: "json",
+        async: false
+      }).responseText;
+      var linedata = new google.visualization.DataTable(lineData);
+      // Optional; add a title and set the width and height of the chart
+      var options = { 'width': 550, 'height': 400 };
+      // Display the chart inside the <div> element with id="piechart"
+      //https://developers.google.com/chart/interactive/docs/gallery chart types
+      document.getElementById('line').addEventListener('click', function () {
+        //$("#barchart").empty();
+        var linechart = new google.visualization.LineChart(document.getElementById('linechart'));
+        linechart.draw(linedata, options);
+      }, true);
+      console.log(lineData)
+      document.getElementById('line').addEventListener('dblclick', function () {
+        $("#linechart").empty();
+      }, true);
+    }
+    }
+  </script>
+</head>
+<body>
+  <h1>My Web Page</h1>
+  <div>
+    <input type="button" id="pie" value="PieChart">
+    <input type="button" id="bar" value="BarChart">
+    <input type="button" id="line" value="LineChart">
+  </div>
+  <div id="piechart"></div>
+  <div id="barchart"></div>
+  <div id="linechart"></div>
+  <div id="regions_div" style="width: 900px; height: 500px;"></div>
+</body>
+
+</html>
