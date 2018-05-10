@@ -25,7 +25,7 @@
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/adminPageStyle.css'/>" />
-<script src="./resources/assets/js/ready.js"></script>
+<script src="./resources/assets/js/AdminPage.js"></script>
 
 
 
@@ -134,5 +134,4 @@
 	<%@ include file="footer.jsp"%>
 </body>
 <script src="./resources/assets/js/RegisterFunction.js"></script>
-<!--  <script src="./resources/assets/js/jquery.twbsPagination.min.js"></script>-->
 </html>

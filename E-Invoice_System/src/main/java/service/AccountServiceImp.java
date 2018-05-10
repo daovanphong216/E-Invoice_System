@@ -28,7 +28,12 @@ public class AccountServiceImp implements AccountService {
 		this.u = u;
 	}*/
 	
-	public void create(Account account) {
+	public void create(String username, String password, String role) {
+		Account account = new Account();
+		account.setUserName(username);
+		account.setActive(true);
+		account.setRole(role);
+		account.setHashPassword(password);
 		accountDao.create(account);
 	}
 
@@ -60,5 +65,9 @@ public class AccountServiceImp implements AccountService {
 	public List<Account> searchAccount(String username, String type){
 		return accountDao.searchAccount(username, type);
 	}
-
+	
+	@Override
+	public Account findbyUserName(String userName) {
+		return accountDao.findbyUserName(userName);
+	}
 }

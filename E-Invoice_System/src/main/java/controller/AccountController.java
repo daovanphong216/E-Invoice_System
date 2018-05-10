@@ -27,6 +27,8 @@ public class AccountController {
 	@Autowired
 	@Qualifier("userService")
 	UserService userService;
+	
+	
 
 
 	
@@ -43,7 +45,7 @@ public class AccountController {
 
 			switch (role) {
 			case "ROLE_MEMBER":
-				return "forward:/user";
+				return "forward:/dailyinvoices";
 			case "ROLE_ADMIN":
 				return "redirect:/admin";
 			default:
@@ -87,30 +89,6 @@ public class AccountController {
 	@RequestMapping(value = "/logoutsuccessful", method = RequestMethod.GET)
 	public String logoutSuccessfulPage(Model model) {
 		return "redirect:/login";
-	}
-
-	@RequestMapping(value = "/userinfo/{id}", method = RequestMethod.GET)
-	public String userInfo(Model model, @PathVariable("id") String idStr, Principal principal,
-			Authentication authentication) {
-		
-		long id = Long.parseLong(idStr, 10);
-		User user = userService.findbyId(id);
-		if (user == null) {
-			return "redirect:/nofounded";
-		} else {
-			
-				model.addAttribute("user",user);
-				return "userInfoPage";
-			
-		}
-	}
-	
-	@RequestMapping(value = "/userinfo", method = RequestMethod.GET)
-	public String userInfo(Model model, Principal principal,
-			Authentication authentication) {
-		User user = userService.findbyUserName(principal.getName());
-		model.addAttribute("user", user);
-		return "userInfoPage";
 	}
 
 	

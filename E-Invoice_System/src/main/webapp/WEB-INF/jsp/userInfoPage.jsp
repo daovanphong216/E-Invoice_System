@@ -71,7 +71,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-3 col-lg-3 " align="center">
-									<img alt="User Pic" src="../resources/assets/img/userpic.png"
+									<img alt="User Pic" src="${pageContext.request.contextPath}/resources/assets/img/userpic.png"
 										class="img-circle img-responsive">
 								</div>
 
