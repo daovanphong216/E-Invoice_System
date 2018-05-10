@@ -1,15 +1,18 @@
-.item-col{
+.item-col {
 	display: inline-block;
 }
-.item-button{
+
+.item-button {
 	display: block;
 }
-.l-item{
+
+.l-item {
 	padding-top: 10px;
 	width: 100%;
 	min-width: 355px;
 }
-.item-ava{
+
+.item-ava {
 	width: 45px;
 	height: 45px;
 	background: #318b8fb3;
@@ -18,15 +21,25 @@
 	text-align: center;
 	padding-top: 14px;
 }
-.item-detail{
+
+.item-detail {
 	width: 75%;
 	padding-left: 40px;
 }
-.item-desc{
+
+.item-desc {
 	font-size: 30px;
 	font-weight: bold;
 }
-.item-ava .glyphicon-level-up:before{
-	    content: "";
 
+.item-ava .glyphicon-level-up:before {
+	content: "";
 }
+
+.list-group {
+	display: inline-block;
+	width: 49%;
+	float: right;
+	margin-top: 20px;
+}
+
