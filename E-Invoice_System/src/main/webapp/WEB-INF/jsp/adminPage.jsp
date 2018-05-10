@@ -109,8 +109,10 @@
 			<table class="listTable">
 				<thead>
 					<tr>
+						<th>No</th>
 						<th>Full Name</th>
 						<th>Status</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="table_body">
@@ -120,32 +122,14 @@
 	</div>
 	</div>
 
+
 	<div class="col-lg-12">
-	<table id="employee" class="table table-bordered table table-hover"
-		cellspacing="0" width="70%">
-		<colgroup>
-			<col width="20%">
-			<col width="35%">
-			<col width="40%">
-		</colgroup>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Salary</th>
-				<th>Age</th>
-			</tr>
-		</thead>
+		<div  class="pager-center">
+			<ul id="pager" class="pagination">
+			</ul>
 		</div>
-		<tbody id="emp_body">
-		</tbody>
-	</table>
 	</div>
-	<div class="col-lg-12">
-	<div id="pager" class="pager-center">
-		<ul id="pagination" class="pagination-sm"></ul>
-	</div>
-	</div>
-	
+
 
 	<%@ include file="footer.jsp"%>
 </body>

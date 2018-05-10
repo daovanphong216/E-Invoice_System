@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Account;
@@ -44,7 +46,12 @@ public class AjaxController {
 	 @Qualifier("invoiceService")
 	 InvoiceService invoiceService;
 
-
+	class SimpleResponse{
+		String message;
+		SimpleResponse(String msg){
+			message=msg;
+		}
+	}
 	
 	@RequestMapping(value = { "/getInvoiceFromUser" }, method = RequestMethod.GET)
 	public Set<Invoice> getInvoiceFromUser(Principal principal, Authentication authentication) {
@@ -168,22 +175,29 @@ public class AjaxController {
 	   }
 
 	
-	@RequestMapping(value = { "/updateActive/{id}" }, method = RequestMethod.POST)
-	public String updateActive(Principal principal, Authentication authentication,  @PathVariable("id") String idStr, 
-			@RequestParam String statusStr) {
-		long id = Long.parseLong(idStr, 10);
-		Boolean status = Boolean.valueOf(statusStr);
+	@RequestMapping(value = { "/updateActive" }, method = RequestMethod.POST)
+	public List<String> updateActive(Principal principal, Authentication authentication, String id, 
+			@RequestParam String status) {
+		long idL = Long.parseLong(id, 10);
+		boolean newStatus=false;
+		if (status.equals("deactive")) {
+			newStatus=true;
+		}
 		//System.out.println(username + type);
-		accountService.updateActive(id, status);
-		return "{ 'msg': 'success'}"; 			
+		accountService.updateActive(idL, newStatus);
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
 	}
 	
 	@RequestMapping(value = { "/updateTrigger" }, method = RequestMethod.POST)
-	public String updateTrigger(Principal principal, Authentication authentication, @RequestParam String triggerStr) throws Exception{ 
-		String trigger = triggerStr;
+	public List<String> updateTrigger(Principal principal, Authentication authentication, @RequestParam String trigger) throws Exception{ 
+		String cronTrigger = trigger;
 		adminService.setTrigger(trigger);
 		adminService.doSendEmail(trigger);
-		return "{ 'msg': 'success'}"; 		
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
 	}
 	
 	@RequestMapping(value = { "/getAllAccounts" }, method = RequestMethod.GET)
