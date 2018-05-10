@@ -1,15 +1,8 @@
-body {
-	margin: 15px;
-}
-
 .fa {
 	font-size: 0.5em;
 }
 
 .table {
-	margin-top: -41px !important;
-    width: 450px !important;
-    margin-left: -25px !important;
     background-color: #f9eaed7d;
 }
 
@@ -49,15 +42,12 @@ td {
 .cal-container {
 	width: 45%;
 	display: inline-block;
+	float: left;
+    padding: 5px;
 }
 
 .selectedView {
-	display: inline-block;
-	width: 50%;
-	float: right;
-	margin-top: 350px;
-	overflow: auto;
-    height: 500px;
+
 }
 
 tr:nth-child(1) {

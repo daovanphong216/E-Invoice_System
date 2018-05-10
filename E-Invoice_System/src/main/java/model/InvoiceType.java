@@ -24,8 +24,8 @@ public class InvoiceType {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "logoUrl")
-	private String logoUrl;
+	@Column(name = "logo")
+	private byte[] logo;
 	
 	public long getId() {
 		return id;
@@ -43,12 +43,12 @@ public class InvoiceType {
 		this.name = name;
 	}
 	
-	public String getLogoUrl() {
-		return logoUrl;
+	public byte[] getLogo() {
+		return logo;
 	}
 	
-	public void setLogoUrl(String logoUrl) {
-		this.logoUrl = logoUrl;
+	public void setLogoUrl(byte[] logo) {
+		this.logo = logo;
 	}
 	
 }

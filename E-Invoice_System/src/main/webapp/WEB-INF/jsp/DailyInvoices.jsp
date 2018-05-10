@@ -27,62 +27,67 @@
 
 </head>
 <body>
+<div class= "flex-container">
 	<%@ include file="header.jsp"%>
-	<div class="row">
-		<div class="col-sm-2">
-			<%@ include file="sideBar.jsp"%>
-		</div>
-		<div class="col-sm-10">
-			<div class="page-container">
-				<h2>Invoices List</h2>
-				
+	<%@ include file="sideBar.jsp"%>
 
-				<!-- Modal -->
-				<div class="modal fade" id="CreateInvoiceFormModal" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-							<%@ include file="invoiceform.jsp"%>
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-
-
-			<div class="cal-container" id="main">
-				<div class="calendar-title">
-					<h1 class="text-center">
-						<a id="left" href="#"><</a> <span>&nbsp;</span> <span id="month"></span>
-						<span>&nbsp;</span><span id="year"> </span> <span>&nbsp;</span> <a
-							id="right" href="#">></a>
-					</h1>
-				</div>
-				<hr>
-				<div class="row">
-					<div class="col-sm-10 col-sm-offset-1">
-						<table class="table calendar-table"></table>
-					</div>
-				</div>
-			</div>
-
-			<div class="selectedView list pageAll P-List-invoice list-group">
-
-			</div>
-			<!-- Trigger the modal with a button -->
-				<button type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#CreateInvoiceFormModal">Create
-					An Invoice</button>
-			<%@ include file="footer.jsp"%>
-		</div>
-	</div>
-	<script type="text/javascript"
-			src="././resources/assets/js/calendar.js"></script>
-		<script src="././resources/assets/js/InvoicesMain.js"></script>
-		<script type="text/javascript"
-			src="././resources/assets/js/InvoiceForm.js"></script>
+	<article class="page-container article">
 	
+		<div class="page-title">
+			<h2>Invoices List</h2>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="CreateInvoiceFormModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<%@ include file="invoiceform.jsp"%>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="cal-container" id="main">
+			<div class="calendar-title">
+				<h1 class="text-center">
+					<a id="left" href="#"><</a> <span>&nbsp;</span> <span id="month"></span>
+					<span>&nbsp;</span><span id="year"> </span> <span>&nbsp;</span> <a
+						id="right" href="#">></a>
+				</h1>
+			</div>
+			<div class="calendar-content">
+				<table class="table calendar-table"></table>
+			</div>
+		</div>
+		
+		<div class="list-container">
+			<div class="list-title">
+				<h1 class="text-center">
+					Invoices
+				</h1>
+			</div>
+			<div class="selectedView list pageAll P-List-invoice list-group"></div>
+		</div>
+
+		<div class="buttons">
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#CreateInvoiceFormModal">Create An Invoice</button>
+		</div>
+		
+
+	</article>
+
+	
+
+	<%@ include file="footer.jsp"%>
+</div>
+	<script type="text/javascript"
+		src="././resources/assets/js/calendar.js"></script>
+	<script src="././resources/assets/js/InvoicesMain.js"></script>
+	<script type="text/javascript"
+		src="././resources/assets/js/InvoiceForm.js"></script>
+
 </body>
 </html>
