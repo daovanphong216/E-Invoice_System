@@ -49,8 +49,8 @@
 	margin-top: 77px;
 }
 .list-container{
-	width: 45%;
 	display: inline-block;
 	float: left;
     padding: 5px;
+    width: 50%;
 }

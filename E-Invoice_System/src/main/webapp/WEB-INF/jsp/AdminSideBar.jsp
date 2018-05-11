@@ -1,6 +1,6 @@
 <!-- side bar -->
 <script src="./resources/assets/js/AdminSideBar.js"></script>
-<div class="collapse navbar-collapse navbar-ex1-collapse t-sidebar">
+<div class="nav collapse navbar-collapse navbar-ex1-collapse ta-sidebar">
 	<ul class="nav navbar-nav side-nav sidebar">
 
 		<h3>Add Admin</h3>

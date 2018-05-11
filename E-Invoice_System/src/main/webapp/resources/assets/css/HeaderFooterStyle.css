@@ -13,6 +13,8 @@
 
 .article {
 	text-align: left;
+    min-height: -webkit-fill-available;
+	
 }
 
 header {
@@ -62,6 +64,10 @@ footer {
 	display: inline-block;
 }
 
+.header-col a{
+	color: white;
+}
+
 .header-logo{
 	width: 20%;
 }
@@ -74,6 +80,16 @@ footer {
 }
 .t-sidebar{
 	padding: 0;
+	width: 1px;
+	
+}
+
+
+.ta-sidebar{
+	padding: 10px;
+	width: 140px;
+	background: #acacb7;
+	
 }
 
 .t-sidebar ul li{
@@ -88,3 +104,9 @@ footer {
 	display: inline-block;
 	padding-right: 15px;
 }
+
+footer{
+	padding: 25px !important;
+	background: #000000;
+}
+

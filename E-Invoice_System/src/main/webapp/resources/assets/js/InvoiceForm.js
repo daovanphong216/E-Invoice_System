@@ -35,6 +35,7 @@ function getSelectedDateString(selectedDay){
 }
 
 $(document).ready(function(){
+		
 	console.log(getSelectedDateString(selectedDay));
 	
 	$( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
