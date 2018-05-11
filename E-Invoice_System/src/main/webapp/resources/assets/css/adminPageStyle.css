@@ -1,219 +1,249 @@
-.admin-body
-{
+.admin-body {
 	background-color: white;
 }
 
-.search-form
-{
-    border: 1px solid #ccc;
-    width: 98%;
-    height: 8%;
-    padding: -1px;
-    padding-top: 0px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: 10px;
-    margin-top: 50px;
-    
-}
-.group-pickertime
-{
-	magrin-riht:5px;
+.search-form {
+	border: 1px solid #ccc;
+	width: 98%;
+	height: 8%;
+	padding: -1px;
+	padding-top: 0px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: 10px;
+	margin-top: 50px;
 }
 
-#input-group
-{
-    background-color: #E1E1EA;
-    height: 38px;
+.group-pickertime {
+	padding-left: 22%;
+	padding-right: 0%;
 }
 
-#input-search
-{
-    height: auto;
-    width: 100% !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+#input-group {
+	background-color: #E1E1EA;
+	height: 38px;
 }
 
-
-#button-search
-{
-    width: 5% !important;
-    height: 33px;
-    margin-left: -32px;
-    border: 1px solid #ccc;
-    background-color: #F3F2EE;
-    padding-right: 27px;
+.input-search {
+	height: auto;
+	width: 100% !important;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
 }
 
-#select-option
-{
-    height: 33px;
-    margin-left: -59px;
-    background-color: #F3F2EE;
+#button-search {
+	width: 5% !important;
+	height: 33px;
+	margin-left: -32px;
+	border: 1px solid #ccc;
+	background-color: #F3F2EE;
+	padding-right: 27px;
+}
+
+#select-option {
+	height: 33px;
+	margin-left: -59px;
+	background-color: #F3F2EE;
 }
 
 }
-
-#button-add-user
-{
-    height: 33px;
-    float: right;
-    background-color: #F3F2EE;
-}
-
-#settime-group
-{
-    width: 22% !important;
+#settime-group {
+	width: 22% !important;
 	height: 33px;
 	padding-right: 0px;
 	background-color: #F3F2EE;
 	padding-left: 0px;
 }
 
-#ok-buton
-{
+#ok-buton {
 	height: 33px;
-	
 }
 
-.row h5
-{
-    margin-left: 0px;
+.row h5 {
+	margin-left: 0px;
 	color: #ABA7A7;
 	margin-top: 2px;
 }
 
-h3
-{
+h3 {
 	font-weight: bold;
 	text-align: center;
 	margin-bottom: -35px;
 }
 
-.tableGroup
-{
-    margin-top: 60px;
+.tableGroup {
+	margin-top: 60px;
 }
 
-.listTable
-{
-    border-collapse: collapse;
-    width:70%;
-    margin: auto;
-    
-}
-th
-{
-    border: 1px solid black;
-    text-align: center;
-    background-color: #94AAD6;
-    padding:9px 15px;
-}
-#table_body tr td
-{
-    border:1px solid gray;
-    border-collapse: collapse;
-    text-align: center;
-    padding:7px 15px;
+.listTable {
+	border-collapse: collapse;
+	width: 70%;
+	margin: auto;
 }
 
-tr:nth-child(even){
-    background-color: #F0F0F0;
+th {
+	border: 1px solid black;
+	text-align: center;
+	background-color: #94AAD6;
+	padding: 9px 15px;
 }
 
+#table_body tr td {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 7px 15px;
+}
+
+tr:nth-child(even) {
+	background-color: #F0F0F0;
+}
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* Add padding to containers */
 .container {
-    margin-left: 501px;
-    min-width: 500px;
-    max-width: 500px;
+	margin-left: 501px;
+	min-width: 500px;
+	max-width: 500px;
 }
 
 /* Full-width input fields */
-input[type=password],input[type=email],input[type=name],input[type=tel], input[id= 'username'] {
-    width: 100%;
-    padding: 5px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-	border-radius:3px;
-    background: white;
+.add_admin_input {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	border-radius: 3px;
+	background: white;
 	box-shadow: 2px 2px 5px #ead7d7;
 }
 
-
-
 /* Overwrite default styles of hr */
 hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
+	border: 1px solid #f1f1f1;
+	margin-bottom: 25px;
 }
 
 /* Set a style for the submit button */
 .registerbtn {
-    background-color: white;
-    color: black;
+	background-color: white;
+	color: black;
 	padding: 5px 10px;
-    margin: 0 auto;
-    border: 1px solid #8e6a6a70;
-	border-radius:3px;
-    cursor: pointer;
-    width: auto;
-    opacity: 0.9;
+	margin: 0 auto;
+	border: 1px solid #8e6a6a70;
+	border-radius: 3px;
+	cursor: pointer;
+	width: auto;
+	opacity: 0.9;
 	box-shadow: 1px 1px 5px #ead7d7;
-	position:relative;
-    left:32%;
+	position: relative;
+	left: 32%;
 }
 
 .registerbtn:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
-.center_title{
+.center_title {
 	text-align: center;
 }
 
-.error{
-	color: red; 
+.error {
+	color: red;
 	margin: 10px 0px;
 }
 /* Add a blue text color to links */
 a {
-    color: dodgerblue;
+	color: dodgerblue;
 }
 
 /* Set a grey background color and center the text of the "sign in" section */
 .signin {
-    margin-left: 95px;
+	margin-left: 95px;
 }
 
-.page-body
-{
-    margin-left: -101px;
-    padding-bottom: 150px;
+.page-body {
+	margin-left: -101px;
+	padding-bottom: 150px;
 }
 
-.sidebar
-{
-	background-color: #ACACB7 ;
+.sidebar {
+	background-color: #ACACB7;
 }
 
-.body-form
-{
+.body-form {
 	width: 89%;
 	margin-left: 10px;
 	margin-top: 60px;
 }
 
-.pager-center
-{
+.pager-center {
 	margin: auto;
 	width: 50%;
-    padding: 10px;
+	padding: 10px;
+}
+
+.btn-info {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	margin-left: 45%;
+	margin-bottom: 0;
+	margin-top: 7%;
+}
+
+.modal-input {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: white;
+	box-shadow: 2px 2px 5px black;
+}
+
+.t-modal {
+	margin-left: 25%;
+	width: 50%;
+	margin-top: 16%;
+}
+
+.ueditcontainer {
+	width: 80% !important;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 20px;
+	height: 500px;
+}
+
+.modal-header, h4, .close {
+	background-color: #ff9933;
+	color: white!importance;
+	text-align: center;
+	font-size: 23px;
+}
+
+#input-time {
+	width: 65%;
+	height: auto;
+	padding: 6px 11px;
+	border: 1px solid #ccc;
+	margin-top: 0%;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+	padding: 5px 8px;
+	font-size: 19px;
+	line-height: 1.5;
+	border-radius: 3px;
+	margin-top: -4px;
+}
+
+.panel-title {
+    background-color: white;
 }

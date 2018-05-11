@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 
 
 <link rel="stylesheet"
@@ -39,6 +39,8 @@
 	src="./resources/assets/js/locales/bootstrap-datetimepicker.min.css"></script>
 
 
+
+
 </head>
 <body class="admin-body">
 
@@ -52,7 +54,7 @@
 			<div class="search-form">
 				<div id="input-group" class="row">
 					<div class="col-sm-3">
-						<input id="input-search" type="text" class="form-control"
+						<input type="text" class="input-search form-control"
 							placeholder="Search...">
 					</div>
 
@@ -74,37 +76,45 @@
 						</div>
 					</div>
 
-					<div class=col-sm-2></div>
-
-					<div class="group-pickertime">
-						<div id="settime-group" class="col-sm-3">
-							<div action="" class="form-horizontal" role="form">
+					<div class="group-pickertime col-sm-6">
+						<div ">
+							<div >
 								<div>
-									<div class="input-group date form_datetime"
-										data-date-format="dd MM yyyy - HH:ii p">
-										<input id="datetimepicker"
-											placeholder="Click to setting time alert"
-											class="form-control" size="16" type="text" readonly
-											value=${trigger}> <span class="input-group-addon">
-											<span class="glyphicon glyphicon-time"></span>
+									<div>
+										<span> <input id="input-time" type="text" readonly
+											value=${trigger} class=""> <a href="#" type="button"
+											class="modalstart btn btn-sm btn-warning"><i
+												class="glyphicon glyphicon-edit"></i></a>
+												<button id="ok-buton" type="button">
+												<span class="glyphicon glyphicon-ok"></span>
+											</button>
 										</span>
 
 									</div>
 								</div>
+								
 							</div>
 						</div>
+						
 					</div>
 
-					<div class="col-sm-1">
-						<button id="ok-buton" type="button">
-							<span class="glyphicon glyphicon-ok"></span>
-						</button>
-					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6" id="general_info"></div>
 				</div>
 			</div>
+
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content t-modal">
+						<%@ include file="datetimepicker.jsp"%>
+					</div>
+				</div>
+			</div>
+
+
 
 
 			<div class="row">
@@ -126,21 +136,22 @@
 
 
 
-	<div class="col-lg-12">
-		<div class="pager-center">
-			<ul id="pager" class="pagination">
-			</ul>
-		</div>
-	</div>
+			<div class="col-lg-12">
+				<div class="pager-center">
+					<ul id="pager" class="pagination">
+					</ul>
+				</div>
+			</div>
 
 
-	</article>
-	<%@ include file="footer.jsp"%>
-	
+		</article>
+		<%@ include file="footer.jsp"%>
+
 
 
 	</div>
 </body>
 <script src="./resources/assets/js/RegisterFunction.js"></script>
 <script src="./resources/assets/js/AdminPage.js"></script>
+
 </html>
