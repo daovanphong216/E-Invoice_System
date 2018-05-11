@@ -1,6 +1,8 @@
-
+<div class="modal-header-invoice" style="padding:35px 50px;">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h4><span class="glyphicon glyphicon-save-file"></span> Create Invoice </h4>
+</div>
 <div class="ucontainer">
-	<h2>Invoice Form</h2>
 	<form class="invoiceform">
 		<div class="form-group">
 			<label for="customerCode">Customer Code:</label> <input type="number"
