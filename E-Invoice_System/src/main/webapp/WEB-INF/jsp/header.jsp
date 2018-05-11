@@ -23,10 +23,8 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/userinfo/${user.id}">
+							href="${pageContext.request.contextPath}/userinfo">
 								Profile </a></li>
-						<li><a href="#}"> Inbox </a></li>
-						<li><a href="#"> Settings </a></li>
 						<li class="divider"></li>
 					</ul></li>
 			</c:if>

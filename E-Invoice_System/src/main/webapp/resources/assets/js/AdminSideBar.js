@@ -21,7 +21,7 @@ $("document").ready(function() {
 					},
 					dataType : "json",
 					success : function(data) {
-	
+						getAllAdmin();
 					}
 				});
 			}

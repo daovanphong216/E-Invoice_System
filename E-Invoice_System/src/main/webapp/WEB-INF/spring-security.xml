@@ -33,6 +33,7 @@
 		<intercept-url pattern="/invoices" access="hasRole('ROLE_MEMBER')" />
         <intercept-url pattern="/dailyinvoices" access="hasRole('ROLE_MEMBER')" />
         <intercept-url pattern="/invoiceItem" access="hasRole('ROLE_MEMBER')" />
+        <intercept-url pattern="/updateInfo" access="hasRole('ROLE_MEMBER')" />
  
         <access-denied-handler error-page="/403" />
  
