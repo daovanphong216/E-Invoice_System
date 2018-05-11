@@ -9,23 +9,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ 	link rel="stylesheet" href="<c:url value='././resources/assets/css/404.css'/>" />
 <style>
-	body {
-	
-		background-color: #eee;
-		}
-		
-	form {
-		
-		border: 3px hide #f2e6ff;
-		text-align:center;
-		padding : 40px;
-		}
 
-
-
-
-	
 </style>
 </head>
 
