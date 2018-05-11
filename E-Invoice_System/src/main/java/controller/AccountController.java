@@ -100,13 +100,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model, Principal principal) {
-
-		if (principal != null) {
-			model.addAttribute("message",
-					"Hi " + principal.getName() + "<br> You do not have permission to access this page!");
-		} else {
-			model.addAttribute("message", "You do not have permission to access this page!");
-		}
 		return "403Page";
 	}
+	
 }
