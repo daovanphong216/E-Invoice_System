@@ -2,11 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Base64;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,14 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import model.Invoice;
-import model.User;
 import service.InvoiceService;
 import service.InvoiceTypeService;
 import service.UserService;
-import sun.misc.BASE64Decoder;
 
 
 
@@ -69,10 +61,8 @@ public class InvoiceController {
 			@PathVariable("id") long id) {
 		try {
 			response.reset();
-			BASE64Decoder decoder = new BASE64Decoder();
-		    response.setContentType("image/jpeg");
-		    byte[] decodedBytes = decoder.decodeBuffer(this.invoiceTypeService.findbyId(id).getLogo());
-		    System.out.println(decodedBytes.length);
+		 //   response.setContentType("image/jpeg");
+		    byte[] decodedBytes = Base64.getDecoder().decode(this.invoiceTypeService.findbyId(id).getLogo());
 		    response.getOutputStream().write(decodedBytes);
 		} catch (IOException e) {
 	        // Do something
