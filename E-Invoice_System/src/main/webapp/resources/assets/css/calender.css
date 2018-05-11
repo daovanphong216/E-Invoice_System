@@ -40,9 +40,8 @@ td {
 }
 
 .cal-container {
-	width: 45%;
+	width: 50%;
 	display: inline-block;
-	float: left;
     padding: 5px;
 }
 
@@ -52,4 +51,24 @@ td {
 
 tr:nth-child(1) {
 	background-color: #ddd;
+}
+
+.page-title h2{
+	color: #1abc9c;
+    font-size: 70px;
+    text-align: center;
+	    
+	
+}
+
+@media all and (max-width: 1000px) {
+	.cal-container {
+		float: initial !important;
+		width: 95% !important;
+	}
+	.list-container {
+		float: initial !important;
+		width: 95% !important;
+	}
+
 }
