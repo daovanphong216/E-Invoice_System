@@ -48,6 +48,15 @@
 {
 	margin-top: 77px;
 }
+
+.modal-header-invoice{
+	width: 100%;
+	background-color:  #1abc9c;
+	color: white!importance;
+	text-align: center;
+	font-size: 30px;
+}
+
 .list-container{
 	display: inline-block;
 	float: left;

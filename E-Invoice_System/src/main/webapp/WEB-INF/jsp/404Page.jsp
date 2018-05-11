@@ -1,4 +1,5 @@
 <%@page session="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,24 +10,18 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- 	link rel="stylesheet" href="<c:url value='././resources/assets/css/404.css'/>" />
-<style>
-
-</style>
+	<link rel="stylesheet" href="<c:url value='/resources/assets/css/404.css'/>" />
 </head>
 
 <body>
 	<form>
-
-			<div class="jumbotron">
-						<h1 class="display-1">4<i class="fa  fa-spin fa-cog fa-3x"></i>3</h1>
-						<h2>FORBIDDEN</h2>
-						<h3>You don't have permission to access</h3>
-						<br>
-
-			</div>
-			
+		<div class="container">
+			<img src="<c:url value="/resources/assets/img/sad (1).png"/>" />
 		
+				<h1>ERROR</h1>
+				<h1>404</h1>
+				<h2>Something wrong happened try later (b^_^)b</h2><br>
+		</div>
 	</form>
 </body>
 </html>

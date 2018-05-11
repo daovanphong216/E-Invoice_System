@@ -1,0 +1,54 @@
+package service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import dao.InvoiceTypeDAO;
+import model.InvoiceType;
+
+
+
+public class InvoiceTypeServiceImp implements InvoiceTypeService {
+
+	@Autowired
+	@Qualifier("invoiceTypeDAO")
+	InvoiceTypeDAO InvoiceTypeDao;
+	
+	@Override
+	public void create(InvoiceType type) {
+		this.InvoiceTypeDao.create(type);
+
+	}
+
+	@Override
+	public void update(InvoiceType type) {
+		this.InvoiceTypeDao.update(type);
+
+	}
+
+	@Override
+	public List<InvoiceType> getAll() {
+		return this.InvoiceTypeDao.getAll();
+	}
+
+	@Override
+	public List<InvoiceType> getAllType() {
+		return this.InvoiceTypeDao.getAll();
+	}
+
+	@Override
+	public InvoiceType findbyId(long id) {
+		return this.InvoiceTypeDao.findbyId(id);
+	}
+
+	@Override
+	public void create(String name, byte[] logo) {
+		InvoiceType newtype = new InvoiceType();
+		newtype.setName(name);
+		newtype.setLogo(logo);
+		
+	}
+
+}

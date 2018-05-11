@@ -47,7 +47,7 @@ public class InvoiceType {
 		return logo;
 	}
 	
-	public void setLogoUrl(byte[] logo) {
+	public void setLogo(byte[] logo) {
 		this.logo = logo;
 	}
 	
