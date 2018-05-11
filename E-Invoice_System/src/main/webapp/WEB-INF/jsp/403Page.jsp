@@ -22,16 +22,8 @@
 		padding : 40px;
 		}
 
-	div {
-		
-		width:100%;
-		color: #e1b7b7;
-		}		
-		
-	.container{
-	
-		padding: 7px;
-		}
+
+
 
 	
 </style>
@@ -42,9 +34,9 @@
 
 			<div class="jumbotron">
 						<h1 class="display-1">4<i class="fa  fa-spin fa-cog fa-3x"></i>3</h1>
-						<h2>ERROR</h2>
-						<h3>Not Found</h3>
-						<h4>Opps !!! Something very wrong happened, try later (b^_^)b</h4><br>
+						<h2>FORBIDDEN</h2>
+						<h3>You don't have permission to access</h3>
+						<br>
 
 			</div>
 			
