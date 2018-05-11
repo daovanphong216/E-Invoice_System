@@ -1,7 +1,7 @@
 function getInvoicejsonByDate(dateStr) {
     var str;
     $.ajax({
-        url: "http://localhost:8080/E-Invoice_System/getInvoiceFromUser/"+dateStr,
+        url: "http://localhost:8080/E-Invoice_System/getInvoiceFromUser/" + dateStr,
         type: 'GET',
         async: false,
         contentType: "application/json; charset=utf-8",
@@ -22,7 +22,7 @@ function getInvoicejsonByDate(dateStr) {
 function removeinvoice(dateStr) {
     var str;
     $.ajax({
-        url: "http://localhost:8080/E-Invoice_System/removeinvoice/"+dateStr,
+        url: "http://localhost:8080/E-Invoice_System/removeinvoice/" + dateStr,
         type: 'GET',
         async: false,
         contentType: "application/json; charset=utf-8",
@@ -41,96 +41,88 @@ function removeinvoice(dateStr) {
 
 
 
-function updateItemToViewList(item){
-	console.log(item);
-	var markup =`
-		<div item-div-id='${item.id}' class="l-item">
-			<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
-				<span class='glyphicon glyphicon-level-up'>${item.description[0]}</span><br>
-				<span class='glyphicon glyphicon-level-up'>&nbsp;</span>
-			</div>
-			<div class="item-col item-detail">
-				<div class="item-desc">${item.description}</div>
-				<div class="item-info">${item.invoiceNo} | ${item.amountOfMoney}</div>
-			</div>
-			<div class="item-col item-buttons">
-				<button item-id='${item.id}' class='btn btn-default btn-sm item-button removeItem'>
-					<span class='glyphicon glyphicon-remove-sign'></span>
-				</button>
-            	<button item-id='${item.id}' type='button' class='btn btn-default btn-sm' class='updateItem'>
-                	<span class='glyphicon glyphicon-level-up'></span>
-            	</button>    
-			</div>
-			<hr>
-		</div>			
-		`;
-		$(".selectedView").append(markup);
-}
 
 
 $(document).ready(function () {
-	
-	
-	//----------------------------------------------------------------------
-	
-	
 
 
-	function listDataArray(data){
-		var noValue;
-		var spendingmoney;
-				for(var i in data){
-					updateItemToViewList(data[i])
-				};
-		
-		
-		
-		$('.removeItem').click(function(){
-	
-			var index=this.getAttribute("item-id");
-			var item = `[item-div-id=${index}]`
-			$(item).remove();
-			removeinvoice(index);
-			console.log(index);
+    //----------------------------------------------------------------------
 
-		});
-		
-		
-	};	
-	
-	
-	//-------------------------------------------------------------------------
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+    function listDataArray(data) {
+        var noValue;
+        var spendingmoney;
+
+
+
+
+        $('.removeItem').click(function () {
+
+            var index = this.getAttribute("item-id");
+            var item = `[item-div-id=${index}]`
+            $(item).remove();
+            removeinvoice(index);
+            console.log(index);
+
+        });
+
+
+    };
+
+
+    //-------------------------------------------------------------------------
+    //Draw Monthly chart
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawPieChart);
+    function drawPieChart() {
+        var pieData = $.ajax({
+            url: "piechartData.json/",
+            dataType: "json",
+            async: false
+        }).responseText;
+        var lineData = $.ajax({
+            url: "linechartData.json",
+            dataType: "json",
+            async: false
+        }).responseText;
+        var piedata = new google.visualization.DataTable(pieData);
+        var linedata = new google.visualization.DataTable(lineData);
+        // Optional; add a title and set the width and height of the chart
+        var options = { 'width': 550, 'height': 400 };
+        // Display the chart inside the <div> element with id="piechart"
+        //https://developers.google.com/chart/interactive/docs/gallery chart types
+        document.getElementById('left').addEventListener('click', function () {
+            var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
+            piechart.draw(piedata, options);
+            var linechart = new google.visualization.LineChart(document.getElementById('linechart'));
+            linechart.draw(linedata, options);
+        }, true);
+
+    }
+
+
+
     var currentDate = new Date();
     selectedDay = currentDate;
     $('.selectedView').html(selectedDay);
-    generateList(selectedDay);
-    
-    function generateList(sd){
-//    	var sdd= sd.getDate();
-//    	var sdm= sd.getMonth()+1;
-//    	var sdy= sd.getFullYear();
-//    	
-//    	var datestr = sdy+'-'+sdm+'-'+sdd;
-    	
-    	var datestr = getSelectedDateString(sd)
-    	
-    	jsonData = getInvoicejsonByDate(datestr);
-    	$('.selectedView').html(jsonData);
-    	console.log(jsonData);
-    	listDataArray(jsonData);
-    	
+
+    function generateList(sd) {
+        //    	var sdd= sd.getDate();
+        //    	var sdm= sd.getMonth()+1;
+        //    	var sdy= sd.getFullYear();
+        //    	
+        //    	var datestr = sdy+'-'+sdm+'-'+sdd;
+
+        var datestr = getSelectedDateString(sd)
+
+        jsonData = getInvoicejsonByDate(datestr);
+        $('.selectedView').html(jsonData);
+
     };
-    
-    
+
+
     function generateCalendar(d) {
         function monthDays(month, year) {
             var result = [];
@@ -164,16 +156,17 @@ $(document).ready(function () {
                     if (i === 1 && j < start) {
                         cal[i].push('<td>&nbsp;</td>');
                     } else {
-                        cal[i].push('<td class="day"><a class="dlink" href="#" dd="'+ day++ +'" mm="'+ d.getMonth() +'" yy="'+ d.getFullYear() +'">' + (day-1) + '</a></td>');
+                        cal[i].push('<td class="day"><a class="dlink" href="#" dd="' + day++ + '" mm="' + d.getMonth() + '" yy="' + d.getFullYear() + '">' + (day - 1) + '</a></td>');
                     }
                 }
             }
             cal[i].push('</tr>');
+
         }
         cal = cal.reduce(function (a, b) {
             return a.concat(b);
         }, []).join('');
-        $('table').append(cal);
+        //$('table').append(cal);
         $('#month').text(details.months[d.getMonth()]);
         $('#year').text(d.getFullYear());
         $('td.day').mouseover(function () {
@@ -187,9 +180,9 @@ $(document).ready(function () {
             selectedDay.setFullYear(this.getAttribute("yy"));
             $('.selectedView').html(selectedDay);
             generateList(selectedDay);
-            $( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
+            $("input[name=dateTime]").val(getSelectedDateString(selectedDay));
         });
-        
+
     }
     $('#left').click(function () {
         $('table').text('');
@@ -200,6 +193,8 @@ $(document).ready(function () {
             currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
             generateCalendar(currentDate);
         }
+        drawPieChart();
+
     });
     $('#right').click(function () {
         $('table').html('<tr></tr>');
@@ -212,6 +207,6 @@ $(document).ready(function () {
         }
     });
     generateCalendar(currentDate);
-    
-    
+
+
 })

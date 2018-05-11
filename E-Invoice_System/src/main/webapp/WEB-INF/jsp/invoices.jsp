@@ -16,36 +16,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="././resources/assets/css/Invoices.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
-	
-<link rel="stylesheet"
-	href="<c:url value='././resources/assets/css/InvoiceItem.css'/>">
+
 </head>
 <body>
 
 	<div class="page-container">
-		<h2>Modal Example</h2>
+		<h2>Invoices List</h2>
 		<!-- Trigger the modal with a button -->
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#CreateInvoiceFormModal">Open Modal</button>
-
-
-		<div ng-app="myApp" ng-controller="customersCtrl">
-
-			<div data-ng-repeat="i in table">
-				<div ng-include src="'invoiceItem'"></div>
-			</div>
-		</div>
-
-		<script>
-			
-		</script>
-
-
-
+			data-target="#CreateInvoiceFormModal">Create An Invoice</button>
 
 		<!-- Modal -->
 		<div class="modal fade" id="CreateInvoiceFormModal" role="dialog">

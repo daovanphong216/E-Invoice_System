@@ -1,56 +1,55 @@
-body {
-    margin: 15px;
-}
-
-.jumbotron {
-    background: #fff;
-}
-
 .fa {
-    font-size: 0.5em;
+	font-size: 0.5em;
 }
 
-table {
-    width: 100%;
-}
-
-th {
-    text-align: center;
+.table {
+    background-color: #f9eaed7d;
 }
 
 td {
-    width: 12%;
-    height: 60px;
-    text-align: center;
+	width: 12%;
+	height: 60px;
+	text-align: center;
+	color: black;
+	margin: 0;
+	padding: 10px 0;
 }
 
-td,
 #year {
-    font-family: monospace;
+	font-family: monospace;
+	color: white;
+}
+
+#month {
+	color: white;
 }
 
 .hover {
-    background: #eee;
+	background: #eee;
 }
 
 #about {
-    font-size: 5em !important;
-    position: absolute;
-    top: -35px;
-    right: 15px;
+	font-size: 5em !important;
+	position: absolute;
+	top: -35px;
+	right: 15px;
 }
 
-    #about a {
-        text-decoration: none;
-    }
-.cal-container{
+#about a {
+	text-decoration: none;
+}
+
+.cal-container {
 	width: 45%;
 	display: inline-block;
+	float: left;
+    padding: 5px;
 }
-.selectedView{
-	display: inline-block;
-	width: 50%;
-	float: right;
-	margin-top: 350px;
-	
+
+.selectedView {
+
+}
+
+tr:nth-child(1) {
+	background-color: #ddd;
 }

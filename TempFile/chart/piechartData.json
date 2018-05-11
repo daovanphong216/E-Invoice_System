@@ -1,0 +1,14 @@
+
+ {
+    "cols": [
+      {"id":"","label":"Month","pattern":"","type":"string"},
+          {"id":"","label":"Money","pattern":"","type":"number"}
+        ],
+    "rows": [
+          {"c":[{"v":"Electronic"},{"v":300}]},
+          {"c":[{"v":"Internet"},{"v":5500}]},
+          {"c":[{"v":"Hotel"},{"v":1000}]},
+          {"c":[{"v":"Water"},{"v":3600}]}
+        ]
+  }
+  

@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -12,10 +13,12 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Account;
@@ -44,7 +47,12 @@ public class AjaxController {
 	 @Qualifier("invoiceService")
 	 InvoiceService invoiceService;
 
-
+	class SimpleResponse{
+		String message;
+		SimpleResponse(String msg){
+			message=msg;
+		}
+	}
 	
 	@RequestMapping(value = { "/getInvoiceFromUser" }, method = RequestMethod.GET)
 	public Set<Invoice> getInvoiceFromUser(Principal principal, Authentication authentication) {
@@ -71,7 +79,7 @@ public class AjaxController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 			 Date date = new Date();
 			try {
 				date = formatter.parse(dateTime+ ", 00:00:00.000");
@@ -100,7 +108,7 @@ public class AjaxController {
 		 if (userName.equals("")) {
 		 } else {
 			 User currentuser = this.userService.findbyUserName(userName);
-			 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 			 Date date = new Date();
 			try {
 				date = formatter.parse(dateTime+ ", 00:00:00.000");
@@ -124,13 +132,36 @@ public class AjaxController {
 		 } else {
 			 Date date = new Date();
 				try {
-					 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd, HH:mm:ss");
+					 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+					
 					date = formatter.parse(dateTime+ ", 00:00:00.000");
+					 System.out.println(date);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+				System.out.println(this.userService.findbyUserName(userName).getMoneyReport(2018,1));
 			return this.userService.findbyUserName(userName).getInvoices(date);
 		 }		
+	   }
+	
+	
+	@RequestMapping(value = { "/getreport/{year}/{month}" }, method = RequestMethod.GET)
+	public double[] getreport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year,
+			@PathVariable("month") int month) {
+		 String userName= principal.getName();
+	
+			return this.userService.findbyUserName(userName).getMoneyReport(year,month);
+
+	   }
+	
+	@RequestMapping(value = { "/getreport/{year}" }, method = RequestMethod.GET)
+	public double[] getreport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year) {
+		 String userName= principal.getName();
+	
+			return this.userService.findbyUserName(userName).getMoneyReport(year);
+
 	   }
 	
 	
@@ -168,23 +199,47 @@ public class AjaxController {
 	   }
 
 	
-	@RequestMapping(value = { "/updateActive/{id}" }, method = RequestMethod.POST)
-	public String updateActive(Principal principal, Authentication authentication,  @PathVariable("id") String idStr, 
-			@RequestParam String statusStr) {
-		long id = Long.parseLong(idStr, 10);
-		Boolean status = Boolean.valueOf(statusStr);
+	@RequestMapping(value = { "/updateActive" }, method = RequestMethod.POST)
+	public List<String> updateActive(Principal principal, Authentication authentication, String id, 
+			@RequestParam String status) {
+		long idL = Long.parseLong(id, 10);
+		boolean newStatus=false;
+		if (status.equals("deactive")) {
+			newStatus=true;
+		}
 		//System.out.println(username + type);
-		accountService.updateActive(id, status);
-		return "{ 'msg': 'success'}"; 			
+		accountService.updateActive(idL, newStatus);
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
 	}
 	
 	@RequestMapping(value = { "/updateTrigger" }, method = RequestMethod.POST)
-	public String updateTrigger(Principal principal, Authentication authentication, @RequestParam String triggerStr) throws Exception{ 
-		String trigger = triggerStr;
+	public List<String> updateTrigger(Principal principal, Authentication authentication, @RequestParam String trigger) throws Exception{ 
+		String cronTrigger = trigger;
 		adminService.setTrigger(trigger);
 		adminService.doSendEmail(trigger);
-		return "{ 'msg': 'success'}"; 		
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
 	}
+	
+	@RequestMapping(value = { "/createAdmin" }, method = RequestMethod.POST)
+	public List<String> createAdmin(Principal principal, Authentication authentication, @RequestParam String username,  @RequestParam String password){ 
+		Account account = accountService.findbyUserName(username);
+		   if (account ==null){
+			   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			   accountService.create(username, passwordEncoder.encode(password), "ROLE_ADMIN");
+		   }
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
+	}
+	
+	@RequestMapping(value = { "/getAllAdmins" }, method = RequestMethod.GET)
+	public List<Account> getAllAdmins(Principal principal, Authentication authentication) {
+			return this.accountService.getAllAdmins();	
+	   }
 	
 	@RequestMapping(value = { "/getAllAccounts" }, method = RequestMethod.GET)
 	public List<Account> getAllAccount(Principal principal, Authentication authentication) {

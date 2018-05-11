@@ -12,4 +12,6 @@ public interface AccountDAO {
 	public List<Account> searchAccount(String username, String type);
 	public List<Account> getAll();
 	public void update(Account account);
+	public Account findbyUserName(String userName);
+	public List<Account> getAllAdmins();
 }

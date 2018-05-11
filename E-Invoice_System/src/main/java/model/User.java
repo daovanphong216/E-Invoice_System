@@ -1,6 +1,10 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,17 +34,78 @@ public class User {
 	}
 	
 	public Set<Invoice> getInvoices(Date dateTime) {
-		System.out.println(dateTime.toString());
+		LocalDate localDate = dateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
 		Set<Invoice> results = new HashSet<Invoice>(	0);
 		for(Invoice i: this.getInvoices()) {
-			System.out.println(i.getDateTime().toString());
-			if(i.getDateTime().compareTo(dateTime)==0) {
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if(localDatetemp.equals(localDate)) {
+				
 				results.add(i);
 			}
 		}
 		
 		return results;
 	}
+	
+	public double[] getMoneyReport(int year, int month) {			
+			Calendar mycal = new GregorianCalendar(year, month-1, 1);
+			int daysInMonth = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
+			double [] report = new double[daysInMonth];
+			for (int i = 0; i< daysInMonth; i++) {
+				report[i]= getTotalMoney(year, month, i+1);
+			}		
+		return report;
+	}
+	
+	
+	public double[] getMoneyReport(int year) {			
+		double [] report = new double[12];
+		for (int i = 0; i< 12; i++) {
+			report[i]= getTotalMoney(year, i+1);
+		}		
+	return report;
+}
+	
+	
+	public double getTotalMoney(int year, int month, int day) {
+		double total=0.0;
+		for(Invoice i: this.getInvoices()) {
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)&&(localDatetemp.getDayOfMonth()== day)) {
+				
+				total+= i.getAmountOfMoney();
+			}
+		}
+		return total;
+	}
+	
+	
+	public double getTotalMoney(int year, int month) {
+		double total=0.0;
+		for(Invoice i: this.getInvoices()) {
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)) {
+				
+				total+= i.getAmountOfMoney();
+			}
+		}
+		return total;
+	}
+	
+	public double getTotalMoney(int year) {
+		double total=0.0;
+		for(Invoice i: this.getInvoices()) {
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if(localDatetemp.getYear()== year) {
+				
+				total+= i.getAmountOfMoney();
+			}
+		}
+		return total;
+	}
+	
+	
 
 	public void setInvoices(Set<Invoice> invoices) {
 		this.invoices = invoices;

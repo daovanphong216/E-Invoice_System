@@ -12,4 +12,5 @@ public interface InvoiceDAO {
 	public void remove(long id, User user);
 	public List<Invoice> getAll();
 	public void update(Invoice invoice);
+	
 }

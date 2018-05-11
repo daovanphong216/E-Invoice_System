@@ -38,9 +38,7 @@
 				<label for="description">Description:</label> <input type="text"
 					class="form-control" id="description" required
 					placeholder="Enter Description" name="description">
-			</div>
-			      <input class="submit" type="submit" value="Submit">
-		
+			</div>		
 			<input type="button" value="Create" class="btn btn-default create-button"/>
 		</form>
 	</div>

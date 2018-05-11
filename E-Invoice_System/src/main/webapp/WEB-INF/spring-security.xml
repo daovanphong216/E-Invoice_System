@@ -11,18 +11,28 @@
         
         <intercept-url pattern="/" access="isAuthenticated()" />
         <intercept-url pattern="/user" access="hasRole('ROLE_MEMBER')" />
-        <intercept-url pattern="/admin" access="hasRole('ROLE_MEMBER')" />
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
  	    <intercept-url pattern="/userinfo" access="hasRole('ROLE_MEMBER')" />
- 	    <intercept-url pattern="/userinfo/**" access="hasRole('ROLE_ADMIN')" />
+ 	    <intercept-url pattern="/userinfo/*" access="hasRole('ROLE_ADMIN')" />
+ 	    
+ 	    <intercept-url pattern="/getInvoiceFromUser" access="hasRole('ROLE_MEMBER')" />
+ 	    <intercept-url pattern="/CreateInvoice" access="hasRole('ROLE_MEMBER')" />
+ 	    <intercept-url pattern="/makeInvoice" access="hasRole('ROLE_MEMBER')" />
+ 	    <intercept-url pattern="/getInvoiceFromUser/*" access="hasRole('ROLE_MEMBER')" />
+ 	    <intercept-url pattern="/getreport/**" access="hasRole('ROLE_MEMBER')" />
+        <intercept-url pattern="/removeinvoice/*" access="hasRole('ROLE_MEMBER')" />
         
-        <!-- <intercept-url pattern="/userinfo/**" access="hasAnyRole('ROLE_NV', 'ROLE_QL')" />
-        <intercept-url pattern="/admin" access="hasRole('ROLE_QL')" />
-        <intercept-url pattern="/staff" access="hasRole('ROLE_NV')" />
-        <intercept-url pattern="/add" access="hasRole('ROLE_QL')" />
-        <intercept-url pattern="/edit/**" access="hasRole('ROLE_QL')" />
-        <intercept-url pattern="/delete/**" access="hasRole('ROLE_QL')" />
-        <intercept-url pattern="/del" access="hasRole('ROLE_QL')" />
-        <intercept-url pattern="/other/**" access="isAuthenticated()" /> -->
+        <intercept-url pattern="/getAllUsers" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/searchAccount" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/updateActive" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/updateTrigger" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/getAllAccounts" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/createAdmin" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/getAllAdmins" access="hasRole('ROLE_ADMIN')" />
+
+		<intercept-url pattern="/invoices" access="hasRole('ROLE_MEMBER')" />
+        <intercept-url pattern="/dailyinvoices" access="hasRole('ROLE_MEMBER')" />
+        <intercept-url pattern="/invoiceItem" access="hasRole('ROLE_MEMBER')" />
  
         <access-denied-handler error-page="/403" />
  

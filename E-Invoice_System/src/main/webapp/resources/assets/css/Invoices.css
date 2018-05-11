@@ -1,3 +1,37 @@
+.page-container > h2 {
+    font-size: 30px;
+    float: right;
+    margin-right: 408px;
+    font-size: 47px;
+}
+
+.calendar-title .h1, .calendar-title h1 {
+    font-size: 36px;
+}
+
+.calendar-title {
+    padding-top: 10px;
+    padding-bottom: 14px;
+    background-color: #1abc9c;
+}
+
+.cal-container #left
+{
+	    color: white;
+}
+
+.cal-container #right
+{
+	    color: white;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    margin-top: 5px;
+}
+
 
 .ucontainer {
 	width: 80% !important;
@@ -6,6 +40,17 @@
     margin-right: auto;
     margin-left: auto;
     padding-left: 20px;
-   	height: 590px;
+   padding-bottom: 20px;
     
+}
+
+.modal-content
+{
+	margin-top: 77px;
+}
+.list-container{
+	width: 45%;
+	display: inline-block;
+	float: left;
+    padding: 5px;
 }

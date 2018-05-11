@@ -2,15 +2,18 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.Account;
+import model.User;
 
 @Repository
 @Transactional(readOnly = false)
@@ -99,6 +102,33 @@ public class AccountDAOImp implements AccountDAO{
         List<Account> list = query.list();
         session.close();
         return list;
+	}
+	
+	@Override
+	public List<Account> getAllAdmins(){
+		Session session = getSessionFactory().openSession();
+		Query query= session.createQuery("select ac from accounts ac where ac.role= :role");
+	    query.setParameter("role", "ROLE_ADMIN");
+        List<Account> list = query.list();
+        session.close();
+        return list;
+	}
+	
+	
+	@Override
+	public Account findbyUserName(String userName) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		Criteria query = session.createCriteria(Account.class);
+		query.add(Restrictions.eq("userName", userName));
+		List<Account> results = query.list();
+		tx.commit();
+		session.close();
+		if (results.isEmpty()) {
+			return null;
+		}else{
+				return results.get(0);
+			}
 	}
 	
 }
