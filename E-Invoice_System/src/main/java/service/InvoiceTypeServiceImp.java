@@ -46,7 +46,7 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	}
 
 	@Override
-	public void create(String name, byte[] logo) {
+	public void create(String name, String logo) {
 		InvoiceType newtype = new InvoiceType();
 		newtype.setName(name);
 		newtype.setLogo(logo);

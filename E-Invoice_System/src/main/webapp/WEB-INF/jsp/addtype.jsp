@@ -13,17 +13,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-<link rel="stylesheet" href="././resources/assets/css/Invoices.css">
-
 </head>
 <body>
 
 	<form action="/E-Invoice_System/createtype" enctype="multipart/form-data" method="post">
-        <input type="file" name="file">
-        <input type="submit">
+        <input class="file" type="file" name="file">
+        <input class="submit" type="button">
     </form>
-
+<script type="text/javascript"
+		src="././resources/assets/js/fileinputread.js"></script>
 </body>
 </html>

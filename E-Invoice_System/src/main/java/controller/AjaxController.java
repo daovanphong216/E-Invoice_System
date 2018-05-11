@@ -81,6 +81,8 @@ public class AjaxController {
 	   }
 	
 	
+	
+	
 	@RequestMapping(value = { "/CreateInvoice" }, method = RequestMethod.GET)
 	public String createInvoice(Principal principal, Authentication authentication,
 			@RequestParam(value="description", required=true) String description, 

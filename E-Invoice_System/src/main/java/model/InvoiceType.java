@@ -24,8 +24,8 @@ public class InvoiceType {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "logo")
-	private byte[] logo;
+	@Column(name = "logo", columnDefinition="ntext")
+	private String logo;
 	
 	public long getId() {
 		return id;
@@ -43,11 +43,11 @@ public class InvoiceType {
 		this.name = name;
 	}
 	
-	public byte[] getLogo() {
+	public String getLogo() {
 		return logo;
 	}
 	
-	public void setLogo(byte[] logo) {
+	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 	
