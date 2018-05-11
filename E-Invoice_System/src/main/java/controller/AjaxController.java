@@ -250,4 +250,33 @@ public class AjaxController {
 			return this.userService.getAllAccount();
 		 }		
 	   }
+	
+	@RequestMapping(value = { "/updateInfo" }, method = RequestMethod.POST)
+	public List<String> updateInfo(Principal principal, Authentication authentication, 
+			@RequestParam String username,  
+			@RequestParam String password,
+			@RequestParam String email,
+			@RequestParam String name,
+			@RequestParam String address,
+			@RequestParam String phoneNumber){ 
+		
+		Account account = accountService.findbyUserName(username);
+		if (account !=null){
+			   User user = account.getUser();
+			   user.setEmail(email);
+			   user.setName(name);
+			   user.setAddress(address);
+			   user.setPhoneNumber(phoneNumber);
+			   userService.update(user);
+			   
+			   if (password!=null && !password.equals("")){
+				   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				   account.setHashPassword(passwordEncoder.encode(password));
+				   accountService.update(account);
+			   }
+		   }
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
+	}
 }

@@ -38,7 +38,7 @@
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
-<script src="<c:url value='/resources/assets/js/userEdit.js'/>"></script>
+
 
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/userForm.css'/>" />
@@ -51,22 +51,24 @@
 
 			<div class="">
 				<!-- Modal -->
-				<div class="modal fade" id="myModal" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-							<%@ include file="userEdit.jsp"%>
+				<c:if test="${isAdmin != true}">
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
+	
+							<!-- Modal content-->
+							<div class="modal-content">
+								<%@ include file="userEdit.jsp"%>
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:if>
 				<div class="row">
 					<div
 						class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 
 
 						<div class="panel panel-info">
-							<div class="panel-heading">
+							<div class="panel-heading" id="nameStr">
 								<h3 class="panel-title">${user.name}</h3>
 							</div>
 							<div class="panel-body">
@@ -83,15 +85,16 @@
 												<tr>
 													<td>Username:</td>
 													<td>${username}</td>
-												<tr>
+													</tr>
+												<tr id="addressStr">
 													<td>Address</td>
 													<td>${user.address}</td>
 												</tr>
-												<tr>
+												<tr id="emailStr">
 													<td>Email</td>
 													<td>${user.email}</td>
 												</tr>
-												<tr>
+												<tr id="phoneStr">
 													<td>Phone Number</td>
 													<td>${user.phoneNumber}</td>
 												</tr>
@@ -102,14 +105,15 @@
 									</div>
 								</div>
 							</div>
-							<div class="panel-footer">
-								<span class="pull-right"> <a href="#"
-									data-original-title="Edit this user" data-toggle="tooltip"
-									type="button" class="modalstart btn btn-sm btn-warning"><i
-										class="glyphicon glyphicon-edit"></i></a>
-								</span>
-							</div>
-
+							<c:if test="${isAdmin != true}">
+								<div class="panel-footer">
+									<span class="pull-right"> <a href="#"
+										data-original-title="Edit this user" data-toggle="tooltip"
+										type="button" class="modalstart btn btn-sm btn-warning"><i
+											class="glyphicon glyphicon-edit"></i></a>
+									</span>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -120,4 +124,5 @@
 	</div>
 
 </body>
+<script src="<c:url value='/resources/assets/js/userInfo.js'/>"></script>
 </html>

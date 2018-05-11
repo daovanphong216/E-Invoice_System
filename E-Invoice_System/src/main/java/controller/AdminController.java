@@ -44,6 +44,7 @@ public class AdminController {
 					String username = accountService.findbyId(id).getUserName();
 					model.addAttribute("user",user);
 					model.addAttribute("username",username);
+					model.addAttribute("isAdmin",true);
 					return "userInfoPage";
 				
 			}
