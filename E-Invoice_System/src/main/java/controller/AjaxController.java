@@ -23,10 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import model.Account;
 import model.Invoice;
+import model.InvoiceType;
 import model.User;
 import service.AccountService;
 import service.AdminService;
 import service.InvoiceService;
+import service.InvoiceTypeService;
 import service.UserService;
 
 @RestController
@@ -46,6 +48,10 @@ public class AjaxController {
 	@Autowired
 	 @Qualifier("invoiceService")
 	 InvoiceService invoiceService;
+	
+	@Autowired
+	 @Qualifier("invoiceTypeService")
+	 InvoiceTypeService invoiceTypeService;
 
 	class SimpleResponse{
 		String message;
@@ -61,6 +67,16 @@ public class AjaxController {
 			 return null;  
 		 } else {
 			return this.userService.findbyUserName(userName).getInvoices();
+		 }		
+	   }
+	
+	@RequestMapping(value = { "/getAllTypeInfor" }, method = RequestMethod.GET)
+	public List<InvoiceType> getAllInvoiceType(Principal principal, Authentication authentication) {
+		 String userName= principal.getName();
+		 if (userName.equals("")) {
+			 return null;  
+		 } else {
+			return this.invoiceTypeService.getAll();
 		 }		
 	   }
 	

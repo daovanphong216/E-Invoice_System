@@ -66,7 +66,7 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	@Override
 	public List<InvoiceType> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<InvoiceType> list = session.createQuery("from invoiceTypes").list();
+        List<InvoiceType> list = session.createQuery("from invoicetypes").list();
         session.close();
         return list;
 	}

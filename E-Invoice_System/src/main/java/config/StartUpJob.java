@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import model.Account;
 import service.AccountService;
+import service.InvoiceTypeServiceImp;
 
 @Component
 public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
@@ -16,6 +17,10 @@ public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	@Qualifier("accountService")
 	AccountService accountService;
+	
+	@Autowired
+	@Qualifier("invoiceTypeService")
+	InvoiceTypeServiceImp invoiceTypeService;
 	
 	
 	
@@ -25,6 +30,11 @@ public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
 	   if (account ==null){
 		   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		   accountService.create("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN");
+		   this.invoiceTypeService.create("Electric", null);
+		   this.invoiceTypeService.create("Water", null);
+		   this.invoiceTypeService.create("Food", null);
 	   }
+	   
+	   
 	}
 }

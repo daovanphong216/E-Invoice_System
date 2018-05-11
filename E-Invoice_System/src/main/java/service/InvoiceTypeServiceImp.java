@@ -1,6 +1,8 @@
 package service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,7 +50,16 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 		InvoiceType newtype = new InvoiceType();
 		newtype.setName(name);
 		newtype.setLogo(logo);
+		this.create(newtype);
 		
+	}
+
+	@Override
+	public Set<Object> getAlltypeInfor() {
+		Set<Object> infors = new HashSet<Object>(0);
+		for(InvoiceType type: this.getAll()) {
+		}
+		return infors;
 	}
 
 }

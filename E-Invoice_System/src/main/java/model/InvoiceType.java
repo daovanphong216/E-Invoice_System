@@ -51,4 +51,5 @@ public class InvoiceType {
 		this.logo = logo;
 	}
 	
+	
 }

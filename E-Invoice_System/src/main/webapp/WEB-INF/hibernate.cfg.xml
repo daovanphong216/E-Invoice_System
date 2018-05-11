@@ -67,8 +67,7 @@
 	<bean id="invoiceService" class="service.InvoiceServiceImp">
 	</bean>
 	
-	<bean id="invoiceTypeService" class="service.InvoiceServiceTypeImp">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="invoiceTypeService" class="service.InvoiceTypeServiceImp">
 	</bean>
 			
 </beans>
