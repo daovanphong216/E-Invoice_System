@@ -219,7 +219,7 @@ public class AjaxController {
 	public List<Account> searchUser(Principal principal, Authentication authentication, @RequestParam String username, 
 			@RequestParam String type) {
 		//System.out.println(username + type);
-		return this.accountService.searchAccount(username, type);
+		return this.accountService.searchAccount(username, type, "ROLE_MEMBER", 2,2);
 				
 	   }
 

@@ -30,9 +30,6 @@ public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
 	   if (account ==null){
 		   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		   accountService.create("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN");
-		   this.invoiceTypeService.create("Electric", null);
-		   this.invoiceTypeService.create("Water", null);
-		   this.invoiceTypeService.create("Food", null);
 	   }
 	   
 	   

@@ -32,11 +32,11 @@
 
 <link rel="stylesheet" media="screen"
 	href="<c:url value='/resources/assets/css/bootstrap-datetimepicker.min.css'/>" />
-<script src="./resources/assets/js/bootstrap-datetimepicker.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap-datetimepicker.js"></script>
 <script
-	src="./resources/assets/js/locales/bootstrap-datetimepicker.fr.js"></script>
+	src="${pageContext.request.contextPath}/resources/assets/js/locales/bootstrap-datetimepicker.fr.js"></script>
 <script
-	src="./resources/assets/js/locales/bootstrap-datetimepicker.min.css"></script>
+	src="${pageContext.request.contextPath}/resources/assets/js/locales/bootstrap-datetimepicker.min.css"></script>
 
 
 
@@ -53,37 +53,43 @@
 			<h3>Manage Users</h3>
 			<div class="search-form">
 				<div id="input-group" class="row">
-					<div class="col-sm-3">
-						<input type="text" class="input-search form-control"
-							placeholder="Search...">
+				<div class="col-sm-6">
+				<form name='f' action="${pageContext.request.contextPath}/admin/search" method='GET'>
+					<div class="col-sm-6">
+						<input type="text" class="input-search form-control" value="${username}" name ="username">
 					</div>
 
-					<div class="col-sm-1">
-						<button id="button-search" type="button">
+					<div class="col-sm-2">
+						<button id="button-search" type="submit">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
 
 					<div class=col-sm-2>
 						<div>
-							<select id="select-option">
-								<option value="all">All users</option>
-								<option value="active">Active users
-									</li>
-								<option value="deactive">Deactive users
-									</li>
+							<select id="status-option" name ="status">
+								<option value="all" ${all}>All</option>
+								<option value="active" ${active}>Active</option>
+								<option value="deactive" ${deactive}>Deactive</option>
 							</select>
 						</div>
 					</div>
-
+					<div class=col-sm-2>
+						<div>
+							<select id="role-option" name ="role">
+								<option value="user" ${searchUser}>User</option>
+								<option value="admin" ${searchAdmin}>Admin</option>
+							</select>
+						</div>
+					</div>
+					<input type="hidden" value="${page}" name="page">
+				</form>
+				</div>
 					<div class="group-pickertime col-sm-6">
-						<div ">
-							<div >
-								<div>
-									<div>
+				
 										<span> <input id="input-time" type="text" readonly
-											value=${trigger} class=""> <a href="#" type="button"
-											class="modalstart btn btn-sm btn-warning"><i
+											value=${trigger} > <a href="#" type="button" id="trigger_button"
+											class="btn btn-sm btn-warning"><i
 												class="glyphicon glyphicon-edit"></i></a>
 												<button id="ok-buton" type="button">
 												<span class="glyphicon glyphicon-ok"></span>
@@ -91,18 +97,14 @@
 										</span>
 
 									</div>
-								</div>
-								
-							</div>
-						</div>
-						
-					</div>
+			
 
+				</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6" id="general_info"></div>
 				</div>
-			</div>
+			
 
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
@@ -129,6 +131,22 @@
 							</tr>
 						</thead>
 						<tbody id="table_body">
+					
+						<c:forEach items="${searchResults}" var="record" varStatus="loop">
+						    <tr>      
+						        <td>${loop.index}</td>
+						        <td><a href='${pageContext.request.contextPath}/userinfo/${record.id}'>${record.userName}</a></td>
+						        <c:if test="${record.active=true}">
+						        	<td>Active</td>
+						        	<td><a href='#' account_id='${record.id}' status='active' pos='${loop.index}'>Deactive this account</a></td>
+						        </c:if>
+						        <c:if test="${record.active=false}">
+						        	<td>Deactive</td>
+						        	<td><a href='#' account_id='${record.id}' status='active' pos='${loop.index}'>Active this account</a></td>
+						        </c:if>
+						    </tr>
+						</c:forEach>
+					
 						</tbody>
 					</table>
 				</div>
@@ -139,6 +157,20 @@
 			<div class="col-lg-12">
 				<div class="pager-center">
 					<ul id="pager" class="pagination">
+					<c:forEach begin="0" end="8" var="index">
+						<c:if test="${pageValue[index]!=''}">
+							<c:if test="${pageState[index]==-1}">
+								<li class='page-item disabled'><a class='page-link' href='#'>${pageValue[index]}</a></li>
+							</c:if>
+							<c:if test="${pageState[index]==0}">
+								<li class='page-item'><a class='page-link' href='${pageContext.request.contextPath}/admin/search/?username=${username}&status=${status}&role=${role}&page=${pageLink[index]}'>${pageValue[index]}</a></li>
+							</c:if>
+							<c:if test="${pageState[index]==1}">
+								<li class='page-item active'><a class='page-link' href='${pageContext.request.contextPath}/admin/search/?username=${username}&status=${status}&role=${role}&page=${pageLink[index]}'>${pageValue[index]}</a></li>
+							</c:if>
+							
+						</c:if>
+					</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -151,7 +183,7 @@
 
 	</div>
 </body>
-<script src="./resources/assets/js/RegisterFunction.js"></script>
-<script src="./resources/assets/js/AdminPage.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/assets/js/AdminPage.js"></script>
 
 </html>

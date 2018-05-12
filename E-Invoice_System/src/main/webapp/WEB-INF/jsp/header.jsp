@@ -17,7 +17,7 @@
 				<li><a href="${pageContext.request.contextPath}/logout">
 						Log Out </a></li>
 			</sec:authorize>
-			<c:if test="${user != null}">
+			<c:if test="${isAdmin != true}">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i>${user.name}</i>
 				</a>

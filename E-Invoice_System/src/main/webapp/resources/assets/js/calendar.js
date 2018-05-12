@@ -82,7 +82,6 @@ function updateItemToViewList(item){
                 	<span class='glyphicon glyphicon-level-up'></span>
             	</button>    
 			</div>
-			<hr>
 		</div>			
 		`;
 	// ------------------------------------------------------
@@ -116,7 +115,6 @@ $(document).ready(function () {
 			var item = `[item-div-id=${index}]`
 			$(item).remove();
 			removeinvoice(index);
-			console.log(index);
 
 		});
 		
@@ -136,7 +134,6 @@ $(document).ready(function () {
 	
     var currentDate = new Date();
     selectedDay = currentDate;
-    $('.selectedView').html(selectedDay);
     
     
     
@@ -156,20 +153,18 @@ $(document).ready(function () {
     
     function generateType(){
     	var typesJson = getAllTypesjson();
-    	console.log(typesJson);
     	for(var type in typesJson){
-    		console.log(type);
-    		var markup = `<div class="type-block type${typesJson[type].id}">
+    		var markup = `<div class="type-block style${(typesJson[type].id%3)+1} type${typesJson[type].id}">
         <div class="">
     		<div class="type-title">
+    		<img src="/E-Invoice_System/getTypeInfor/${typesJson[type].id}">
             <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
                 ${typesJson[type].name}
             </a>
             </div>
         <div>
         <div class="collapse" id="collapse${typesJson[type].id}">
-            <div class="list list-type${typesJson[type].id}">
-                      gfg  
+            <div class="list list-type${typesJson[type].id}">  
             </div>
         </div>
     </div>`;
@@ -232,7 +227,8 @@ $(document).ready(function () {
             selectedDay.setDate(this.getAttribute("dd"));
             selectedDay.setMonth(this.getAttribute("mm"));
             selectedDay.setFullYear(this.getAttribute("yy"));
-            $('.selectedView').html(selectedDay);
+            $('.selectedView').html("");
+            generateType();
             generateList(selectedDay);
             $( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
         });
@@ -244,7 +240,7 @@ $(document).ready(function () {
             currentDate = new Date(currentDate.getFullYear() - 1, 11);
             generateCalendar(currentDate);
         } else {
-            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
             generateCalendar(currentDate);
         }
     });
@@ -254,7 +250,7 @@ $(document).ready(function () {
             currentDate = new Date(currentDate.getFullYear() + 1, 0);
             generateCalendar(currentDate);
         } else {
-            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
             generateCalendar(currentDate);
         }
     });

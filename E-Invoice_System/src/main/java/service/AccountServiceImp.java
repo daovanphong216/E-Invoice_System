@@ -68,12 +68,17 @@ public class AccountServiceImp implements AccountService {
 	}
 	
 	@Override
-	public List<Account> searchAccount(String username, String type){
-		return accountDao.searchAccount(username, type);
+	public List<Account> searchAccount(String username, String type, String role, int offset, int limit){
+		return accountDao.searchAccount(username, type, role, offset, limit);
 	}
 	
 	@Override
 	public Account findbyUserName(String userName) {
 		return accountDao.findbyUserName(userName);
+	}
+	
+	@Override
+	public int countAccount(String status, String role){
+		return this.accountDao.countAccount(status, role);
 	}
 }
