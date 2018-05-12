@@ -1,5 +1,5 @@
 $("document").ready(function() {
-	$(".listTable").hide();
+	
 	var totalUsers = 0;
 	var activeUsers = 0;
 	var deactiveUsers = 0;
@@ -15,8 +15,13 @@ $("document").ready(function() {
 	const beginNomalStr="<li class='page-item'><a class='page-link' href='#'>";
 	const endStr="</a></li>";
 	
+	$('#myModal').modal('hide');
+	$("#trigger_button").on('click', function() {
+		console.log("hihi");
+	    $('#myModal').modal('show');
+	});
 	
-	
+
 	
 	function getUser() {
 		var username = $("#input-search").val();
@@ -120,7 +125,7 @@ $("document").ready(function() {
 		$("#general_info").append("<h5>Total users: " + totalUsers + " &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp Actived users: " + activeUsers + " &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp Deactived users: " + deactiveUsers +"</h5>" );
 	}
 	
-	$.ajax({
+	/*$.ajax({
 		type : "POST",
 		url : "/E-Invoice_System/searchAccount",
 		data : {
@@ -144,7 +149,7 @@ $("document").ready(function() {
 			currentPage= (totalPages>0) * 1;
 			setData();
 		}
-	});
+	});*/
 
 	
 	function handlePagination(pageValue){
@@ -285,17 +290,14 @@ $("document").ready(function() {
 	
 	
 	
-	$('#myModal').modal('hide');
-	$("a.modalstart").on('click', function() {
-	    $('#myModal').modal('show');
-	});
+	
 	
 	
 	// $("#datetimepicker").val("hihi");
 	
-	$("#button-search").click(function() {
+	/*$("#button-search").click(function() {
 		getUser();
-	});
+	});*/
 
 	$('.form_datetime').datetimepicker({
 		// language: 'fr',
