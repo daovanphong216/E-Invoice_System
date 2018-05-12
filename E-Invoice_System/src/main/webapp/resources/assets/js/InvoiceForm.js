@@ -40,6 +40,15 @@ $(document).ready(function(){
 	
 	$( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
 	
+	//-----------------------------------
+		var typesJson = getAllTypesjson();
+		for(var type in typesJson){
+			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
+			$("select[name=type]" ).append(markup);
+		}
+	
+	//-----------------------------------
+	
 	$('.create-button').click(function(){
 		if($(".invoiceform").valid()){
 		
@@ -50,11 +59,11 @@ $(document).ready(function(){
 		data.amountOfMoney= $( "input[name=amountOfMoney]" ).val();
 		data.description= $( "input[name=description]" ).val();
 		data.VAT= $( "input[name=VAT]" ).val();
+		data.type= $("select[name=type]" ).val();
+
 	
 		item = ajaxsubmitcreate(data);
 		var returnedDay = new Date(item.dateTime);
-		console.log(selectedDay);
-		console.log(returnedDay);
 		if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
 			updateItemToViewList(item);
 		}

@@ -12,9 +12,6 @@
 		<div class="form-group">
 			<label for="invoiceNo">Invoice Type:</label> 
 			<select	title="Select your surfboard" name="type" class="form-control">
-				<option data-thumbnail="././resources/assets/icon/food.png">Food</option>
-				<option data-thumbnail="././resources/assets/icon/food.png">Travel</option>
-				<option data-thumbnail="././resources/assets/icon/food.png">Electric</option>
 			</select>
 		</div>
 		<div class="form-group">

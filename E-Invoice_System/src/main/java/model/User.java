@@ -36,7 +36,7 @@ public class User {
 	public Set<Invoice> getInvoices(Date dateTime) {
 		LocalDate localDate = dateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		
-		Set<Invoice> results = new HashSet<Invoice>(	0);
+		Set<Invoice> results = new HashSet<Invoice>(0);
 		for(Invoice i: this.getInvoices()) {
 			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			if(localDatetemp.equals(localDate)) {

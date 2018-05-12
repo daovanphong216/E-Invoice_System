@@ -13,11 +13,16 @@ import model.User;
 	public void createInvoice(String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner);
 	public void Invoice (String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner);
 	public Invoice MakeInvoice (String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner);
-	
+	public Invoice MakeInvoice (String description, Date dateTime, double amountOfMoney, long customerCode, String invoiceNo, double VAT, User owner, long typeId);
+
 	public Set<Invoice> getAll();
 	public Set<Invoice> getAllFromUser(User user);
 
 
 	public void remove(long id, User user);
+
+
+	public void createInvoice(String description, Date date, double money, long cCode, String invoiceNo, double vat,
+			User currentuser, String type);
 
 }

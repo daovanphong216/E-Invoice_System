@@ -17,6 +17,7 @@
 <body>
 
 	<form action="/E-Invoice_System/createtype" enctype="multipart/form-data" method="post">
+		<input id="name" type="text" name="name">
         <input class="file" type="file" name="file">
         <input class="submit" type="button">
     </form>

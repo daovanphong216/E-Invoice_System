@@ -47,5 +47,18 @@ public class UserController {
 			model.addAttribute("user",user);
 	        return "invoiceItem";  
 	   }
+	
+	@RequestMapping(value = { "/yearlychart" }, method = RequestMethod.GET)
+	   public String yearlychart(Model model, Principal principal, Authentication authentication) {
+			User user = userService.findbyUserName(principal.getName());
+			model.addAttribute("user",user);
+	        return "YearlyChart";  
+	   }
+	@RequestMapping(value = { "/monthlychart" }, method = RequestMethod.GET)
+	   public String monthlychart(Model model, Principal principal, Authentication authentication) {
+			User user = userService.findbyUserName(principal.getName());
+			model.addAttribute("user",user);
+	        return "MonthlyChart";  
+	   }
 
 }
