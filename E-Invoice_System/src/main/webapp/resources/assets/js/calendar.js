@@ -1,7 +1,28 @@
 function getInvoicejsonByDate(dateStr) {
     var str;
     $.ajax({
-        url: "http://localhost:8080/E-Invoice_System/getInvoiceFromUser/"+dateStr,
+        url: "/E-Invoice_System/getInvoiceFromUser/"+dateStr,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+}
+
+
+function getAllTypesjson(dateStr) {
+    var str;
+    $.ajax({
+        url: "/E-Invoice_System/getAllTypeInfor",
         type: 'GET',
         async: false,
         contentType: "application/json; charset=utf-8",
@@ -64,14 +85,18 @@ function updateItemToViewList(item){
 			<hr>
 		</div>			
 		`;
-		$(".selectedView").append(markup);
+	// ------------------------------------------------------
+	// ----------------------Here-------------------
+	
+		var divclass = `.list-type${item.type.id}`
+		$(divclass).append(markup);
 }
 
 
 $(document).ready(function () {
 	
 	
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	
 	
 
@@ -99,7 +124,7 @@ $(document).ready(function () {
 	};	
 	
 	
-	//-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 	
 	
 	
@@ -112,23 +137,45 @@ $(document).ready(function () {
     var currentDate = new Date();
     selectedDay = currentDate;
     $('.selectedView').html(selectedDay);
+    
+    
+    
+    
+    
+    generateType();
     generateList(selectedDay);
     
-    function generateList(sd){
-//    	var sdd= sd.getDate();
-//    	var sdm= sd.getMonth()+1;
-//    	var sdy= sd.getFullYear();
-//    	
-//    	var datestr = sdy+'-'+sdm+'-'+sdd;
-    	
+    
+    function generateList(sd){ 	
     	var datestr = getSelectedDateString(sd)
     	
     	jsonData = getInvoicejsonByDate(datestr);
-    	$('.selectedView').html(jsonData);
-    	console.log(jsonData);
     	listDataArray(jsonData);
     	
     };
+    
+    function generateType(){
+    	var typesJson = getAllTypesjson();
+    	console.log(typesJson);
+    	for(var type in typesJson){
+    		console.log(type);
+    		var markup = `<div class="type-block type${typesJson[type].id}">
+        <div class="">
+    		<div class="type-title">
+            <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
+                ${typesJson[type].name}
+            </a>
+            </div>
+        <div>
+        <div class="collapse" id="collapse${typesJson[type].id}">
+            <div class="list list-type${typesJson[type].id}">
+                      gfg  
+            </div>
+        </div>
+    </div>`;
+    		$(".selectedView").append(markup);
+    	}
+    }
     
     
     function generateCalendar(d) {

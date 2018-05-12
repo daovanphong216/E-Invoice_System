@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Base64;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import model.InvoiceType;
 import service.InvoiceService;
 import service.InvoiceTypeService;
 import service.UserService;

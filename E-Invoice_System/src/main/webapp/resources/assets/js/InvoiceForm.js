@@ -50,11 +50,11 @@ $(document).ready(function(){
 		data.amountOfMoney= $( "input[name=amountOfMoney]" ).val();
 		data.description= $( "input[name=description]" ).val();
 		data.VAT= $( "input[name=VAT]" ).val();
+		data.type= $("select[name=type]" ).val();
+
 	
 		item = ajaxsubmitcreate(data);
 		var returnedDay = new Date(item.dateTime);
-		console.log(selectedDay);
-		console.log(returnedDay);
 		if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
 			updateItemToViewList(item);
 		}

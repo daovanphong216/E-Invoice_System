@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.configuration.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -18,12 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Account;
 import model.Invoice;
 import model.InvoiceType;
+import model.TypeInfor;
 import model.User;
 import service.AccountService;
 import service.AdminService;
@@ -73,10 +72,19 @@ public class AjaxController {
 	@RequestMapping(value = { "/getAllTypeInfor" }, method = RequestMethod.GET)
 	public List<InvoiceType> getAllInvoiceType(Principal principal, Authentication authentication) {
 		 String userName= principal.getName();
+		 List<InvoiceType> l = new ArrayList<InvoiceType>();
+		 
+		 for(InvoiceType i : this.invoiceTypeService.getAll()) {
+			 InvoiceType t = new InvoiceType();
+			 t.setId(i.getId());
+			 t.setName(i.getName());
+			 t.setLogo("/getTypeInfor/"+i.getId());
+			 l.add(t);
+		 }
 		 if (userName.equals("")) {
 			 return null;  
 		 } else {
-			return this.invoiceTypeService.getAll();
+			return l;
 		 }		
 	   }
 	
@@ -119,7 +127,8 @@ public class AjaxController {
 	        @RequestParam(value="amountOfMoney", required=true) String amountOfMoney, 
 	        @RequestParam(value="customerCode", required=true) String customerCode,
 	        @RequestParam(value="invoiceNo", required=true) String invoiceNo,
-	        @RequestParam(value="VAT", required=true) String VAT
+	        @RequestParam(value="VAT", required=true) String VAT,
+	        @RequestParam(value="type", required=true) long typeId
 	        ) {
 		 String userName= principal.getName();
 		 Invoice newinvoice = null;
@@ -136,7 +145,7 @@ public class AjaxController {
 			 long cCode = Long.parseLong(customerCode);
 			 double money = Double.parseDouble(amountOfMoney);
 			 double vat =  Double.parseDouble(VAT);		 
-			 newinvoice = this.invoiceService.MakeInvoice(description, date, money, cCode, invoiceNo, vat, currentuser);	 
+			 newinvoice = this.invoiceService.MakeInvoice(description, date, money, cCode, invoiceNo, vat, currentuser, typeId);	 
 		 }		
 		 return newinvoice;
 	   }
@@ -157,7 +166,6 @@ public class AjaxController {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				System.out.println(this.userService.findbyUserName(userName).getMoneyReport(2018,1));
 			return this.userService.findbyUserName(userName).getInvoices(date);
 		 }		
 	   }

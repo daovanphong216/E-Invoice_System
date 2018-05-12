@@ -22,7 +22,7 @@ public class Invoice {
 	@PrimaryKeyJoinColumn
 	private User owner;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	private InvoiceType type;
 	
