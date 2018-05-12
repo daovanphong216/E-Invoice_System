@@ -9,17 +9,22 @@
 .l-item {
 	padding-top: 10px;
 	width: 100%;
-	min-width: 355px;
+	min-width: 363px;
+	padding-left: 7px;
 }
 
 .item-ava {
 	width: 45px;
 	height: 45px;
-	background: #318b8fb3;
+	background: #966a6a;
 	color: #fff;
 	border-radius: 100%;
 	text-align: center;
 	padding-top: 14px;
+}
+
+.item-desc{
+	color: #966a6a
 }
 
 .item-detail {
@@ -48,9 +53,42 @@
 
 .type-block{
 	width: 100%;
+	margin-bottom: 10px;
 	
 }
 
 .type-title{
 	height: 40px;
+	font-size: 24px; 
+	color: white;
+}
+.type-title img {
+	width: 28px;
+	float: left;
+	margin-left: 20px;
+	background: #33556f;
+	margin-top: 5px;
+	    border-radius: 50%;
+	
+}
+
+.type-title a{
+	margin-left: 30px;
+	color: white;
+}
+
+
+.style1 .type-title{
+	background: #673ab796;
+}
+
+.style2 .type-title{
+	background: #c5e5c6;
+}
+
+.style3 .type-title{
+	background: #9dd1fa;
+}
+.list{
+	background: #f9eaed7d;
 }
