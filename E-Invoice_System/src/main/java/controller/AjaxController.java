@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import model.Account;
 import model.Invoice;
 import model.InvoiceType;
-import model.TypeInfor;
 import model.User;
 import service.AccountService;
 import service.AdminService;

@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <html>
 
 <head>
@@ -12,7 +13,7 @@
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
-<meta name="viewport" content="width=device-width" />
+
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
 <!-- Latest compiled and minified CSS -->
@@ -22,7 +23,12 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='https://fonts.googleapis.com/css?family=Roboto|Varela+Round'/>" />
 
 
 <link rel="stylesheet"
@@ -32,46 +38,79 @@
 
 </head>
 <body>
-	<%@ include file="header.jsp"%>
-		<div class="container">
-			<h2  class = "center_title">Login</h2>
-			<div class="row">
-                    <div class="col-md-12 ">
-                        <c:if test="${param.error == 'true'}">
-                            <div style="color:red;margin:10px 0px;">
+	<div class="col-sm-12">
+		<div class="row top-content">
+			<h1>Welcome to E-Invoice System</h1>
+			<div class="container">
+				<button href="#myModal" data-toggle="modal" type="button"
+					class=" btn start-button">Get Started</button>
+			</div>
+		</div>
+	</div>
 
-                                   Login Failed!!!<br />
-                                   Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+	<!-- Modal HTML -->
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog modal-login">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="avatar">
+						<img src="./resources/assets/img/avatar.png" alt="Avatar">
+					</div>
+					<h4 class="modal-title">Member Login</h4>
+					<div class="row">
+					<div class="col-md-12 ">
+						<c:if test="${param.error == 'true'}">
+							<div style="color: red; margin: 10px 0px;">
 
-                            </div>
-                       </c:if>
-                    </div>
-                </div> 
-          <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
-			<label for="uname"><b>User Name</b></label><br> 
-			<input
-				type="text" placeholder="Enter User Name" name="username" required><br>
+								Login Failed!!!<br /> Reason :
+								${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 
-			<label for="psw"><b>Password</b></label><br> 
-			<input
-				type="password" placeholder="Enter Password" name="password" required><br>
-			<div class="form-group">
-				<div class="checkbox">
-					<label><input type="checkbox" name="remember-me">
-						Remember me</label>
+							</div>
+						</c:if>
+					</div>
+					</div>
+					
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
+						<label for="username" class="cols-sm-2 control-label">Username</label>
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="fa fa-user fa" aria-hidden="true"></i></span> 
+							<input type="text" class="form-control" id="name" placeholder="Enter your Name" name="username" required />
+						</div>
+						<br> <label for="password" class="cols-sm-2 control-label">Password</label>
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="fa fa-lock fa-lg" aria-hidden="true"></i>
+							</span> 
+							<input type="password" class="form-control" id="password" placeholder="Enter your Password" name="password" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<!-- <div class="checkbox"> -->
+							<label><input type="checkbox" name="remember-me">
+								Remember me</label>
+							<button type="submit"
+								class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<div class="center_link">
+						<p>
+							No account? <a href="./register">Create one!</a>.
+						</p>
+					</div>
 				</div>
 
-				<button type="submit" class = "center_button">Login</button>
-				<br>
 			</div>
-			</form>
 		</div>
-	
-	<div class="center_link">
-		<p>
-			No account? <a href="./register">Create one!</a>.
-		</p>
 	</div>
-	<%@ include file="footer.jsp"%>
+
+
+
+
 </body>
 </html>
