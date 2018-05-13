@@ -72,7 +72,7 @@ function updateItemToViewList(item){
 			</div>
 			<div class="item-col item-detail">
 				<div class="item-desc">${item.description}</div>
-				<div class="item-info">${item.invoiceNo} | ${item.amountOfMoney}</div>
+				<div class="item-info"><b>No: </b>${item.invoiceNo} | <b>Money: </b>$${item.amountOfMoney}</div>
 			</div>
 			<div class="item-col item-buttons">
 				<button item-id='${item.id}' class='btn btn-default btn-sm item-button removeItem'>
@@ -241,6 +241,14 @@ $(document).ready(function () {
             //
             $("td").removeClass("selectedday");
             this.closest('td').classList.add("selectedday");
+            var year = selectedDay.getFullYear();
+        	$.get("/E-Invoice_System/getreport/"+year, function(data, status){
+        		$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
+            });
+        	
+        	$.get("/E-Invoice_System/getreport/"+year+"/"+(selectedDay.getMonth()+1), function(data, status){
+        		$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+            });
         });
         
     }

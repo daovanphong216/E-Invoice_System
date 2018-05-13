@@ -77,7 +77,14 @@
 			</div>
 			<div class="selectedView list pageAll P-List-invoice list-group"></div>
 		</div>
-
+		<div class="infor">
+			<span><b>Total of date: $</b></span><span class= "totalDateMoney">0.00</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<span><b>Total of month: $</b></span><span class= "totalMonthMoney">0.00</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span><b>Limited Money: $</b></span><span class= "limitedMoney">0.00</span>
+		</div>
+		
 		<div class="buttons">
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#CreateInvoiceFormModal">Create An Invoice</button>

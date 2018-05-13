@@ -36,6 +36,15 @@ $(document).ready(function(){
 		$(".limitform")[0].reset();
 		$('#SetLimitMonneyModal').modal('hide');
 		}
+		$.get("/E-Invoice_System/getlimitmoney", function(data, status){
+			$('.limitedMoney').html(data);
+	    });
 		
 	});
+	
+	$.get("/E-Invoice_System/getlimitmoney", function(data, status){
+		$('.limitedMoney').html(data);
+    });
+	
+	
 });

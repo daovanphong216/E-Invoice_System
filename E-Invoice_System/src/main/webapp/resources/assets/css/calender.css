@@ -62,9 +62,14 @@ tr:nth-child(1) {
 	    
 	
 }
+.cal-container{
+	    min-width: 555px;
+	
+}
 
 @media all and (max-width: 1000px) {
 	.cal-container {
+		
 		float: initial !important;
 		width: 95% !important;
 	}

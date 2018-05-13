@@ -169,6 +169,18 @@ public class AjaxController {
 		 return "{status: 'ok'}";
 	   }
 	
+	@RequestMapping(value = { "/getlimitmoney" }, method = RequestMethod.GET)
+	public double getlimitmoney(Principal principal, Authentication authentication
+	        ) {
+		 String userName= principal.getName();
+		 double money = 0;
+		 if (userName.equals("")) {
+		 } else {
+			 User currentuser = this.userService.findbyUserName(userName);
+			 money = currentuser.getLimitedMoney();
+		 }		
+		 return money;
+	   }
 	
 	
 	@RequestMapping(value = { "/getInvoiceFromUser/{dateTime}" }, method = RequestMethod.GET)

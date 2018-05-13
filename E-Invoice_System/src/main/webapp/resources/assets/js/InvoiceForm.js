@@ -72,8 +72,26 @@ $(document).ready(function(){
 		$(".invoiceform")[0].reset();
 		$( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
 		$('#CreateInvoiceFormModal').modal('hide');
+		var year = selectedDay.getFullYear();
+		$.get("/E-Invoice_System/getreport/"+year, function(data, status){
+			$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
+	    });
+		
+		$.get("/E-Invoice_System/getreport/"+year+"/"+(selectedDay.getMonth()+1), function(data, status){
+			$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+	    });
 		}
 		
 	});
-
+	
+	var year = selectedDay.getFullYear();
+	$.get("/E-Invoice_System/getreport/"+year, function(data, status){
+		$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
+    });
+	
+	$.get("/E-Invoice_System/getreport/"+year+"/"+(selectedDay.getMonth()+1), function(data, status){
+		$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+    });
+	
+	
 });
