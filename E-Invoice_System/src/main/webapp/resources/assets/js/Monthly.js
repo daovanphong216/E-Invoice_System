@@ -17,7 +17,28 @@ function getReportjson(Str) {
     });
     return str;
 }
-function forcessDataT(data, col){
+
+function getTypeReportjson(Str) {
+    var str;
+    $.ajax({
+        url: "/E-Invoice_System/gettypereport/"+Str,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+}
+
+function forcessDataT(data){
         retu ={
             cols: [
                       {"id":"","label":"Type","type":"string"},
@@ -29,7 +50,7 @@ function forcessDataT(data, col){
       for(value in data){
 
         retu.rows.push({
-          c : [{v:col[value]}, {v:data[value]}]
+          c : [{v:value}, {v:data[value]}]
         });
       
     }
@@ -67,8 +88,9 @@ function drawChart() {
     	month = new Date().getMonth()
     	$('#month').html(months[month]);
     	datajs = getReportjson(year+'/'+(month+1)); 
+    	typedatajs = getTypeReportjson(year+'/'+(month+1));
     	var linedata = new google.visualization.DataTable(forcessDataD([0.0,...datajs]));
-        var piedata = new google.visualization.DataTable(forcessDataT([1,2,3,6],months));
+        var piedata = new google.visualization.DataTable(forcessDataT(typedatajs,months));
         var options = { 'width': 550, 'height': 400, curveType: 'function'};
     	
     var barchart = new google.visualization.PieChart(document.getElementById('barchart'));

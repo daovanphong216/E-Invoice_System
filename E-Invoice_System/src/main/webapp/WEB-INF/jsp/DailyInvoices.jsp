@@ -48,6 +48,13 @@
 
 			</div>
 		</div>
+		<div class="modal fade" role="dialog" id= "SetLimitMonneyModal">
+			<div class="modal-dialog">
+			<div class="modal-content">
+					<%@ include file="limitmoneyform.jsp"%>
+				</div>
+			</div>
+		</div>
 
 		<div class="cal-container" id="main">
 			<div class="calendar-title">
@@ -74,6 +81,8 @@
 		<div class="buttons">
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#CreateInvoiceFormModal">Create An Invoice</button>
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#SetLimitMonneyModal">Set Limit Money</button>
 		</div>
 		
 
@@ -88,6 +97,8 @@
 	<script src="././resources/assets/js/InvoicesMain.js"></script>
 	<script type="text/javascript"
 		src="././resources/assets/js/InvoiceForm.js"></script>
+	<script type="text/javascript"
+		src="././resources/assets/js/Setlimit.js"></script>
 
 </body>
 </html>
