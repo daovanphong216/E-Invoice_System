@@ -89,7 +89,7 @@
 					<div class="group-pickertime col-sm-6">
 
 						<span> <input id="input-time" type="text" readonly
-							value=${trigger} > <a href="#" type="button"
+							value="Day ${day} at ${hour}:${minute}" > <a href="#" type="button"
 							id="trigger_button" class="btn btn-sm btn-warning"><i
 								class="glyphicon glyphicon-edit"></i></a>
 							<button id="ok-buton" type="button">
@@ -110,7 +110,7 @@
 			
 
 
-			<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal fade" id="timeModal" role="dialog">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->

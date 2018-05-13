@@ -1,6 +1,6 @@
 <header>
 		<div class="header-col header-logo">
-			<a class="" href="index.html">
+			<a class="" href="${pageContext.request.contextPath}">
 			 <img
 					class="logoImage"
 					src="${pageContext.request.contextPath}/resources/assets/img/webLogo.PNG"

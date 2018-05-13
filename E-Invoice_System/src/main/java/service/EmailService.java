@@ -3,6 +3,7 @@ package service;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.Trigger;
@@ -23,6 +24,12 @@ public class EmailService {
     @Autowired
     private ThreadPoolTaskScheduler scheduler;
 
+    @Bean
+	 public ThreadPoolTaskScheduler taskScheduler() {
+	     //org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+	     return new ThreadPoolTaskScheduler();
+	 }
+    
     public static EmailService getInstance() {
         if (!isValidBean()) {
             CONTEXT = new AnnotationConfigApplicationContext(EmailService.class);

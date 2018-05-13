@@ -40,10 +40,13 @@
 	<bean id="adminService" class="service.AdminService">
 	</bean>
 	
-	<!-- <bean id="adminService" class="service.AdminService">
+	<bean id="emailService" class="service.EmailService">
 	</bean>
 	
-	<bean id="adminService" class="service.AdminService">
-	</bean> -->
 	
+	<bean id="AppProp" class="config.AppProp" scope="singleton">
+		<property name="trigger" value="1 0 0" />
+	</bean>
+	
+
 </beans>

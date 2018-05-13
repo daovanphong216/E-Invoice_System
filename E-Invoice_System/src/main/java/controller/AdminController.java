@@ -85,7 +85,18 @@ public class AdminController {
 		 }
 		 		 
 		 List<Account> searchResults = accountService.searchAccount(username, status, roleStr, offset, 20);
-
+		 String  trigger=adminService.getTrigger();
+		 String[] triggers = trigger.split(" ");
+		 for (int i=0; i<3; i++){
+			 if (triggers[i].length()<2) {
+				 triggers[i]="0"+triggers[i];
+			 }
+		 }
+		 System.out.println(triggers[0] + " " + triggers[1] + " " + triggers[2]);
+		 model.addAttribute("day",triggers[0] );
+		 model.addAttribute("hour",triggers[1] );
+		 model.addAttribute("minute",triggers[2] );
+		 
 		 model.addAttribute("searchResults",searchResults );
 		 model.addAttribute("status",status );
 		 model.addAttribute("role",role );

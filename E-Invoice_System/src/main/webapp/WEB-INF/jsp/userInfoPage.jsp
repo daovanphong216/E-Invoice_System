@@ -52,7 +52,7 @@
 			<div class="">
 				<!-- Modal -->
 				<c:if test="${isAdmin != true}">
-					<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal fade" id="editModal" role="dialog">
 						<div class="modal-dialog">
 	
 							<!-- Modal content-->

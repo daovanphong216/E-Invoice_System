@@ -8,7 +8,9 @@
 		</h4>
 	</div>
 	<div class="modal-body " style="padding: 40px 50px;">
-		<forml"> <label>Date:</label> <select id="day" name="day"
+		<form> 
+			<label>Date:</label> 
+			<select id="day" name="day"
 			class="modal-input">
 			<option value="01">1</option>
 			<option value="02">2</option>
@@ -38,13 +40,12 @@
 			<option value="26">26</option>
 			<option value="27">27</option>
 			<option value="28">28</option>
-			<option value="29">29</option>
-			<option value="30">30</option>
-			<option value="31">31</option>
 		</select> <br>
-		<label>Time:</label> <input type="time" class="modal-input"> <br>
-		<button type="button" class="btn btn-info">OK</button>
+		<label>Time:</label> 
+		<input type="time" class="modal-input" id="time" type="time" > <br>
+		<button type="button" id = "time_submit" class="btn btn-info">OK</button>
 		</form>
 	</div>
 
 </div>
+<script src="<c:url value='/resources/assets/js/trigger_time_picker.js'/>"></script>
