@@ -206,7 +206,12 @@ $(document).ready(function () {
                     if (i === 1 && j < start) {
                         cal[i].push('<td>&nbsp;</td>');
                     } else {
-                        cal[i].push('<td class="day"><a class="dlink" href="#" dd="'+ day++ +'" mm="'+ d.getMonth() +'" yy="'+ d.getFullYear() +'">' + (day-1) + '</a></td>');
+                    	if(day == selectedDay.getDate() && d.getMonth()== selectedDay.getMonth() && d.getFullYear()== selectedDay.getFullYear()){
+                            cal[i].push('<td class="day selectedday"><a class="dlink" href="#" dd="'+ day++ +'" mm="'+ d.getMonth() +'" yy="'+ d.getFullYear() +'">' + (day-1) + '</a></td>');
+                    		
+                    	}else{
+                            cal[i].push('<td class="day"><a class="dlink" href="#" dd="'+ day++ +'" mm="'+ d.getMonth() +'" yy="'+ d.getFullYear() +'">' + (day-1) + '</a></td>');
+                    	}
                     }
                 }
             }
@@ -231,6 +236,9 @@ $(document).ready(function () {
             generateType();
             generateList(selectedDay);
             $( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
+            //
+            $("td").removeClass("selectedday");
+            this.closest('td').classList.add("selectedday");
         });
         
     }

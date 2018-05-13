@@ -59,6 +59,7 @@
 
 .list-container{
 	display: inline-block;
+	height: -webkit-fill-available;
 	float: left;
     padding: 5px;
     width: 50%;
