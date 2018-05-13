@@ -72,10 +72,17 @@
 	    border-radius: 50%;
 	
 }
+.type-title span{
+	font-size: 15px;
+	color: #795548;
+	text-align: right;
+}
 
 .type-title a{
+	display: inline-block;
 	margin-left: 30px;
 	color: white;
+	width: 60%;
 }
 
 

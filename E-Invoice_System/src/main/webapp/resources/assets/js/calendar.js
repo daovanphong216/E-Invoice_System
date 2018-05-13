@@ -161,6 +161,8 @@ $(document).ready(function () {
             <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
                 ${typesJson[type].name}
             </a>
+            <span class='numberofinvoices'>(# </span><span>invoices)</span>
+            <span class='numberofinvoices'>$ </span><span>000</span>
             </div>
         <div>
         <div class="collapse" id="collapse${typesJson[type].id}">

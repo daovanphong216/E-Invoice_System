@@ -1,9 +1,28 @@
+function getReportjson(Str) {
+    var str;
+    $.ajax({
+        url: "/E-Invoice_System/getreport/"+Str,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+}
 function forcessdata(data){
       var months= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         retu ={
             cols: [
                       {"id":"","label":"Month","type":"string"},
-                      {"id":"","label":"Money","type":"number"}
+                      {"id":"","label":"Dolar","type":"number"}
                     ],
             rows: []
           };
@@ -20,10 +39,27 @@ function forcessdata(data){
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawPieChart);
 function drawPieChart() {
-    var data = new google.visualization.DataTable(forcessdata([1,2,3,6,5,4]));
+    
     var options = { 'width': 550, 'height': 400 };
-    document.getElementById('pie').addEventListener('click', function () {
-      var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
-      piechart.draw(data, options);
-    }, true);
-  }
+    $("document").ready(function() {
+    	year = new Date().getFullYear();
+    	$('#year').html(year);
+    	var data = new google.visualization.DataTable(forcessdata(getReportjson(year)));
+    	var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
+    	piechart.draw(data, options);
+    });
+    $('#left').click(function(){
+    	year--;
+    	$('#year').html(year);
+    	var data = new google.visualization.DataTable(forcessdata(getReportjson(year)));
+    	var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
+    	piechart.draw(data, options);
+    });
+    $('#right').click(function(){
+    	year++;
+    	$('#year').html(year);
+    	var data = new google.visualization.DataTable(forcessdata(getReportjson(year)));
+    	var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
+    	piechart.draw(data, options);
+    });
+  }	

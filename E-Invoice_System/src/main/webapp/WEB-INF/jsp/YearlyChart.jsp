@@ -19,9 +19,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-<link rel="stylesheet" href="././resources/assets/css/calender.css" />
-<link rel="stylesheet" href="././resources/assets/css/list_style.css" />
-<link rel="stylesheet" href="././resources/assets/css/Invoices.css">
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -33,7 +30,11 @@
 	<%@ include file="sideBar.jsp"%>
 
 	<article class="page-container article">
-		<input type="button" id="pie" value="PieChart">
+		<h1 class="text-center">
+					<a id="left" href="#"><</a> <span>&nbsp;</span>
+					<span>&nbsp;</span><span id="year"> </span> <span>&nbsp;</span> <a
+						id="right" href="#">></a>
+		</h1>
 		<div id="piechart"></div>
 		
 
@@ -43,11 +44,7 @@
 
 	<%@ include file="footer.jsp"%>
 </div>
-	<script type="text/javascript"
-		src="././resources/assets/js/calendar.js"></script>
-	<script src="././resources/assets/js/InvoicesMain.js"></script>
-	<script type="text/javascript"
-		src="././resources/assets/js/InvoiceForm.js"></script>
+
 	<script type="text/javascript"
 		src="././resources/assets/js/Yearly.js"></script>
 

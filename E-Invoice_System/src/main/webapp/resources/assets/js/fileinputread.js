@@ -19,7 +19,7 @@ $(document).ready(function() {
 	$('.submit').click(function(){
 		$.post("/E-Invoice_System/createtype", {
 			name: $('#name').val(),
-			file: inputimg.replace('data:image/jpeg;base64,','')
+			file: inputimg.replace('data:image/jpeg;base64,','').replace('data:image/png;base64,','')
 		});
 	});
 });

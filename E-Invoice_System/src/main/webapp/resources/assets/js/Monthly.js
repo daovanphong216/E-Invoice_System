@@ -1,7 +1,26 @@
-function forcessData(data, scale, list){
+function getReportjson(Str) {
+    var str;
+    $.ajax({
+        url: "/E-Invoice_System/getreport/"+Str,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+}
+function forcessDataT(data, col){
         retu ={
             cols: [
-                      {"id":"","label":scale,"type":"string"},
+                      {"id":"","label":"Type","type":"string"},
                       {"id":"","label":"Money","type":"number"}
                     ],
             rows: []
@@ -10,26 +29,52 @@ function forcessData(data, scale, list){
       for(value in data){
 
         retu.rows.push({
-          c : [{v:scale+" "+ x++}, {v:data[value]}]
+          c : [{v:col[value]}, {v:data[value]}]
         });
       
     }
     return retu;
     }
-
+function forcessDataD(data){
+    retu ={
+        cols: [
+                  {"id":"","label":"Date","type":"number"},
+                  {"id":"","label":"Money","type":"number"},
+                  {"id":"","label":"Limit Money","type":"number"}
+                ],
+        rows: []
+      };
+  var x=1;
+  var total = 0.0;
+  for(value in data){
+	  total+=data[value];
+    retu.rows.push({
+      c : [{v:value}, {v:total}, {v: 200}]
+    });
+  
+}
+return retu;
+}
+months= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
-    var linedata = new google.visualization.DataTable(forcessData([1,2,3,6,5,4]),"Month");
-    var piedata = new google.visualization.DataTable(forcessData([1,2,3,6]),"Type");
-    var options = { 'width': 550, 'height': 400,legend: 'none', colors: ['black','violet','orange', 'green', 'yellow', 'gray']
-};
-    document.getElementById('bar').addEventListener('click', function () {
+    
+    $("document").ready(function() {
+    	year = new Date().getFullYear();
+    	$('#year').html(year);
+    	month = new Date().getMonth()
+    	$('#month').html(months[month]);
+    	datajs = getReportjson(year+'/'+(month+1)); 
+    	var linedata = new google.visualization.DataTable(forcessDataD([0.0,...datajs]));
+        var piedata = new google.visualization.DataTable(forcessDataT([1,2,3,6],months));
+        var options = { 'width': 550, 'height': 400, curveType: 'function'};
+    	
     var barchart = new google.visualization.PieChart(document.getElementById('barchart'));
       barchart.draw(piedata, options);
       var linechart = new google.visualization.LineChart(document.getElementById('linechart'));
       linechart.draw(linedata, options);
-    }, true);
+    });
    
   }
