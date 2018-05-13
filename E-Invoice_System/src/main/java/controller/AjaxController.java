@@ -24,7 +24,7 @@ import model.Invoice;
 import model.InvoiceType;
 import model.User;
 import service.AccountService;
-import service.AdminService;
+import service.EmailService;
 import service.InvoiceService;
 import service.InvoiceTypeService;
 import service.UserService;
@@ -39,9 +39,11 @@ public class AjaxController {
 	 @Qualifier("accountService")
 	 AccountService accountService;
 	
+
+	
 	@Autowired
-	 @Qualifier("adminService")
-	 AdminService adminService;
+	@Qualifier("emailService")
+	EmailService emailService;
 	
 	@Autowired
 	 @Qualifier("invoiceService")
@@ -251,8 +253,8 @@ public class AjaxController {
 	@RequestMapping(value = { "/updateTrigger" }, method = RequestMethod.POST)
 	public List<String> updateTrigger(Principal principal, Authentication authentication, @RequestParam String day, @RequestParam String time) throws Exception{ 
 		String[] times = time.split(":");
-		adminService.setTrigger(day+" " + times[0] +" "+ times[1]);
-		//adminService.doSendEmail(day, times[0], times[1]);
+		emailService.setTrigger(day+" " + times[0] +" "+ times[1]);
+		emailService.doSendEmail(day, times[0], times[1]);
 		List<String> response = new ArrayList<String>();
 		response.add("success");
 		return response;

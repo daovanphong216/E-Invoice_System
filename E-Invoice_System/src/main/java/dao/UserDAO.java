@@ -13,4 +13,5 @@ public interface UserDAO {
 	public void remove(long id);
 	public List<User> getAll();
 	public void update(User user);
+	public List<String> getAllEmails();
 }

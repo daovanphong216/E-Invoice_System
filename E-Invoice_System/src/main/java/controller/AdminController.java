@@ -16,17 +16,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import model.Account;
 import model.User;
 import service.AccountService;
-import service.AdminService;
+import service.EmailService;
 
 @Controller
 public class AdminController {
-	@Autowired
-	 @Qualifier("adminService")
-	 AdminService adminService;
 	
 	@Autowired
 	@Qualifier("accountService")
 	AccountService accountService;
+	
+	
+	@Autowired
+	@Qualifier("emailService")
+	EmailService emailService;
 	
 	 @RequestMapping(value = { "/admin" }, method = RequestMethod.GET)
 	   public String adminPage(Model model, Principal principal, Authentication authentication) {
@@ -85,14 +87,13 @@ public class AdminController {
 		 }
 		 		 
 		 List<Account> searchResults = accountService.searchAccount(username, status, roleStr, offset, 20);
-		 String  trigger=adminService.getTrigger();
+		 String  trigger=emailService.getTrigger();
 		 String[] triggers = trigger.split(" ");
 		 for (int i=0; i<3; i++){
 			 if (triggers[i].length()<2) {
 				 triggers[i]="0"+triggers[i];
 			 }
 		 }
-		 System.out.println(triggers[0] + " " + triggers[1] + " " + triggers[2]);
 		 model.addAttribute("day",triggers[0] );
 		 model.addAttribute("hour",triggers[1] );
 		 model.addAttribute("minute",triggers[2] );

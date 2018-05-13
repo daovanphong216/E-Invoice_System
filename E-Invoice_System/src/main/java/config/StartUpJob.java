@@ -1,15 +1,20 @@
 package config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import model.Account;
 import service.AccountService;
 import service.InvoiceTypeServiceImp;
+import service.UserService;
 
 @Component
 public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
@@ -22,7 +27,11 @@ public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
 	@Qualifier("invoiceTypeService")
 	InvoiceTypeServiceImp invoiceTypeService;
 	
+
 	
+	@Autowired
+	@Qualifier("userService")
+	UserService userService;
 	
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
@@ -30,8 +39,8 @@ public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
 	   if (account ==null){
 		   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		   accountService.create("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN");
-	   }
-	   
+	   	}
+	     
 	   
 	}
 }

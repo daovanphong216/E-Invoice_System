@@ -70,11 +70,12 @@ public class UserDAOImp implements UserDAO{
 		
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
+	@Transactional
 	public List<User> getAll() {
 		Session session = getSessionFactory().openSession();
-        List<User> list = session.createQuery("from users").list();
+        List<User> list = session.createQuery("select us from users us").list();
         session.close();
         return list;
 	}
@@ -95,6 +96,12 @@ public class UserDAOImp implements UserDAO{
 			}
 	}
 
-
+	@Override
+	public List<String> getAllEmails(){
+		Session session = getSessionFactory().openSession();
+        List<String> list = session.createQuery("select us.email from users us").list();
+        session.close();
+        return list;
+	}
 	
 }

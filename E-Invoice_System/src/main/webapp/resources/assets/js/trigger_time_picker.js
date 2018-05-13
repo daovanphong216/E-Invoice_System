@@ -15,7 +15,7 @@ $(document).ready(function(){
 			dataType : "json",
 			success : function(data) {
 				$('#timeModal').modal('hide');
-				$('#input-time').val("Day" + day +"at" +time)
+				$('#input-time').val("Day " + day +" at " +time);
 				
 			}
 		});
@@ -23,7 +23,6 @@ $(document).ready(function(){
 	
 	function checkData(){
 		var time= $("#time").val();
-		console.log(day);
 		if (time!= "") {
 			var day = $("#day").val();
 			sendTrigger(day, time);

@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -11,24 +12,47 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import model.Account;
 import model.User;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.UserDAO;
 
-@Service
+@Component
+@Transactional
 public class SendEmailJob implements Runnable {
 	@Autowired
-	@Qualifier("userDAO")
-	UserDAO userDao;
+	@Qualifier("userService")
+	UserService userService;
+	
+	@Autowired
+	 @Qualifier("sessionFactory")
+	 SessionFactory sessionFactory;
+	
+
 	
     @Override
     public void run() {
-        sendMails();
+    	System.out.println("hihi");
+    	org.hibernate.Session session = sessionFactory.openSession();
+        List<User> users = session.createQuery("select us from users us").list();
+        session.close();
+    	String subject = "E-Invoice System monthly notification";
+    	System.out.print(users.size());
+    	if (!users.isEmpty()){
+			for (int i=0; i< users.size(); i++){
+    		String content = "Hihi";
+    		boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
+    		System.out.print(isSend);
+    	}
+	}
     }
     
     @Async
@@ -49,7 +73,7 @@ public class SendEmailJob implements Runnable {
         try {
             Message message = new MimeMessage(session);
             message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-            message.setFrom(new InternetAddress("bachuchimhihi@gmail.com"));
+            message.setFrom(new InternetAddress("einvoicesystem@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
             message.setText(content);
@@ -60,14 +84,25 @@ public class SendEmailJob implements Runnable {
         return true;
 }
 
+    
     @Async
     private void sendMails()  {
-    	List<User> users = userDao.getAll();
+    	
+    	/*org.hibernate.Session session = sessionFactory.openSession();
+        List<User> users = session.createQuery("select us from users us").list();
+        session.close();
+       // return list;
+    	
+    	//List<User> users = userService.getAll();
+    	System.out.print(users.size());
     	String subject = "E-Invoice System monthly notification";
-    	for (int i=0; i< users.size(); i++){
-    		String content = "Hihi";
-    		boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
-    	}
+    	if (!users.isEmpty()){
+    			for (int i=0; i< users.size(); i++){
+        		String content = "Hihi";
+        		boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
+        	}
+    	}*/
+    	
     }
 
 }

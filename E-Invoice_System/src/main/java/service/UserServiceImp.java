@@ -91,5 +91,10 @@ public class UserServiceImp implements UserService {
 		return this.userDao.findbyId(id);
 		
 	}
+	
+	@Override
+	public List<String> getAllEmails(){
+		return this.userDao.getAllEmails();
+	}
 
 }

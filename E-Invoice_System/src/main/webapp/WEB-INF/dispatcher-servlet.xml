@@ -37,12 +37,12 @@
 	<!-- Hibernate 4 SessionFactory Bean definition -->
 	<import resource="hibernate.cfg.xml" />
 	
-	<bean id="adminService" class="service.AdminService">
-	</bean>
-	
+
 	<bean id="emailService" class="service.EmailService">
 	</bean>
 	
+	<bean id="ScheduleBean" class="config.ScheduleBean" scope="singleton">
+	</bean>
 	
 	<bean id="AppProp" class="config.AppProp" scope="singleton">
 		<property name="trigger" value="1 0 0" />
