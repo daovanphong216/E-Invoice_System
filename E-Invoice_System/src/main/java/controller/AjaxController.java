@@ -282,10 +282,10 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value = { "/updateTrigger" }, method = RequestMethod.POST)
-	public List<String> updateTrigger(Principal principal, Authentication authentication, @RequestParam String trigger) throws Exception{ 
-		String cronTrigger = trigger;
-		adminService.setTrigger(trigger);
-		adminService.doSendEmail(trigger);
+	public List<String> updateTrigger(Principal principal, Authentication authentication, @RequestParam String day, @RequestParam String time) throws Exception{ 
+		String[] times = time.split(":");
+		adminService.setTrigger(day+" " + times[0] +" "+ times[1]);
+		//adminService.doSendEmail(day, times[0], times[1]);
 		List<String> response = new ArrayList<String>();
 		response.add("success");
 		return response;
@@ -349,10 +349,8 @@ public class AjaxController {
 	
 	@RequestMapping(value = { "/createtype" }, method = RequestMethod.POST)
 	public List<String>  createtype(Principal principal, Authentication authentication,
-		
 	        @RequestParam(value="file", required=true) String file,
-	        @RequestParam(value="name", required=true) String name
-	        ) {
+	        @RequestParam(value="name", required=true) String name) {
 			this.invoiceTypeService.create(name, file);
 		 	
 			List<String> response = new ArrayList<String>();

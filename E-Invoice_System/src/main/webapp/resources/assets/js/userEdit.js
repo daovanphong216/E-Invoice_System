@@ -6,7 +6,6 @@ $(document).ready(function(){
 	}
 	
 	function changeInfo(username, password, email, name, address, phoneNumber){
-		console.log("huhu");
 		$.ajax({
 			type : "POST",
 			url : "/E-Invoice_System/updateInfo",
@@ -20,7 +19,7 @@ $(document).ready(function(){
 			},
 			dataType : "json",
 			success : function(data) {
-				$('#myModal').modal('hide');
+				$('#editModal').modal('hide');
 				$('#nameStr').empty();
 				$('#nameStr').append("<h3 class='panel-title'>"+name+"</h3>");
 				$('#emailStr').empty();

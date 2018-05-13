@@ -11,9 +11,9 @@ $("document").ready(function() {
 	var results = [];
 
 	
-	$('#myModal').modal('hide');
+	$('#timeModal').modal('hide');
 	$("#trigger_button").on('click', function() {
-	    $('#myModal').modal('show');
+	    $('#timeModal').modal('show');
 	});
 	
 

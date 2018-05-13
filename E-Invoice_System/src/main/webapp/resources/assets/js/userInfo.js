@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	$('#myModal').modal('hide');
+	$('#editModal').modal('hide');
 	$("a.modalstart").on('click', function() {
-	    $('#myModal').modal('show');
+	    $('#editModal').modal('show');
 	});
 	
 	
