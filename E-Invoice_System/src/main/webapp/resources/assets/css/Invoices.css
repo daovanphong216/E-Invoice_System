@@ -58,6 +58,7 @@
 }
 
 .list-container{
+	min-width: 555px;
 	display: inline-block;
 	height: -webkit-fill-available;
 	float: left;
