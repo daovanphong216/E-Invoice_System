@@ -26,6 +26,9 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
 
+
+
+
 <link rel="stylesheet"
 	href="<c:url value='././resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
@@ -38,8 +41,8 @@
 	<div class="page-body">
 		<div class="container">
 			<h1 class="center_title">Register</h1>
-			<p class="center_title">Please fill in this form to create an
-				account.</p>
+			<p class="center_title">Please fill in this form to create
+				an account.</p>
 			<div class="col-md-12 text-center">
 				<c:if test="${error == 'true'}">
 					<div class="error">
@@ -51,66 +54,26 @@
 			</div>
 			<form name='f' action="./register" method='POST'>
 
-				<label for="email"><b>Email</b></label>
-				<div class="input-group">
-					<span class="input-group-addon"> <i class="fa fa-envelope-o"
-						aria-hidden="true"></i></span> <input type="text" class="form-control"
-						id="email" placeholder="Enter Email" name="email" required />
-				</div>
-				<br>
-				
-				<label for="username" class="cols-sm-2 control-label">Username</label>
-				<div class="input-group">
-					<span class="input-group-addon"> <i class="fa fa-user fa" aria-hidden="true"></i></span> 
-					<input type="text" class="form-control" id="name" placeholder="Enter your Name" name="username" required />
-				</div>
-				
-				<br> <label for="password" class="cols-sm-2 control-label">Password</label>
-				<div class="input-group">
-					<span class="input-group-addon"> <i class="fa fa-lock fa-lg"
-						aria-hidden="true"></i>
-					</span> <input type="password" class="form-control" id="password"
-						placeholder="Enter your Password" name="password" required />
-				</div>
-				<br> 
-				
-				<label for="email"><b>Email</b></label>
-				<br>
-				<input type="email" placeholder="Enter Email" name="email" required> 
-					
-				<label for="uname"> <b>User Name</b></label>
-				<br>
-				<input type="text" placeholder="Enter User Name"
-					name="username" bpattern=".{0}|.{5,25}" required
-					title="Must 5 or more chars (max 25)" maxlength="25">
-					
-				<label for="name"><b>Full Name</b></label>
-				<br>
-				<input type="name"
-					placeholder="Enter Your Name" name="name" pattern=".{0}|.{5,50}"
-					required title="Must 5 or more chars (max 50)" maxlength="50">
-					
-				<label for="add"><b>Address</b></label>
-				<br> 
-				<input type="text" placeholder="Enter Address" name="address" required>
-				
-				<label for="telNo"><b>Phone Number</b></label>
-				<br> 
-				<input type="tel"
-					placeholder="090xxxxxxx" name="telNo" required size="20"
-					minlength="10" maxlength="14">
-					
-				<label for="psw"><b>Password</b></label>
-				<br>
-				<input name="password" placeholder="Enter Password"
-					required="required" type="password" id="password" />
-					
-				<label for="psw-repeat"><b>Confirm Password</b></label>
-				<br> 
-				<input
-					name="password_confirm" placeholder="Confirm Password"
-					required="required" type="password" id="password_confirm"
-					onblur="checkPassword();" />
+<label for="email"><b>Email</b></label><br>
+    <input type="email" placeholder="Enter Email" name="email" required>
+
+	<label for="uname"><b>User Name</b></label><br>
+    <input type="text" placeholder="Enter User Name" name="username" pattern=".{0}|.{5,25}" required title="Must 5 or more chars (max 25)" maxlength="25">
+
+	<label for="name"><b>Full Name</b></label><br>
+    <input type="name" placeholder="Enter Your Name" name="name" pattern=".{0}|.{5,50}" required title="Must 5 or more chars (max 50)" maxlength="50">
+
+	<label for="add"><b>Address</b></label><br>
+    <input type="text" placeholder="Enter Address" name="address" required>
+
+	<label for="telNo"><b>Phone Number</b></label><br>
+    <input type="tel" placeholder="090xxxxxxx" name="telNo" required size="20" minlength="10" maxlength="14">
+
+    <label for="psw"><b>Password</b></label><br>
+    <input name="password" placeholder="Enter Password" required="required" type="password" id="password" />
+
+    <label for="psw-repeat"><b>Confirm Password</b></label><br>
+    <input name="password_confirm" placeholder="Confirm Password" required="required" type="password" id="password_confirm" onblur="checkPassword();" />
 
 				<button type="submit" class="registerbtn btn btn-default">Done</button>
 
@@ -120,10 +83,6 @@
 					Already have an account? <a href="./login">Login</a>.
 				</p>
 			</div>
-
-
-
-
 		</div>
 	</div>
 

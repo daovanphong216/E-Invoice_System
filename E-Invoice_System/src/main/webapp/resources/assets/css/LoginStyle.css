@@ -109,7 +109,7 @@ body {
 .top-content {
 	/* margin: auto; */
 	padding: auto;
-	padding-top: 265px;
+	padding-top: 105px;
 	padding-left: 207px;
 }
 
@@ -128,4 +128,9 @@ body {
 	font-size: 27px;
 	line-height: 1.333;
 	border-radius: 33px;
+}
+
+.center_link
+{
+	font-size: 14px;
 }
