@@ -47,7 +47,7 @@ public class AdminController {
 			   @RequestParam(value = "page", required = true) String page) {
 		   //model.addAttribute("trigger", adminService.getTrigger());
 		 int pageInt=Integer.parseInt(page);
-		 int offset=  (pageInt-1)*2;
+		 int offset=  (pageInt-1)*20;
 		 int totalPages = 0, totalResults=0, activeAccount=0, deactiveAccount=0;
 		 String roleStr="";
 		 
@@ -84,7 +84,7 @@ public class AdminController {
 				 break;
 		 }
 		 		 
-		 List<Account> searchResults = accountService.searchAccount(username, status, roleStr, offset, 2);
+		 List<Account> searchResults = accountService.searchAccount(username, status, roleStr, offset, 20);
 
 		 model.addAttribute("searchResults",searchResults );
 		 model.addAttribute("status",status );

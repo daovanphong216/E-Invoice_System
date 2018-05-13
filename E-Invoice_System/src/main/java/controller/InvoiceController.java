@@ -41,22 +41,7 @@ public class InvoiceController {
 	 @Qualifier("invoiceTypeService")
 	InvoiceTypeService invoiceTypeService;
 	
-	
-	@RequestMapping(value = { "/createtype" }, method = RequestMethod.POST)
-	public String createtype(Principal principal, Authentication authentication,
 		
-	        @RequestParam(value="file", required=true) String file,
-	        @RequestParam(value="name", required=true) String name
-	        ) {
-			this.invoiceTypeService.create(name, file);
-		 	
-		 return "addtype";
-	   }
-	@RequestMapping(value = { "/addtype" }, method = RequestMethod.GET)
-	public String addtype(Principal principal, Authentication authentication
-	        ) 		{
-		 return "addtype";
-	   }
 	
 	@RequestMapping(value = { "/getTypeInfor/{id}" }, method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody void getTypeInfor(HttpServletRequest request, HttpServletResponse response,

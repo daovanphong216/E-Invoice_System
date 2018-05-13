@@ -55,7 +55,7 @@ public class AccountServiceImp implements AccountService {
 	@Override
 	public void updateActive(long id, boolean status){
 		Account account = accountDao.findbyId(id);	
-		if (account!=null){
+		if (account!=null && !account.getUserName().equals("admin")){
 			account.setActive(status);
 			accountDao.update(account);
 		}

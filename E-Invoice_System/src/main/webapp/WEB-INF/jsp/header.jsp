@@ -28,7 +28,11 @@
 						<li class="divider"></li>
 					</ul></li>
 			</c:if>
-
+			<c:if test="${isAdmin == true}">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> <i>${pageContext.request.userPrincipal.name}</i>
+				</a>
+			</c:if>
 		</ul>
 
 	</div>

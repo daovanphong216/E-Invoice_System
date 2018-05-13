@@ -217,9 +217,18 @@ public class AjaxController {
 	
 	@RequestMapping(value = { "/searchAccount" }, method = RequestMethod.POST)
 	public List<Account> searchUser(Principal principal, Authentication authentication, @RequestParam String username, 
-			@RequestParam String type) {
+			@RequestParam String type, @RequestParam String role, @RequestParam String page) {
 		//System.out.println(username + type);
-		return this.accountService.searchAccount(username, type, "ROLE_MEMBER", 2,2);
+		String roleStr="";
+		 int pageInt=Integer.parseInt(page);
+		 int offset=  (pageInt-1)*2;
+		 if (role.equals("user")) {
+			 roleStr="ROLE_MEMBER"; 
+		 }
+		 else {
+			 roleStr="ROLE_ADMIN";
+		 }
+		return this.accountService.searchAccount(username, type, roleStr, offset,20);
 				
 	   }
 
@@ -304,4 +313,17 @@ public class AjaxController {
 		response.add("success");
 		return response;
 	}
+	
+	@RequestMapping(value = { "/createtype" }, method = RequestMethod.POST)
+	public List<String>  createtype(Principal principal, Authentication authentication,
+		
+	        @RequestParam(value="file", required=true) String file,
+	        @RequestParam(value="name", required=true) String name
+	        ) {
+			this.invoiceTypeService.create(name, file);
+		 	
+			List<String> response = new ArrayList<String>();
+			response.add("success");
+			return response;
+	   }
 }
