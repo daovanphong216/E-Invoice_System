@@ -72,7 +72,7 @@ function updateItemToViewList(item){
 			</div>
 			<div class="item-col item-detail">
 				<div class="item-desc">${item.description}</div>
-				<div class="item-info">${item.invoiceNo} | ${item.amountOfMoney}</div>
+				<div class="item-info"><b>No: </b>${item.invoiceNo} | <b>Money: </b>$${item.amountOfMoney}</div>
 			</div>
 			<div class="item-col item-buttons">
 				<button item-id='${item.id}' class='btn btn-default btn-sm item-button removeItem'>
@@ -161,8 +161,8 @@ $(document).ready(function () {
             <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
                 ${typesJson[type].name}
             </a>
-            <span class='numberofinvoices'>(# </span><span>invoices)</span>
-            <span class='numberofinvoices'>$ </span><span>000</span>
+            <span>(</span><span class='${typesJson[type].name}no'>0</span><span> invoices)</span>
+            <span class='numberofinvoices'>$</span><span class="${typesJson[type].name}money">0.00</span>
             </div>
         <div>
         <div class="collapse" id="collapse${typesJson[type].id}">
@@ -241,6 +241,24 @@ $(document).ready(function () {
             //
             $("td").removeClass("selectedday");
             this.closest('td').classList.add("selectedday");
+            var year = selectedDay.getFullYear();
+        	$.get("/E-Invoice_System/getreport/"+year, function(data, status){
+        		$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
+            });
+        	
+        	$.get("/E-Invoice_System/getreport/"+year+"/"+(selectedDay.getMonth()+1), function(data, status){
+        		$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+            });
+        	
+        	
+        	$.get("/E-Invoice_System/gettypereport/"+year+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
+        		for(i in data){
+        			$('.'+data[i].name+'no').html(data[i].noOfInvoice);
+        			$('.'+data[i].name+'money').html(data[i].totalMonney);
+        		}
+        		
+            });
+        	
         });
         
     }

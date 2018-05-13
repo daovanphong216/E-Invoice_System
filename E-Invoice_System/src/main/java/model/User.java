@@ -2,10 +2,12 @@ package model;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -65,8 +67,54 @@ public class User {
 			report[i]= getTotalMoney(year, i+1);
 		}		
 	return report;
-}
+	}
 	
+	
+	public Hashtable<String, Double> getMoneyTypeReport(int year, int month) {			
+		Hashtable<String, Double> report = new Hashtable<>();
+		for (Invoice i : this.getInvoices()) {
+			
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)) {
+				
+				if(!report.containsKey(i.getType().getName())) {
+					report.put(i.getType().getName(), i.getAmountOfMoney());
+				}else {
+					Double crr = report.get(i.getType().getName());
+					report.put(i.getType().getName(), i.getAmountOfMoney()+crr);
+				}
+			}
+		}		
+	return report;
+	}
+	public Set<TypeReport>getTypeTeport(int year, int month, int day){
+		ArrayList<String> namelist= new ArrayList<String>(0);
+		ArrayList<Integer> noofinvoicelist= new ArrayList<Integer>(0);
+		ArrayList<Double> totalmoneylist= new ArrayList<Double>(0);
+		Set<TypeReport> list = new HashSet<TypeReport>(0);
+		for (Invoice i : this.getInvoices()) {
+			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)&&(localDatetemp.getDayOfMonth()== day)) {
+					if(!namelist.contains(i.getType().getName())) {
+						namelist.add(i.getType().getName());
+						totalmoneylist.add(i.getAmountOfMoney());
+						noofinvoicelist.add(1);
+					}
+					else {
+						int index = namelist.indexOf(i.getType().getName());
+						totalmoneylist.set(index, totalmoneylist.get(index) + i.getAmountOfMoney());
+						noofinvoicelist.set(index, noofinvoicelist.get(index)+ 1);
+					}
+			}
+		}
+		
+		for(int i=0;i < namelist.size(); i++) {
+			list.add(new TypeReport(namelist.get(i), noofinvoicelist.get(i), totalmoneylist.get(i)));
+		}
+		
+		return list;
+		
+	}
 	
 	public double getTotalMoney(int year, int month, int day) {
 		double total=0.0;
@@ -114,7 +162,7 @@ public class User {
 
 	
 	@Column(name = "limitedMoney")
-	public double limitedMoney;
+	private double limitedMoney;
 
 	public double getLimitedMoney() {
 		return limitedMoney;

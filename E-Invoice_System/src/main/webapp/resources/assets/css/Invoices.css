@@ -60,8 +60,13 @@
 .list-container{
 	min-width: 555px;
 	display: inline-block;
-	height: -webkit-fill-available;
 	float: left;
     padding: 5px;
     width: 50%;
+}
+
+.infor{
+	width: 30%;
+	display: inline-block;
+	min-width: 555px;
 }

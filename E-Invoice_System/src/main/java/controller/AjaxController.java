@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import model.Account;
 import model.Invoice;
 import model.InvoiceType;
+import model.TypeReport;
 import model.User;
 import service.AccountService;
 import service.EmailService;
@@ -59,6 +62,8 @@ public class AjaxController {
 			message=msg;
 		}
 	}
+	
+	
 	
 	@RequestMapping(value = { "/getInvoiceFromUser" }, method = RequestMethod.GET)
 	public Set<Invoice> getInvoiceFromUser(Principal principal, Authentication authentication) {
@@ -151,6 +156,36 @@ public class AjaxController {
 		 return newinvoice;
 	   }
 	
+	
+	
+	@RequestMapping(value = { "/setlimitmoney" }, method = RequestMethod.GET)
+	public String setlimitmoney(Principal principal, Authentication authentication,
+	        @RequestParam(value="amountOfMoney", required=true) double amountOfMoney
+	        ) {
+		 String userName= principal.getName();
+		 if (userName.equals("")) {
+		 } else {
+			 User currentuser = this.userService.findbyUserName(userName);
+			 currentuser.setLimitedMoney(amountOfMoney);
+			 this.userService.update(currentuser);
+		 }		
+		 return "{status: 'ok'}";
+	   }
+	
+	@RequestMapping(value = { "/getlimitmoney" }, method = RequestMethod.GET)
+	public double getlimitmoney(Principal principal, Authentication authentication
+	        ) {
+		 String userName= principal.getName();
+		 double money = 0;
+		 if (userName.equals("")) {
+		 } else {
+			 User currentuser = this.userService.findbyUserName(userName);
+			 money = currentuser.getLimitedMoney();
+		 }		
+		 return money;
+	   }
+	
+	
 	@RequestMapping(value = { "/getInvoiceFromUser/{dateTime}" }, method = RequestMethod.GET)
 	public Set<Invoice> getInvoiceFromUser(Principal principal, Authentication authentication,
 			@PathVariable("dateTime") String dateTime) {
@@ -191,6 +226,28 @@ public class AjaxController {
 
 	   }
 	
+	
+	@RequestMapping(value = { "/gettypereport/{year}/{month}" }, method = RequestMethod.GET)
+	public Hashtable<String, Double> gettypereport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year,
+			@PathVariable("month") int month) {
+		 String userName= principal.getName();
+		 //..........................................
+		 return this.userService.findbyUserName(userName).getMoneyTypeReport(year, month);
+
+	   }
+	
+	
+	@RequestMapping(value = { "/gettypereport/{year}/{month}/{date}" }, method = RequestMethod.GET)
+	public Set<TypeReport> gettypereport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year,
+			@PathVariable("month") int month,
+			@PathVariable("date") int date) {
+		 String userName= principal.getName();
+		 //..........................................
+		 return this.userService.findbyUserName(userName).getTypeTeport(year, month, date);
+
+	   }
 	
 	@RequestMapping(value = { "/removeinvoice/{id}" }, method = RequestMethod.GET)
 	public String removeinvoice(Principal principal, Authentication authentication,
