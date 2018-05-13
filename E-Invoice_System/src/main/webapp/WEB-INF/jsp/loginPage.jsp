@@ -43,7 +43,7 @@
 			<h1>Welcome to E-Invoice System</h1>
 			<div class="container">
 				<button href="#myModal" data-toggle="modal" type="button"
-					class=" btn start-button">Get Started</button>
+					id ="start" class=" btn start-button">Get Started</button>
 			</div>
 		</div>
 	</div>
@@ -60,8 +60,9 @@
 					<div class="row">
 					<div class="col-md-12 ">
 						<c:if test="${param.error == 'true'}">
+							<script> document.getElementById("start").click(); </script>
 							<div style="color: red; margin: 10px 0px;">
-
+	
 								Login Failed!!!<br /> Reason :
 								${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 
