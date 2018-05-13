@@ -161,8 +161,8 @@ $(document).ready(function () {
             <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
                 ${typesJson[type].name}
             </a>
-            <span class='numberofinvoices'>(# </span><span>invoices)</span>
-            <span class='numberofinvoices'>$ </span><span>000</span>
+            <span>(</span><span class='${typesJson[type].name}no'>0</span><span> invoices)</span>
+            <span class='numberofinvoices'>$</span><span class="${typesJson[type].name}money">0.00</span>
             </div>
         <div>
         <div class="collapse" id="collapse${typesJson[type].id}">
@@ -249,6 +249,16 @@ $(document).ready(function () {
         	$.get("/E-Invoice_System/getreport/"+year+"/"+(selectedDay.getMonth()+1), function(data, status){
         		$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
             });
+        	
+        	
+        	$.get("/E-Invoice_System/gettypereport/"+year+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
+        		for(i in data){
+        			$('.'+data[i].name+'no').html(data[i].noOfInvoice);
+        			$('.'+data[i].name+'money').html(data[i].totalMonney);
+        		}
+        		
+            });
+        	
         });
         
     }

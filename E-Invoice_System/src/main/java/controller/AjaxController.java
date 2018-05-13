@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import model.Account;
 import model.Invoice;
 import model.InvoiceType;
+import model.TypeReport;
 import model.User;
 import service.AccountService;
 import service.AdminService;
@@ -234,6 +235,17 @@ public class AjaxController {
 
 	   }
 	
+	
+	@RequestMapping(value = { "/gettypereport/{year}/{month}/{date}" }, method = RequestMethod.GET)
+	public Set<TypeReport> gettypereport(Principal principal, Authentication authentication,
+			@PathVariable("year") int year,
+			@PathVariable("month") int month,
+			@PathVariable("date") int date) {
+		 String userName= principal.getName();
+		 //..........................................
+		 return this.userService.findbyUserName(userName).getTypeTeport(year, month, date);
+
+	   }
 	
 	@RequestMapping(value = { "/removeinvoice/{id}" }, method = RequestMethod.GET)
 	public String removeinvoice(Principal principal, Authentication authentication,

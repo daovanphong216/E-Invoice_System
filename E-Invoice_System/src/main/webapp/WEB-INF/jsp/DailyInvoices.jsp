@@ -89,7 +89,7 @@
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#CreateInvoiceFormModal">Create An Invoice</button>
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#SetLimitMonneyModal">Set Limit Money</button>
+			data-target="#SetLimitMonneyModal">Reset Limited Money</button>
 		</div>
 		
 

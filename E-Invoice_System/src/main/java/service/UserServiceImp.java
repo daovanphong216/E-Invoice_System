@@ -61,7 +61,7 @@ public class UserServiceImp implements UserService {
 		newUser.setAddress(address);
 		newUser.setEmail(email);
 		newUser.setName(name);
-		newUser.setLimitedMoney(0.0);
+		newUser.setLimitedMoney(10000.0);
 		newUser.setPhoneNumber(phoneNumber);
 		this.userDao.create(newUser);
 	}
