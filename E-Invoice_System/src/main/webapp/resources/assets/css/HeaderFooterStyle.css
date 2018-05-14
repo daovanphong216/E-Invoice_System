@@ -117,3 +117,42 @@ footer{
 	background: #000000;
 }
 
+.search-form-monthly
+{
+	margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solix;
+    background-color: #d1d2d44a;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    padding-top: 10%;
+    color: white;
+    margin-top: 32%;
+    border-radius: 15px
+}
+
+#select-option
+{
+	color: black;
+    height: 30px;
+    width: 95px;
+}
+
+#endday-input
+{
+	margin-top: 5%;
+}
+
+#moneyend-input
+{
+	margin-top: 5%;
+}
+
+#search-btn
+{
+	margin-left: 18%;
+    width: 55%;
+    height: 40px;
+    padding-right: 10%;
+}

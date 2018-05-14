@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/titleImage.png" type="image/x-icon">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -57,7 +58,7 @@
 							method='GET'>
 							<div class="col-sm-6">
 								<input type="text" class="input-search form-control"
-									value="${username}" name="username" id="username-search">
+									value="${username}" name="username" id="username-search" placeholder="Search by username...">
 							</div>
 
 							<div class="col-sm-2">
@@ -92,9 +93,6 @@
 							value="Day ${day} at ${hour}:${minute}" > <a href="#" type="button"
 							id="trigger_button" class="btn btn-sm btn-warning"><i
 								class="glyphicon glyphicon-edit"></i></a>
-							<button id="ok-buton" type="button">
-								<span class="glyphicon glyphicon-ok"></span>
-							</button>
 						</span>
 
 					</div>
@@ -104,6 +102,9 @@
 				<div class="row">
 				<div class="col-lg-6" id="general_info">
 					Totals result: ${totalResults} | Active: ${activeAccount} | Deactive: ${deactiveAccount} 
+				</div>
+				<div class="col-lg-6" id="trigger-info">
+					Time alert monthly
 				</div>
 			</div>
 			</div>

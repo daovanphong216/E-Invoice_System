@@ -7,6 +7,7 @@
 
     <head>
         <title>User</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/titleImage.png" type="image/x-icon">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Bootstrap Styles-->

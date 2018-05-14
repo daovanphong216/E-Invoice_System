@@ -9,7 +9,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
-<title></title>
+<title>Daily Invoices</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/titleImage.png" type="image/x-icon">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -55,6 +56,15 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" role="dialog" id= "AddInvoiceTypeModal">
+			<div class="modal-dialog">
+			<div class="modal-content">
+					<%@ include file="AddInvoiceTypeForm.jsp"%>
+				</div>
+			</div>
+		</div>
+		
+		
 
 		<div class="cal-container" id="main">
 			<div class="calendar-title">
@@ -90,6 +100,8 @@
 			data-target="#CreateInvoiceFormModal">Create An Invoice</button>
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#SetLimitMonneyModal">Reset Limited Money</button>
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#AddInvoiceTypeModal">Add Type</button>
 		</div>
 		
 

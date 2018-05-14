@@ -107,10 +107,8 @@ body {
 }
 
 .top-content {
-	/* margin: auto; */
-	padding: auto;
-	padding-top: 105px;
-	padding-left: 207px;
+	padding-top: 260px;
+    padding-left: 207px;
 }
 
 .h1, h1 {

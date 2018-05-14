@@ -261,3 +261,8 @@ a {
 .panel-title {
     background-color: white;
 }
+
+#trigger-info
+{
+	padding-left: 25%;
+}

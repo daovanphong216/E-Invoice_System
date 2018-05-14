@@ -48,6 +48,7 @@
 							<br> 
 							<input class="add_admin_input form-group" type="text" id="typename"
 							placeholder="Enter invoice type" name="typename" required="required">
+							<label for="amountOfMoney">Select file</label>
 							<img class="form-group"  id = 'image' name='image' alt='your image' width='150' height='150'>
 							<input  class="form-group" id='file' name='file' , type='file' , accept='image/*' , 
 							onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0]);
