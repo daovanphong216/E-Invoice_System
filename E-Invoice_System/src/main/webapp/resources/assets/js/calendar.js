@@ -138,6 +138,14 @@ $(document).ready(function () {
     
     
     generateType(selectedDay);
+    $('.removeItem').click(function(){
+    	
+		var index=this.getAttribute("item-id");
+		var item = `[item-div-id=${index}]`
+		$(item).remove();
+		removeinvoice(index);
+
+	});
    // generateList(selectedDay);
     
     
@@ -240,7 +248,7 @@ $(document).ready(function () {
             selectedDay.setFullYear(this.getAttribute("yy"));
             $('.selectedView').html("");
             generateType(selectedDay);
-            generateList(selectedDay);
+           // generateList(selectedDay);
             $( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
             //
             $("td").removeClass("selectedday");
