@@ -15,7 +15,7 @@ $("document").ready(function() {
 
 	$('#add_type').click(function(){
 		var file=getBase64Image(document.getElementById("image"));
-		var name=$("#typename").val();
+		var name=$("#typeaddname").val();
 		if(file !="" && file!=null && name!="" && name!=null){
 		$.ajax({
 			type : "POST",
