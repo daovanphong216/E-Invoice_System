@@ -22,30 +22,17 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<div class= "flex-container">
-	<%@ include file="header.jsp"%>
-	<%@ include file="sideBar.jsp"%>
 
-	<article class="page-container article">
 		<h1 class="text-center">
-					<a id="left" href="#"><</a> <span>&nbsp;</span>
-					<span>&nbsp;</span><span id="year"> </span> <span>&nbsp;</span> <a
-						id="right" href="#">></a>
+					<a id="yleft" href="#"><</a> <span>&nbsp;</span>
+					<span>&nbsp;</span><span id="yyear"> </span> <span>&nbsp;</span> <a
+						id="yright" href="#">></a>
 		</h1>
 		<div id="piechart"></div>
-		
-
-	</article>
-
 	
-
-	<%@ include file="footer.jsp"%>
-</div>
-
 	<script type="text/javascript"
 		src="././resources/assets/js/Yearly.js"></script>
 

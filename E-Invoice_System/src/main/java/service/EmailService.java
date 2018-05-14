@@ -30,19 +30,18 @@ public class EmailService {
 	@Qualifier("AppProp")
 	AppProp appProp;
 	
+	@Autowired
+	@Qualifier("sendEmailJob")
+	Runnable sendEmailJob;
 	
 	public void doSendEmail(String day, String hour, String minute) throws Exception{
 		String triggerStr= "0 " + minute + " " + hour + " " + day + " * ?";
 		Trigger trigger = new CronTrigger(triggerStr);
-		Runnable task = new SendEmailJob();
 		if (scheduleBean.getTask()!=null){
 			scheduleBean.getTask().cancel(true);
 		}
-		scheduleBean.setTpts(new ThreadPoolTaskScheduler());
-		scheduleBean.setTask(scheduleBean.getTpts().schedule(task,trigger));
-//		ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(System.g.availableProcessors());
-		//emailService.stopAll();
-		//emailService.start(task, trigger);
+		scheduleBean.setTask(scheduleBean.getTpts().schedule(sendEmailJob,trigger));
+
 	}
 	
 	public String getTrigger(){

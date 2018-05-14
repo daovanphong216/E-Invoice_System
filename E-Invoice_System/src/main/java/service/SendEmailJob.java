@@ -1,5 +1,6 @@
 package service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,42 +21,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.UserDAO;
 
-@Component
+@Repository
 @Transactional
 public class SendEmailJob implements Runnable {
 	@Autowired
 	@Qualifier("userService")
 	UserService userService;
 	
-	@Autowired
-	 @Qualifier("sessionFactory")
-	 SessionFactory sessionFactory;
+	
+	/*private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}*/
+	
 	
 
 	
     @Override
     public void run() {
-    	System.out.println("hihi");
-    	org.hibernate.Session session = sessionFactory.openSession();
-        List<User> users = session.createQuery("select us from users us").list();
-        session.close();
+    	List<User> users = userService.getAll();
     	String subject = "E-Invoice System monthly notification";
     	System.out.print(users.size());
+    	/*Date dateObj = new Date();
+    	int month = dateObj.getMonth() + 1; //months from 1-12
+    	int year = dateObj.getYear();*/
+    	
+    	Calendar c = Calendar.getInstance();
+    	int year = c.get(Calendar.YEAR);
+    	int month = c.get(Calendar.MONTH)+1;
+    	System.out.print(month + " " + year);
     	if (!users.isEmpty()){
 			for (int i=0; i< users.size(); i++){
-    		String content = "Hihi";
-    		boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
-    		System.out.print(isSend);
+				double limitedMoney = users.get(i).getLimitedMoney();
+				double sumMoney= users.get(i).getTotalMoney(year, month);
+				String content = "In month " + month + "/" + year + ", you have spent " + sumMoney + "$";
+				if (limitedMoney<sumMoney) {
+					content +="You have exceed the limit. Your limit is " + limitedMoney + "$";
+				}
+				boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
+				System.out.print(isSend);
     	}
 	}
     }
     
-    @Async
+   @Async
     public boolean sendMail(String to, String subject, String content) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -85,24 +105,6 @@ public class SendEmailJob implements Runnable {
 }
 
     
-    @Async
-    private void sendMails()  {
-    	
-    	/*org.hibernate.Session session = sessionFactory.openSession();
-        List<User> users = session.createQuery("select us from users us").list();
-        session.close();
-       // return list;
-    	
-    	//List<User> users = userService.getAll();
-    	System.out.print(users.size());
-    	String subject = "E-Invoice System monthly notification";
-    	if (!users.isEmpty()){
-    			for (int i=0; i< users.size(); i++){
-        		String content = "Hihi";
-        		boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
-        	}
-    	}*/
-    	
-    }
+   
 
 }

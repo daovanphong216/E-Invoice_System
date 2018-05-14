@@ -42,7 +42,7 @@
 			<option value="28">28</option>
 		</select> <br>
 		<label>Time:</label> 
-		<input type="time" class="modal-input" id="time" type="time" value="13:00"> <br>
+		<input type="time" class="modal-input" id="time" type="time" value="${hour}:${minute}"> <br>
 		<button type="button" id = "time_submit" class="btn btn-info">OK</button>
 		</form>
 	</div>
