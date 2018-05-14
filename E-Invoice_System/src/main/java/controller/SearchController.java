@@ -47,19 +47,23 @@ public class SearchController {
 	 @Qualifier("invoiceTypeService")
 	 InvoiceTypeService invoiceTypeService;
 	
-	@RequestMapping(value = { "/SearchInvoice}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/SearchInvoice" }, method = RequestMethod.GET)
 	public Set<Invoice> searchInvoice(Principal principal, Authentication authentication,
 		
-			@RequestParam(value="dateMin", required=false) String dateMin,
-			@RequestParam(value="dateMax", required=false) String dateMax,
-			@RequestParam(value="moneyMin", required=false) double moneyMin,
-			@RequestParam(value="moneyMax", required=false) double moneyMax,
-			@RequestParam(value="cCode", required=false) long cCode,
-			@RequestParam(value="invoiceNo", required=false) String invoiceNo,
-			@RequestParam(value="type", required=false) String type
+			@RequestParam(value="dateMin", required=true) String dateMin,
+			@RequestParam(value="dateMax", required=true) String dateMax,
+			@RequestParam(value="moneyMin", required=true) double moneyMin,
+			@RequestParam(value="moneyMax", required=true) double moneyMax,
+			@RequestParam(value="cCode", required=true) long cCode,
+			@RequestParam(value="invoiceNo", required=true) String invoiceNo,
+			@RequestParam(value="type", required=true) String type
 			
 			) {
 		 String userName= principal.getName();
+		 
+		
+		 
+		 
 		 if (userName.equals("")) {
 			 return null;  
 		 } else {

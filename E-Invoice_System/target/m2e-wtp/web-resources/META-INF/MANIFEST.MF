@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: training
-Build-Jdk: 1.8.0_121
-=======
 Built-By: Training
 Build-Jdk: 1.8.0_161
->>>>>>> 7f2b3022d0f005008580d6bfec0b30c7a8664b82
 Created-By: Maven Integration for Eclipse
 

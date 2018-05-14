@@ -61,7 +61,11 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public String registerPage() {
+	public String registerPage(Principal principal) {
+		if(principal.getName().length()>0) {
+			return "redirect:/";
+		}
+		System.out.println("huhuh");
 		return "registerPage";
 	}
 
