@@ -3,7 +3,7 @@
 			<a class="" href="${pageContext.request.contextPath}">
 			 <img
 					class="logoImage"
-					src="${pageContext.request.contextPath}/resources/assets/img/webLogo.png"
+					src="${pageContext.request.contextPath}/resources/assets/img/webLogo.PNG"
 					alt="E-Invoice System Logo">
 			</a>
 		</div>

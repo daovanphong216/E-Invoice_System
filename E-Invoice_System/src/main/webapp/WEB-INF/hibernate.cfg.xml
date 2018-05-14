@@ -70,5 +70,10 @@
 	
 	<bean id="invoiceTypeService" class="service.InvoiceTypeServiceImp">
 	</bean>
+	
+		
+	<bean id="sendEmailJob" class="service.SendEmailJob">
+	
+	</bean>
 			
 </beans>
