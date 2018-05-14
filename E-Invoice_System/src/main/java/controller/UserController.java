@@ -61,4 +61,11 @@ public class UserController {
 	        return "MonthlyChart";  
 	   }
 
+	@RequestMapping(value = { "/charts" }, method = RequestMethod.GET)
+	   public String charts(Model model, Principal principal, Authentication authentication) {
+			User user = userService.findbyUserName(principal.getName());
+			model.addAttribute("user",user);
+	        return "chars";  
+	   }
+
 }
