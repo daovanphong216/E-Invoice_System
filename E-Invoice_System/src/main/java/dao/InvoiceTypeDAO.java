@@ -13,4 +13,5 @@ public interface InvoiceTypeDAO {
 	public List<InvoiceType> getAll();
 	public void update(InvoiceType invoiceType);
 	public List<InvoiceType> getAll(User user);
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
 }

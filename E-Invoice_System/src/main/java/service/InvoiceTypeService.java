@@ -16,5 +16,5 @@ public interface InvoiceTypeService {
 	public Set<Object> getAlltypeInfor();
 	public void createTypeByAdmin(String name, String file);
 	public void createTypeByMember(String name, String file, User user);
-
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
 }

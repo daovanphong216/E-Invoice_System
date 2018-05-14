@@ -362,10 +362,11 @@ public class AjaxController {
 		   if (account ==null){
 			   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			   accountService.create(username, passwordEncoder.encode(password), "ROLE_ADMIN");
-			   response.add("Admin name duplicated");
+			   response.add("success");
 		   }
 		   else {
-			   response.add("success");
+			  
+			   response.add("Admin name duplicated");
 		   }
 		return response;
 	}
@@ -426,10 +427,16 @@ public class AjaxController {
 				this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
 			}
 			
-		//	this.invoiceTypeService.create(name, file);
 		 	
+
 			List<String> response = new ArrayList<String>();
-			response.add("success");
+			if (it==null){
+				this.invoiceTypeService.create(name, file);
+				response.add("success");
+			}
+			else{
+				response.add("Invoice type name duplicated");
+			}
 			return response;
 	   }
 }

@@ -31,10 +31,11 @@
 <title>E-Invoice System</title>
 
 <link rel="stylesheet"
-	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
+	href="<c:url value='../resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
-	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
-
+	href="<c:url value='../resources/assets/css/UserInfoStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='../resources/assets/css/adminPageStyle.css'/>" />
 
 
 </head>

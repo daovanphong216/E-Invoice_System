@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -83,6 +84,20 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 		List<InvoiceType> list = query.list();
         session.close();
         return list;
+	}
+	
+	@Override
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName){
+		Session session = getSessionFactory().openSession();
+		Query query= session.createQuery("select it from invoicetypes it where it.name= :name");
+		query.setParameter("name", invoiceTypeName);
+		List<InvoiceType> invoiceTypes = query.list();
+		session.close();
+		if (!invoiceTypes.isEmpty()){
+			return invoiceTypes.get(0);
+		}
+        
+        return null;
 	}
 	
 }
