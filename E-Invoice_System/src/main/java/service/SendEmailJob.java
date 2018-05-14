@@ -52,7 +52,6 @@ public class SendEmailJob implements Runnable {
     public void run() {
     	List<User> users = userService.getAll();
     	String subject = "E-Invoice System monthly notification";
-    	System.out.print(users.size());
     	/*Date dateObj = new Date();
     	int month = dateObj.getMonth() + 1; //months from 1-12
     	int year = dateObj.getYear();*/
@@ -60,7 +59,6 @@ public class SendEmailJob implements Runnable {
     	Calendar c = Calendar.getInstance();
     	int year = c.get(Calendar.YEAR);
     	int month = c.get(Calendar.MONTH)+1;
-    	System.out.print(month + " " + year);
     	if (!users.isEmpty()){
 			for (int i=0; i< users.size(); i++){
 				double limitedMoney = users.get(i).getLimitedMoney();
@@ -70,7 +68,7 @@ public class SendEmailJob implements Runnable {
 					content +="You have exceed the limit. Your limit is " + limitedMoney + "$";
 				}
 				boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
-				System.out.print(isSend);
+				System.out.println(isSend);
     	}
 	}
     }

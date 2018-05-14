@@ -11,4 +11,5 @@ public interface InvoiceTypeDAO {
 	public void remove(long id);
 	public List<InvoiceType> getAll();
 	public void update(InvoiceType invoiceType);
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
 }

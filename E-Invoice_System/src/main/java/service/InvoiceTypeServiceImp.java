@@ -61,5 +61,10 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 		}
 		return infors;
 	}
+	
+	@Override
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName){
+		return this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
+	}
 
 }

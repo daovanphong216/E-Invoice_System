@@ -324,10 +324,11 @@ public class AjaxController {
 		   if (account ==null){
 			   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			   accountService.create(username, passwordEncoder.encode(password), "ROLE_ADMIN");
-			   response.add("Admin name duplicated");
+			   response.add("success");
 		   }
 		   else {
-			   response.add("success");
+			  
+			   response.add("Admin name duplicated");
 		   }
 		return response;
 	}
@@ -380,10 +381,15 @@ public class AjaxController {
 	public List<String>  createtype(Principal principal, Authentication authentication,
 	        @RequestParam(value="file", required=true) String file,
 	        @RequestParam(value="name", required=true) String name) {
-			this.invoiceTypeService.create(name, file);
-		 	
+			InvoiceType it=invoiceTypeService.findbyInvoiceTypeName(name);
 			List<String> response = new ArrayList<String>();
-			response.add("success");
+			if (it==null){
+				this.invoiceTypeService.create(name, file);
+				response.add("success");
+			}
+			else{
+				response.add("Invoice type name duplicated");
+			}
 			return response;
 	   }
 }

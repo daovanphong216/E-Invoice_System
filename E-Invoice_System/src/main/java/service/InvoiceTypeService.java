@@ -13,5 +13,5 @@ public interface InvoiceTypeService {
 	public InvoiceType findbyId(long id);
 	public void create(String name, String logo);
 	public Set<Object> getAlltypeInfor();
-
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
 }

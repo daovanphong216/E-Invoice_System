@@ -51,7 +51,7 @@ $("document").ready(function() {
 			},
 			dataType : "json",
 			success : function(data) {
-				alert("Success!");
+				alert(data[0]);
 			}
 		});
 		}
