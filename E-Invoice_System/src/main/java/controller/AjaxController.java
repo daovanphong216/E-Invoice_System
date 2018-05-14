@@ -421,22 +421,29 @@ public class AjaxController {
 	        @RequestParam(value="name", required=true) String name) {
 			
 			Account account = this.accountService.findbyUserName(principal.getName());
+			List<String> response = new ArrayList<String>();
 			if(account.getRole().equals("ROLE_ADMIN")) {
-				this.invoiceTypeService.createTypeByAdmin(name, file);
+				if(this.invoiceTypeService.findbyInvoiceTypeName(name,this.accountService.findbyId(1).getUser())==null) {
+					this.invoiceTypeService.createTypeByAdmin(name, file);
+					response.add("success");
+				}else {
+					response.add("Invoice type name duplicated");
+
+				}
 			}else {
-				this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
+				if(this.invoiceTypeService.findbyInvoiceTypeName(name,account.getUser())==null) {
+					this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
+					response.add("success");
+				}else {
+					response.add("Invoice type name duplicated");
+
+				}
+				
 			}
 			
 		 	
 
-			List<String> response = new ArrayList<String>();
-			if (it==null){
-				this.invoiceTypeService.create(name, file);
-				response.add("success");
-			}
-			else{
-				response.add("Invoice type name duplicated");
-			}
+			
 			return response;
 	   }
 }

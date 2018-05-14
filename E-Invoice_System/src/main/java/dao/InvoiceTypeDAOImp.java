@@ -99,5 +99,11 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
         
         return null;
 	}
+
+	@Override
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
