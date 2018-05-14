@@ -320,12 +320,15 @@ public class AjaxController {
 	@RequestMapping(value = { "/createAdmin" }, method = RequestMethod.POST)
 	public List<String> createAdmin(Principal principal, Authentication authentication, @RequestParam String username,  @RequestParam String password){ 
 		Account account = accountService.findbyUserName(username);
+		List<String> response = new ArrayList<String>();
 		   if (account ==null){
 			   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			   accountService.create(username, passwordEncoder.encode(password), "ROLE_ADMIN");
+			   response.add("Admin name duplicated");
 		   }
-		List<String> response = new ArrayList<String>();
-		response.add("success");
+		   else {
+			   response.add("success");
+		   }
 		return response;
 	}
 	

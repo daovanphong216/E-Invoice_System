@@ -56,7 +56,10 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-	public String loginPage() {
+	public String loginPage(Principal principal) {
+		if(principal.getName().length()>0) {
+			return "redirect:/";
+		}
 		return "loginPage";
 	}
 
@@ -65,7 +68,6 @@ public class AccountController {
 		if(principal.getName().length()>0) {
 			return "redirect:/";
 		}
-		System.out.println("huhuh");
 		return "registerPage";
 	}
 

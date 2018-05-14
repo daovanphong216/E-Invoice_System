@@ -1,10 +1,12 @@
 $("document").ready(function() {
-	$('#table_body a').click(function() {
+	$('#table_body td a.last').click(function() {
 		var id = $(this).attr("account_id");
 		var status = $(this).attr("status");
 		var pos = $(this).attr("pos");
 		changeActive(id,status, pos);
 	});
+	
+	
 	var totalUsers = 0;
 	var activeUsers = 0;
 	var deactiveUsers = 0;
@@ -109,7 +111,7 @@ $("document").ready(function() {
 			$('#table_body').append(data_get);
 			$(".listTable").show();
 			setGeneralInfo();
-			$('#table_body a').click(function() {
+			$('#table_body td a.last').click(function() {
 				var id = $(this).attr("account_id");
 				var status = $(this).attr("status");
 				var pos = $(this).attr("pos");
@@ -154,20 +156,7 @@ $("document").ready(function() {
 		getUser();
 	});*/
 
-	$('.form_datetime').datetimepicker({
-		// language: 'fr',
-		weekStart : 1,
-		todayBtn : 1,
-		autoclose : 1,
-		todayHighlight : 1,
-		startView : 2,
-		forceParse : 0,
-		showMeridian : 1
-	});
 
-	$("#ok-buton").click(function() {
-		setDateTimePicker();
-	});
 	
 	
 	

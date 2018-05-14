@@ -32,7 +32,7 @@
         <intercept-url pattern="/getAllAccounts" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/createAdmin" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/getAllAdmins" access="hasRole('ROLE_ADMIN')" />
-         <intercept-url pattern="/createtype" access="hasRole('ROLE_ADMIN')" />
+         <intercept-url pattern="/createtype" access="isAuthenticated()" />
 
 		<intercept-url pattern="/invoices" access="hasRole('ROLE_MEMBER')" />
         <intercept-url pattern="/dailyinvoices" access="hasRole('ROLE_MEMBER')" />

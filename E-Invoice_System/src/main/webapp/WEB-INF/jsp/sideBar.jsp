@@ -52,7 +52,7 @@
 			<span class="glyphicon glyphicon-search"></span> Search
 		</button>
 				
-		<script type="text/javascript" src="././resources/assets/js/searchAll.js"></script>	
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/searchAll.js"></script>	
 	</form>
 	
 </nav>

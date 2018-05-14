@@ -19,15 +19,12 @@
 <link rel="stylesheet"
 	href="<c:url value='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>" />
 <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+
 
 
 
@@ -39,28 +36,16 @@
 	href="<c:url value='/resources/assets/css/UserInfoStyle.css'/>" />
 
 
-<link rel="stylesheet"
-	href="<c:url value='/resources/assets/css/userForm.css'/>" />
+
 </head>
 <body>
 	<div class="flex-container">
 		<%@ include file="header.jsp"%>
-		<%@ include file="sideBar.jsp"%>
+		<%@ include file="AdminSideBar.jsp"%>
 		<article class="page-body article">
 
 			<div class="">
 				<!-- Modal -->
-				<c:if test="${isAdmin != true}">
-					<div class="modal fade" id="editModal" role="dialog">
-						<div class="modal-dialog">
-	
-							<!-- Modal content-->
-							<div class="modal-content">
-								<%@ include file="userEdit.jsp"%>
-							</div>
-						</div>
-					</div>
-				</c:if>
 				<div class="row">
 					<div
 						class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
@@ -104,15 +89,6 @@
 									</div>
 								</div>
 							</div>
-							<c:if test="${isAdmin != true}">
-								<div class="panel-footer">
-									<span class="pull-right"> <a href="#"
-										data-original-title="Edit this user" data-toggle="tooltip"
-										type="button" class="modalstart btn btn-sm btn-warning"><i
-											class="glyphicon glyphicon-edit"></i></a>
-									</span>
-								</div>
-							</c:if>
 						</div>
 					</div>
 				</div>
@@ -123,5 +99,4 @@
 	</div>
 
 </body>
-<script src="<c:url value='/resources/assets/js/userInfo.js'/>"></script>
 </html>
