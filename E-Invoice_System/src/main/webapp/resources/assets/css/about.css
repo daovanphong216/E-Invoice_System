@@ -1,0 +1,22 @@
+.aboutus_content img{
+	border-radius: 50%;
+    max-height: 20%;
+    max-width: 20%;
+	float: left;
+}
+.aboutus_content .info{
+	text-align: left;
+	float: left;
+	width: 70%;
+	font-size: 22px;
+}
+.aboutus_content .info p::first-letter{
+	color: #c69c6d;
+	float: left;
+	font-size: 3em;
+	margin: 0 .2em 0 0;
+}
+.aboutus_content {
+	margin-right: 5%;
+	margin-left: 5%;
+}
