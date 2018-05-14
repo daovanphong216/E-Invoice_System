@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import model.Invoice;
@@ -24,5 +25,8 @@ import model.User;
 
 	public void createInvoice(String description, Date date, double money, long cCode, String invoiceNo, double vat,
 			User currentuser, String type);
+	
+	public List<Invoice> Search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, long typeId, long ownerId, int firstResult, int maxResults);
 
 }
