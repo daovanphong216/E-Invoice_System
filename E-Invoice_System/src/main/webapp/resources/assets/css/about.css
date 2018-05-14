@@ -1,20 +1,20 @@
 .aboutus_content img{
 	border-radius: 50%;
-    max-height: 20%;
-    max-width: 20%;
+    max-height: 50%;
+    max-width: 50%;
 	float: left;
 }
 .aboutus_content .info{
 	text-align: left;
 	float: left;
 	width: 70%;
-	font-size: 22px;
+	font-size: 18px;
 }
 .aboutus_content .info p::first-letter{
 	color: #c69c6d;
 	float: left;
-	font-size: 3em;
-	margin: 0 .2em 0 0;
+	font-size: 3.5em;
+	margin: 0 10px 10px 10px;
 }
 .aboutus_content {
 	margin-right: 5%;
