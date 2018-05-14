@@ -22,7 +22,7 @@ function getInvoicejsonByDate(dateStr) {
 function getAllTypesjson(dateStr) {
     var str;
     $.ajax({
-        url: "/E-Invoice_System/getAllTypeInfor",
+        url: "/E-Invoice_System/getAllTypeInforByDate/"+dateStr,
         type: 'GET',
         async: false,
         contentType: "application/json; charset=utf-8",
@@ -62,8 +62,7 @@ function removeinvoice(dateStr) {
 
 
 
-function updateItemToViewList(item){
-	console.log(item);
+function updateItemToViewList(item, typeid){
 	var markup =`
 		<div item-div-id='${item.id}' class="l-item">
 			<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
@@ -88,7 +87,7 @@ function updateItemToViewList(item){
 	// ------------------------------------------------------
 	// ----------------------Here-------------------
 	
-		var divclass = `.list-type${item.type.id}`
+		var divclass = `.list-type${typeid}`
 		$(divclass).append(markup);
 }
 
@@ -102,8 +101,6 @@ $(document).ready(function () {
 
 
 	function listDataArray(data){
-		var noValue;
-		var spendingmoney;
 				for(var i in data){
 					updateItemToViewList(data[i])
 				};
@@ -140,8 +137,8 @@ $(document).ready(function () {
     
     
     
-    generateType();
-    generateList(selectedDay);
+    generateType(selectedDay);
+   // generateList(selectedDay);
     
     
     function generateList(sd){ 	
@@ -152,8 +149,9 @@ $(document).ready(function () {
     	
     };
     
-    function generateType(){
-    	var typesJson = getAllTypesjson();
+    function generateType(sd){
+    	var datestr = getSelectedDateString(sd)
+    	var typesJson = getAllTypesjson(datestr);
     	for(var type in typesJson){
     		var markup = `<div class="type-block style${(typesJson[type].id%3)+1} type${typesJson[type].id}">
         <div class="">
@@ -172,6 +170,11 @@ $(document).ready(function () {
         </div>
     </div>`;
     		$(".selectedView").append(markup);
+    		for(var i in typesJson[type].invoices){
+    			updateItemToViewList(typesJson[type].invoices[i],typesJson[type].id);
+    		}
+    		
+    		
     	}
     }
     
@@ -236,7 +239,7 @@ $(document).ready(function () {
             selectedDay.setMonth(this.getAttribute("mm"));
             selectedDay.setFullYear(this.getAttribute("yy"));
             $('.selectedView').html("");
-            generateType();
+            generateType(selectedDay);
             generateList(selectedDay);
             $( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
             //

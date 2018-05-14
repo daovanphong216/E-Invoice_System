@@ -2,13 +2,16 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import model.InvoiceType;
+import model.User;
 
 
 @Repository
@@ -67,6 +70,17 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	public List<InvoiceType> getAll() {
 		Session session = getSessionFactory().openSession();
         List<InvoiceType> list = session.createQuery("from invoicetypes").list();
+        session.close();
+        return list;
+	}
+
+	@Override
+	public List<InvoiceType> getAll(User user) {
+		Session session = getSessionFactory().openSession();
+		Criteria query = session.createCriteria(InvoiceType.class);
+		query.add(Restrictions.eq("owner", user));
+        @SuppressWarnings("unchecked")
+		List<InvoiceType> list = query.list();
         session.close();
         return list;
 	}

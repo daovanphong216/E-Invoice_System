@@ -38,7 +38,9 @@ public class StartUpJob implements ApplicationListener<ContextRefreshedEvent> {
 	   Account account = accountService.findbyUserName("admin");
 	   if (account ==null){
 		   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		   accountService.create("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN");
+		   
+		   this.userService.createAdmin("admin", passwordEncoder.encode("admin"), "Default admin", "000000000", "admin@admin", "HCM city");
+		  // accountService.create("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN");
 	   	}
 	     
 	   

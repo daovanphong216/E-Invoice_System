@@ -26,9 +26,9 @@ public class Invoice {
 	@PrimaryKeyJoinColumn
 	private InvoiceType type;
 	
-	public InvoiceType getType() {
-		return type;
-	}
+//	public InvoiceType getType() {
+//		return type;
+//	}
 
 	public void setType(InvoiceType type) {
 		this.type = type;

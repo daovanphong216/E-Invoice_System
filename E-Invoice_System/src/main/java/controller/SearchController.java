@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Invoice;
+import model.InvoiceType;
+import model.User;
 import service.AccountService;
 import service.EmailService;
 import service.InvoiceService;
@@ -79,8 +81,9 @@ public class SearchController {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, typeId, this.userService.findbyUserName(userName).getId(), firstResult, maxResults);
-			//return this.userService.findbyUserName(userName).getInvoices(datemin,datemax,moneyMin,moneyMax, cCode, invoiceNo, type);
+				InvoiceType type = this.invoiceTypeService.findbyId(typeId);
+				User currentUser = this.accountService.findbyUserName(userName).getUser();
+				return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, currentUser, firstResult, maxResults);
 		 }		
 	   }
 	

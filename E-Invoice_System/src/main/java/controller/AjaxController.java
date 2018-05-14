@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -80,11 +82,12 @@ public class AjaxController {
 		 String userName= principal.getName();
 		 List<InvoiceType> l = new ArrayList<InvoiceType>();
 		 
-		 for(InvoiceType i : this.invoiceTypeService.getAll()) {
+		 for(InvoiceType i : this.accountService.findbyUserName(userName).getUser().getTypes()) {
 			 InvoiceType t = new InvoiceType();
 			 t.setId(i.getId());
 			 t.setName(i.getName());
 			 t.setLogo("/getTypeInfor/"+i.getId());
+			 t.setInvoices(i.getInvoices());
 			 l.add(t);
 		 }
 		 if (userName.equals("")) {
@@ -93,6 +96,41 @@ public class AjaxController {
 			return l;
 		 }		
 	   }
+	
+	@RequestMapping(value = { "/getAllTypeInforByDate/{dateTime}" }, method = RequestMethod.GET)
+	public List<InvoiceType> getAllTypeInforByDate(Principal principal, Authentication authentication,
+			@PathVariable("dateTime") String dateTime) {
+		
+		Date date = new Date();
+		try {
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+			
+			date = formatter.parse(dateTime+ ", 00:00:00.000");
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		
+		 String userName= principal.getName();
+		 List<InvoiceType> l = new ArrayList<InvoiceType>();
+		 
+		 for(InvoiceType i : this.accountService.findbyUserName(userName).getUser().getTypes()) {
+			 
+			 InvoiceType t = new InvoiceType();
+			 t.setId(i.getId());
+			 t.setName(i.getName());
+			 t.setLogo("/getTypeInfor/"+i.getId());
+			 t.setInvoices(this.invoiceService.SearchAllByDateTime(date, i, this.accountService.findbyUserName(principal.getName()).getUser())); // search
+			 l.add(t);
+		 }
+		 if (userName.equals("")) {
+			 return null;  
+		 } else {
+			return l;
+		 }		
+	   }
+	
 	
 	
 	
@@ -380,7 +418,15 @@ public class AjaxController {
 	public List<String>  createtype(Principal principal, Authentication authentication,
 	        @RequestParam(value="file", required=true) String file,
 	        @RequestParam(value="name", required=true) String name) {
-			this.invoiceTypeService.create(name, file);
+			
+			Account account = this.accountService.findbyUserName(principal.getName());
+			if(account.getRole().equals("ROLE_ADMIN")) {
+				this.invoiceTypeService.createTypeByAdmin(name, file);
+			}else {
+				this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
+			}
+			
+		//	this.invoiceTypeService.create(name, file);
 		 	
 			List<String> response = new ArrayList<String>();
 			response.add("success");

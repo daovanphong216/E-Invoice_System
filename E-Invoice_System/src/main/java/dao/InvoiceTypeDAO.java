@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.InvoiceType;
+import model.User;
 
 public interface InvoiceTypeDAO {
 	
@@ -11,4 +12,5 @@ public interface InvoiceTypeDAO {
 	public void remove(long id);
 	public List<InvoiceType> getAll();
 	public void update(InvoiceType invoiceType);
+	public List<InvoiceType> getAll(User user);
 }

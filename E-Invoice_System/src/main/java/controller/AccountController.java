@@ -57,17 +57,17 @@ public class AccountController {
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String loginPage(Principal principal) {
-		if(principal.getName().length()>0) {
-			return "redirect:/";
-		}
+//		if(principal.getName() !=null &&principal.getName().length()>0) {
+//			return "redirect:/";
+//		}
 		return "loginPage";
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public String registerPage(Principal principal) {
-		if(principal.getName().length()>0) {
-			return "redirect:/";
-		}
+//		if(principal.getName().length()>0) {
+//			return "redirect:/";
+//		}
 		return "registerPage";
 	}
 

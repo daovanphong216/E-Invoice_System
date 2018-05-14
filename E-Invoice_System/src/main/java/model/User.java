@@ -69,44 +69,54 @@ public class User {
 	return report;
 	}
 	
-	
+	//need to rewrite
 	public Hashtable<String, Double> getMoneyTypeReport(int year, int month) {			
 		Hashtable<String, Double> report = new Hashtable<>();
-		for (Invoice i : this.getInvoices()) {
-			
-			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)) {
+		for(InvoiceType type: this.getTypes()) {
+			for (Invoice i : type.getInvoices()) {
 				
-				if(!report.containsKey(i.getType().getName())) {
-					report.put(i.getType().getName(), i.getAmountOfMoney());
-				}else {
-					Double crr = report.get(i.getType().getName());
-					report.put(i.getType().getName(), i.getAmountOfMoney()+crr);
+				LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)) {
+					
+					if(!report.containsKey(type.getName())) {
+						report.put(type.getName(), i.getAmountOfMoney());
+					}else {
+						Double crr = report.get(type.getName());
+						report.put(type.getName(), i.getAmountOfMoney()+crr);
+					}
 				}
-			}
-		}		
+			}		
+		}
+		
+		
 	return report;
 	}
+	
+	
+	//need to rewrite
 	public Set<TypeReport>getTypeTeport(int year, int month, int day){
 		ArrayList<String> namelist= new ArrayList<String>(0);
 		ArrayList<Integer> noofinvoicelist= new ArrayList<Integer>(0);
 		ArrayList<Double> totalmoneylist= new ArrayList<Double>(0);
 		Set<TypeReport> list = new HashSet<TypeReport>(0);
-		for (Invoice i : this.getInvoices()) {
-			LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)&&(localDatetemp.getDayOfMonth()== day)) {
-					if(!namelist.contains(i.getType().getName())) {
-						namelist.add(i.getType().getName());
-						totalmoneylist.add(i.getAmountOfMoney());
-						noofinvoicelist.add(1);
-					}
-					else {
-						int index = namelist.indexOf(i.getType().getName());
-						totalmoneylist.set(index, totalmoneylist.get(index) + i.getAmountOfMoney());
-						noofinvoicelist.set(index, noofinvoicelist.get(index)+ 1);
-					}
+		for(InvoiceType type: this.getTypes()) {
+			for (Invoice i : type.getInvoices()) {
+				LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)&&(localDatetemp.getDayOfMonth()== day)) {
+						if(!namelist.contains(type.getName())) {
+							namelist.add(type.getName());
+							totalmoneylist.add(i.getAmountOfMoney());
+							noofinvoicelist.add(1);
+						}
+						else {
+							int index = namelist.indexOf(type.getName());
+							totalmoneylist.set(index, totalmoneylist.get(index) + i.getAmountOfMoney());
+							noofinvoicelist.set(index, noofinvoicelist.get(index)+ 1);
+						}
+				}
 			}
 		}
+		
 		
 		for(int i=0;i < namelist.size(); i++) {
 			list.add(new TypeReport(namelist.get(i), noofinvoicelist.get(i), totalmoneylist.get(i)));
@@ -233,28 +243,40 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Set<Invoice> getInvoices(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
-			String invoiceNo, String type) {
-			LocalDate localDateMin = datemin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			LocalDate localDateMax = datemax.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//	public Set<Invoice> getInvoices(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+//			String invoiceNo, String type) {
+//			LocalDate localDateMin = datemin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//			LocalDate localDateMax = datemax.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//
+//			Set<Invoice> results = new HashSet<Invoice>(0);
+//			for(Invoice i: this.getInvoices()) {
+//				if(i.getType().getName().equals(type)|| type.equals("")) {
+//					LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//					if(localDatetemp.isAfter(localDateMin)&& localDatetemp.isBefore(localDateMax)) {
+//						if(i.getAmountOfMoney()>moneyMin&&i.getAmountOfMoney()<moneyMax) {
+//							if(config.CompareString.distance(i.getInvoiceNo(), invoiceNo)<3|| invoiceNo.equals("")) {
+//								if(config.CompareString.distance(String.valueOf(i.getCustomerCode()), String.valueOf(cCode))<3||cCode==-1) {
+//									results.add(i);
+//								}
+//							}
+//						}
+//					}
+//				}
+//				
+//			}
+//		
+//			return results;
+//	}
+	
+	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<InvoiceType> types = new HashSet<InvoiceType>(	0);
 
-			Set<Invoice> results = new HashSet<Invoice>(0);
-			for(Invoice i: this.getInvoices()) {
-				if(i.getType().getName().equals(type)|| type.equals("")) {
-					LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-					if(localDatetemp.isAfter(localDateMin)&& localDatetemp.isBefore(localDateMax)) {
-						if(i.getAmountOfMoney()>moneyMin&&i.getAmountOfMoney()<moneyMax) {
-							if(config.CompareString.distance(i.getInvoiceNo(), invoiceNo)<3|| invoiceNo.equals("")) {
-								if(config.CompareString.distance(String.valueOf(i.getCustomerCode()), String.valueOf(cCode))<3||cCode==-1) {
-									results.add(i);
-								}
-							}
-						}
-					}
-				}
-				
-			}
-		
-			return results;
+	public Set<InvoiceType> getTypes() {
+		return types;
 	}
+
+	public void setTypes(Set<InvoiceType> types) {
+		this.types = types;
+	}
+	
 }

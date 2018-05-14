@@ -15,4 +15,7 @@ public interface UserService {
 	public User findbyId(long id);
 	public boolean checkDuplicatedUser(String username);
 	public void createMember(String userName, String hashPassword, String name, String phoneNumber, String email, String address);
+	public void createAdmin(String string, String encode, String string2, String string3, String string4,
+			String string5);
+	
 }
