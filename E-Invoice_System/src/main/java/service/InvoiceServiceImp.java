@@ -120,9 +120,10 @@ public class InvoiceServiceImp implements InvoiceService{
 
 	@Override
 	public List<Invoice> Search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
-			String invoiceNo, long typeId, long ownerId) {
+			String invoiceNo, long typeId, long ownerId, int firstResult, int maxResults) {
 		return this.invoiceDAO.search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, typeId, ownerId, firstResult, maxResults);
 	}
+
 
 
 
