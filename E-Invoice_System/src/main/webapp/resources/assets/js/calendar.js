@@ -78,7 +78,8 @@ function updateItemToViewList(item){
 				<button item-id='${item.id}' class='btn btn-default btn-sm item-button removeItem'>
 					<span class='glyphicon glyphicon-remove-sign'></span>
 				</button>
-            	<button item-id='${item.id}' type='button' class='btn btn-default btn-sm' class='updateItem'>
+            	<button item-id='${item.id}' data-toggle="modal"
+			data-target="#UpdateInvoiceFormModal" type='button' class='btn btn-default btn-sm updateItem'>
                 	<span class='glyphicon glyphicon-level-up'></span>
             	</button>    
 			</div>

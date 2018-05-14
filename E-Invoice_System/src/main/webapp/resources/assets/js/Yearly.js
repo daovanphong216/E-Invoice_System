@@ -40,25 +40,25 @@ google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawPieChart);
 function drawPieChart() {
     
-    var options = { 'width': 550, 'height': 400 };
+    var options = { 'width': 1150, 'height': 900 };
     $("document").ready(function() {
-    	year = new Date().getFullYear();
-    	$('#year').html(year);
-    	var data = new google.visualization.DataTable(forcessdata(getReportjson(year)));
+    	yyear = new Date().getFullYear();
+    	$('#yyear').html(yyear);
+    	var data = new google.visualization.DataTable(forcessdata(getReportjson(yyear)));
     	var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
     	piechart.draw(data, options);
     });
-    $('#left').click(function(){
-    	year--;
-    	$('#year').html(year);
-    	var data = new google.visualization.DataTable(forcessdata(getReportjson(year)));
+    $('#yleft').click(function(){
+    	yyear--;
+    	$('#yyear').html(yyear);
+    	var data = new google.visualization.DataTable(forcessdata(getReportjson(yyear)));
     	var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
     	piechart.draw(data, options);
     });
-    $('#right').click(function(){
-    	year++;
-    	$('#year').html(year);
-    	var data = new google.visualization.DataTable(forcessdata(getReportjson(year)));
+    $('#yright').click(function(){
+    	yyear++;
+    	$('#yyear').html(yyear);
+    	var data = new google.visualization.DataTable(forcessdata(getReportjson(yyear)));
     	var piechart = new google.visualization.ColumnChart(document.getElementById('piechart'));
     	piechart.draw(data, options);
     });
