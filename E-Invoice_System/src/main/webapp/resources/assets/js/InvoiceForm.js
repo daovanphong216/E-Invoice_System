@@ -63,7 +63,7 @@ $(document).ready(function(){
 		item = ajaxsubmitcreate(fdata);
 		var returnedDay = new Date(item.dateTime);
 		if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
-			updateItemToViewList(item);
+			updateItemToViewList(item,fdata.type);
 			$.get("/E-Invoice_System/gettypereport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
         		for(i in data){
         			$('.'+data[i].name+'no').html(data[i].noOfInvoice);

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import dao.InvoiceTypeDAO;
+import dao.UserDAO;
 import model.InvoiceType;
+import model.User;
 
 
 
@@ -17,6 +19,10 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	@Autowired
 	@Qualifier("invoiceTypeDAO")
 	InvoiceTypeDAO InvoiceTypeDao;
+	
+	@Autowired
+	@Qualifier("userDAO")
+	UserDAO userDao;
 	
 	@Override
 	public void create(InvoiceType type) {
@@ -65,6 +71,30 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	@Override
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName){
 		return this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
+	}
+
+	@Override
+	public void createTypeByAdmin(String name, String file) {
+		List<User> list = this.userDao.getAll();
+		for(User user : list) {
+			InvoiceType newtype = new InvoiceType();
+			newtype.setLogo(file);
+			newtype.setName(name);
+			newtype.setOwner(user);
+			newtype.setDeleteAble(false);
+			this.InvoiceTypeDao.create(newtype);
+		}
+		
+	}
+
+	@Override
+	public void createTypeByMember(String name, String file, User user) {
+		InvoiceType newtype = new InvoiceType();
+		newtype.setLogo(file);
+		newtype.setName(name);
+		newtype.setOwner(user);
+		this.InvoiceTypeDao.create(newtype);
+		
 	}
 
 }

@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import model.Invoice;
+import model.InvoiceType;
 import model.User;
 
 
@@ -77,7 +78,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 
 	@Override
 	public List<Invoice> search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
-			String invoiceNo, long typeId, long ownerId, int firstResult, int maxResults) {
+			String invoiceNo, InvoiceType type, User owner, int firstResult, int maxResults) {
 		
 		
 		Session session = getSessionFactory().openSession();
@@ -86,10 +87,10 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		Criteria query = session.createCriteria(Invoice.class);
 		query.add(Restrictions.between("dateTime", datemin, datemax));
 		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
-		query.add(Restrictions.eqOrIsNull("type_id", typeId));
-		query.add(Restrictions.ilike("InvoceNo", invoiceNo, MatchMode.ANYWHERE));
-		query.add(Restrictions.ilike("customerCode", cCode));
-		query.add(Restrictions.eq("owner_id", ownerId));
+		query.add(Restrictions.eqOrIsNull("type", type));
+		query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
+		//query.add(Restrictions.ilike("customerCode", cCode));
+		query.add(Restrictions.eq("owner", owner));
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
 		
@@ -101,6 +102,25 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		
 		return results;
 		
+	}
+
+	@Override
+	public List<Invoice> SearchAllByDateTime(Date dateTime, InvoiceType type, User owner) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(Invoice.class);
+		query.add(Restrictions.eq("dateTime", dateTime));
+		query.add(Restrictions.eqOrIsNull("type", type));
+		query.add(Restrictions.eq("owner", owner));
+		
+		@SuppressWarnings("unchecked")
+		List<Invoice> results = query.list();
+		
+		tx.commit();
+		session.close();
+		
+		return results;
 	}
 	
 	

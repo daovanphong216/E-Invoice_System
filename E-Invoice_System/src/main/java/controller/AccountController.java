@@ -57,6 +57,7 @@ public class AccountController {
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String loginPage(Principal principal) {
+
 		if(principal !=null) {
 			return "redirect:/";
 		}
@@ -65,6 +66,7 @@ public class AccountController {
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public String registerPage(Principal principal) {
+
 		if(principal !=null) {
 			return "redirect:/";
 		}

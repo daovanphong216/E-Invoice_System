@@ -20,7 +20,7 @@ public class Account {
 	private String userName;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
-	public User user;
+	private User user;
 	
 	public User getUser() {
 		return user;
