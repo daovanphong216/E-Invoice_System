@@ -2,7 +2,6 @@ package config;
 
 import java.util.concurrent.ScheduledFuture;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 public class ScheduleBean {

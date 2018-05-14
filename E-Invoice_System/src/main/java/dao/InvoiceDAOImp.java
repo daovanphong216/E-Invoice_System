@@ -1,11 +1,14 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import model.Invoice;
@@ -70,6 +73,34 @@ public class InvoiceDAOImp implements InvoiceDAO{
         List<Invoice> list = session.createQuery("from invoices").list();
         session.close();
         return list;
+	}
+
+	@Override
+	public List<Invoice> search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, long typeId, long ownerId, int firstResult, int maxResults) {
+		
+		
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(Invoice.class);
+		query.add(Restrictions.between("dateTime", datemin, datemax));
+		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
+		query.add(Restrictions.eqOrIsNull("type_id", typeId));
+		query.add(Restrictions.ilike("InvoceNo", invoiceNo, MatchMode.ANYWHERE));
+		query.add(Restrictions.ilike("customerCode", cCode));
+		query.add(Restrictions.eq("owner_id", ownerId));
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResults);
+		
+		@SuppressWarnings("unchecked")
+		List<Invoice> results = query.list();
+		
+		tx.commit();
+		session.close();
+		
+		return results;
+		
 	}
 	
 	

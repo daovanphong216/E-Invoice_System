@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class SearchController {
 	 InvoiceTypeService invoiceTypeService;
 	
 	@RequestMapping(value = { "/SearchInvoice" }, method = RequestMethod.GET)
-	public Set<Invoice> searchInvoice(Principal principal, Authentication authentication,
+	public List<Invoice> searchInvoice(Principal principal, Authentication authentication,
 		
 			@RequestParam(value="dateMin", required=true) String dateMin,
 			@RequestParam(value="dateMax", required=true) String dateMax,
@@ -56,7 +57,9 @@ public class SearchController {
 			@RequestParam(value="moneyMax", required=true) double moneyMax,
 			@RequestParam(value="cCode", required=true) long cCode,
 			@RequestParam(value="invoiceNo", required=true) String invoiceNo,
-			@RequestParam(value="type", required=true) String type
+			@RequestParam(value="type", required=true) long typeId,
+			@RequestParam(value="firstResult", required=true) int firstResult,
+			@RequestParam(value="maxResults", required=true) int maxResults
 			
 			) {
 		 String userName= principal.getName();
@@ -76,7 +79,8 @@ public class SearchController {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-			return this.userService.findbyUserName(userName).getInvoices(datemin,datemax,moneyMin,moneyMax, cCode, invoiceNo, type);
+				return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, typeId, this.userService.findbyUserName(userName).getId(), firstResult, maxResults);
+			//return this.userService.findbyUserName(userName).getInvoices(datemin,datemax,moneyMin,moneyMax, cCode, invoiceNo, type);
 		 }		
 	   }
 	
