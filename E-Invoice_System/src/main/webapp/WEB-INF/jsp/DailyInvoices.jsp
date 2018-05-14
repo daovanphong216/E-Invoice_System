@@ -48,6 +48,20 @@
 
 			</div>
 		</div>
+		
+		
+		<div class="modal fade" id="UpdateInvoiceFormModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<%@ include file="updateinvoiceform.jsp"%>
+				</div>
+
+			</div>
+		</div>
+		
+		
 		<div class="modal fade" role="dialog" id= "SetLimitMonneyModal">
 			<div class="modal-dialog">
 			<div class="modal-content">
