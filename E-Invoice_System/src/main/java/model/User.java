@@ -232,4 +232,29 @@ public class User {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public Set<Invoice> getInvoices(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, String type) {
+			LocalDate localDateMin = datemin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			LocalDate localDateMax = datemax.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+			Set<Invoice> results = new HashSet<Invoice>(0);
+			for(Invoice i: this.getInvoices()) {
+				if(i.getType().getName().equals(type)|| type.equals("")) {
+					LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					if(localDatetemp.isAfter(localDateMin)&& localDatetemp.isBefore(localDateMax)) {
+						if(i.getAmountOfMoney()>moneyMin&&i.getAmountOfMoney()<moneyMax) {
+							if(config.CompareString.distance(i.getInvoiceNo(), invoiceNo)<3|| invoiceNo.equals("")) {
+								if(config.CompareString.distance(String.valueOf(i.getCustomerCode()), String.valueOf(cCode))<3||cCode==-1) {
+									results.add(i);
+								}
+							}
+						}
+					}
+				}
+				
+			}
+		
+			return results;
+	}
 }
