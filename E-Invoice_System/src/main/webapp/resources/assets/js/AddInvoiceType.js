@@ -14,21 +14,24 @@ $("document").ready(function() {
     }
 
 	$('#add_type').click(function(){
-		var file=getBase64Image(document.getElementById("image"));
+		
 		var name=$("#typeaddname").val();
-		if(file !="" && file!=null && name!="" && name!=null){
-		$.ajax({
-			type : "POST",
-			url : "/E-Invoice_System/createtype",
-			data : {
-				'name' : name,
-				'file' : file
-			},
-			dataType : "json",
-			success : function(data) {
-				alert("Success!");
-			}
-		});
+		if($('#file').get(0).files.length > 0 && name!="" && name!=null){
+			var file=getBase64Image(document.getElementById("image"));
+			$.ajax({
+				
+				type : "POST",
+				url : "/E-Invoice_System/createtype",
+				data : {
+					'name' : name,
+					'file' : file
+				},
+				dataType : "json",
+				success : function(data) {
+					$(".limitform")[1].reset();
+					alert(data[0]);
+				}
+			});
 		}
 	});
 	

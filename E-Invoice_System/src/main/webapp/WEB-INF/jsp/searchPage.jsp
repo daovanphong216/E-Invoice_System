@@ -44,6 +44,6 @@
 	<%@ include file="footer.jsp"%>
 </div>
 	
-	
+<script type="text/javascript" src="././resources/assets/js/searchPage.js"></script>	
 </body>
 </html>

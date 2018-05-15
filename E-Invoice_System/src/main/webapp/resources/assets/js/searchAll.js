@@ -46,7 +46,7 @@ $("document").ready(function() {
 			searchdata.dateMin= '1970-1-1';
 		}
 		if(searchdata.dateMax==''){
-			searchdata.dateMin= '3000-12-31';
+			searchdata.dateMax= '3000-12-31';
 		}
 		
 		
@@ -58,9 +58,14 @@ $("document").ready(function() {
 			searchdata.moneyMax= 1000000000;
 		}
 		
-		if(searchdata.typeId==''){
-			searchdata.dateMin= 1;
+		if(searchdata.typeId==null){
+			searchdata.typeId= 1;
 		}
+		
+		if(searchdata.typeId==''){
+			searchdata.typeId= 1;
+		}
+		
 		
 		if(searchdata.cCode==''){
 			searchdata.cCode= '-999999';

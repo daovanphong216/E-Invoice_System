@@ -18,4 +18,5 @@ public interface InvoiceTypeService {
 	public void createTypeByMember(String name, String file, User user);
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user);
+	public void DeleteInvoiceType(long invoiceTypeId, User user);
 }

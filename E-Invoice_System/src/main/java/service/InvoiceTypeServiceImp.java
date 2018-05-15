@@ -103,4 +103,14 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 		return this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName, user);
 	}
 
+	@Override
+	public void DeleteInvoiceType(long invoiceTypeId, User user){
+		InvoiceType it = InvoiceTypeDao.findbyInvoiceId(invoiceTypeId, user);
+		if (it!=null){
+			//Set <InvoiceType> its = user.getTypes();
+			//if (its.contains(it)){
+				InvoiceTypeDao.remove(invoiceTypeId);
+			//}
+		}
+	}
 }

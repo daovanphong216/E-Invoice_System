@@ -21,6 +21,7 @@ function ajaxsubmitcreate(data) {
 }
 
 function getSelectedDateString(selectedDay){
+	console.log(selectedDay);
 	var sdd= selectedDay.getDate();
 	if (sdd <10){
 		sdd = '0'+sdd;
@@ -31,7 +32,9 @@ function getSelectedDateString(selectedDay){
 	}
 	var sdy= selectedDay.getFullYear();
 	
-	return datestr = sdy+'-'+sdm+'-'+sdd;
+	var datestr = sdy+'-'+sdm+'-'+sdd;
+	console.log(datestr);
+	return datestr;
 }
 
 $(document).ready(function(){
@@ -39,29 +42,7 @@ $(document).ready(function(){
 	$( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
 	
 	//-----------------------------------
-	function showType(){
-		$("#typeSelect" ).empty();
-		var typesJson = getAllTypesjson();
-		for(var type in typesJson){
-			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-			$(".typeSelect" ).append(markup);
-		}
-	}
-	showType();
 	
-	//-----------------------------------
-	function showTypeDelete(){
-		var typesJson = getAllTypesjson();
-		$("#delete_type" ).empty();
-		for(var type in typesJson){
-			if (typesJson[type].deleteAble==false){
-			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-			$("#delete_type" ).append(markup);
-			}
-		}
-	}
-	
-	 showTypeDelete();
 	 
 	$('.create-button').click(function(){
 		if($(".invoiceform").valid()){

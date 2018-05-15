@@ -14,5 +14,6 @@ public interface InvoiceTypeDAO {
 	public void update(InvoiceType invoiceType);
 	public List<InvoiceType> getAll(User user);
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user);
+	public InvoiceType findbyInvoiceId(long invoiceId, User user);
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
 }
