@@ -18,17 +18,18 @@
 }
 
 header {
-	background: black;
+	background: #272727;
 	color: white;
 }
 
 footer {
-	background: #aaa;
+	background: #272727;
 	color: white;
+	padding: 25px !important;	
 }
 
 .nav {
-	background: #060404d9;
+	background: #171616ab;
 }
 
 .nav ul {
@@ -84,7 +85,6 @@ footer {
 	
 }
 
-
 .ta-sidebar{
 	padding: 10px;
 	width: 140px;
@@ -112,11 +112,6 @@ footer {
 	border-width: 1px;
 }
 
-footer{
-	padding: 25px !important;
-	background: #000000;
-}
-
 .search-form-monthly
 {
 	margin-left: 5%;
@@ -132,8 +127,7 @@ footer{
     border-radius: 15px
 }
 
-#select-option,
-#delete_type
+#select-option, #delete_type
 {
 	color: black;
     height: 30px;
@@ -150,8 +144,7 @@ footer{
 	margin-top: 5%;
 }
 
-#search-btn,
-#delete_type_btn
+#search-btn, #delete_type_btn
 {
 	margin-left: 18%;
     width: 55%;
