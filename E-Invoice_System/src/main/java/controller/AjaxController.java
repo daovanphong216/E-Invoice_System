@@ -286,16 +286,14 @@ public class AjaxController {
 	   }
 	
 	@RequestMapping(value = { "/removeinvoice/{id}" }, method = RequestMethod.GET)
-	public String removeinvoice(Principal principal, Authentication authentication,
+	public Invoice removeinvoice(Principal principal, Authentication authentication,
 			@PathVariable("id") long id) {
-		System.out.println(id);
 		 String userName= principal.getName();
 		 if (userName.equals("")) {
-			 return "{'msg': 'fail'}";  
+			 return null;
 		 } else {
 			 User user = this.userService.findbyUserName(userName);
-			 this.invoiceService.remove(id, user);
-			 return "{'msg': 'success'}";  
+			 return this.invoiceService.removeInvoice(id, user);
 		 }		
 	   }
 	

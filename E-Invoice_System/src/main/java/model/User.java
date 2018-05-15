@@ -95,6 +95,7 @@ public class User {
 	
 	//need to rewrite
 	public Set<TypeReport>getTypeTeport(int year, int month, int day){
+		ArrayList<Long> idlist= new ArrayList<Long>(0);
 		ArrayList<String> namelist= new ArrayList<String>(0);
 		ArrayList<Integer> noofinvoicelist= new ArrayList<Integer>(0);
 		ArrayList<Double> totalmoneylist= new ArrayList<Double>(0);
@@ -104,6 +105,7 @@ public class User {
 				LocalDate localDatetemp = i.getDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					if((localDatetemp.getYear()== year)&&(localDatetemp.getMonthValue()== month)&&(localDatetemp.getDayOfMonth()== day)) {
 						if(!namelist.contains(type.getName())) {
+							idlist.add(type.getId());
 							namelist.add(type.getName());
 							totalmoneylist.add(i.getAmountOfMoney());
 							noofinvoicelist.add(1);
@@ -119,7 +121,7 @@ public class User {
 		
 		
 		for(int i=0;i < namelist.size(); i++) {
-			list.add(new TypeReport(namelist.get(i), noofinvoicelist.get(i), totalmoneylist.get(i)));
+			list.add(new TypeReport(idlist.get(i), namelist.get(i), noofinvoicelist.get(i), totalmoneylist.get(i)));
 		}
 		
 		return list;

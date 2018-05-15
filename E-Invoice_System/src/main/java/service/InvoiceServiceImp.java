@@ -135,6 +135,15 @@ public class InvoiceServiceImp implements InvoiceService{
 		return this.invoiceDAO.search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, currentUser, firstResult, maxResults);
 	}
 
+	@Override
+	public model.Invoice removeInvoice(long id, User user) {
+		Invoice invoice = this.invoiceDAO.findbyId(id);
+		user.getInvoices().remove(invoice);
+		this.userDao.update(user);
+		this.invoiceDAO.remove(id, user);
+		return invoice;
+	}
+
 
 
 

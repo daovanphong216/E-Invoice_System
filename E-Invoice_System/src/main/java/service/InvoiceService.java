@@ -38,4 +38,7 @@ import model.User;
 	public List<model.Invoice> Search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
 			String invoiceNo, User currentUser, int firstResult, int maxResults);
 
+
+	public model.Invoice removeInvoice(long id, User user);
+
 }
