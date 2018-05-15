@@ -21,6 +21,7 @@ function ajaxsubmitcreate(data) {
 }
 
 function getSelectedDateString(selectedDay){
+	console.log(selectedDay);
 	var sdd= selectedDay.getDate();
 	if (sdd <10){
 		sdd = '0'+sdd;
@@ -31,7 +32,9 @@ function getSelectedDateString(selectedDay){
 	}
 	var sdy= selectedDay.getFullYear();
 	
-	return datestr = sdy+'-'+sdm+'-'+sdd;
+	var datestr = sdy+'-'+sdm+'-'+sdd;
+	console.log(datestr);
+	return datestr;
 }
 
 $(document).ready(function(){
@@ -41,7 +44,7 @@ $(document).ready(function(){
 	//-----------------------------------
 	function showType(){
 		$("#typeSelect" ).empty();
-		var typesJson = getAllTypesjson();
+		var typesJson = getAllTypesjson(getSelectedDateString(selectedDay));
 		for(var type in typesJson){
 			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
 			$(".typeSelect" ).append(markup);
@@ -51,7 +54,7 @@ $(document).ready(function(){
 	
 	//-----------------------------------
 	function showTypeDelete(){
-		var typesJson = getAllTypesjson();
+		var typesJson = getAllTypesjson(getSelectedDateString(selectedDay));
 		$("#delete_type" ).empty();
 		for(var type in typesJson){
 			if (typesJson[type].deleteAble==false){
