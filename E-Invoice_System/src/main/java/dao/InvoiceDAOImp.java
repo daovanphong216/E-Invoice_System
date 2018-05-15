@@ -89,7 +89,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
 		query.add(Restrictions.eqOrIsNull("type", type));
 		query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
-		//query.add(Restrictions.ilike("customerCode", cCode));
+		query.add(Restrictions.eq("customerCode", cCode));
 		query.add(Restrictions.eq("owner", owner));
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
@@ -114,6 +114,31 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		query.add(Restrictions.eqOrIsNull("type", type));
 		query.add(Restrictions.eq("owner", owner));
 		
+		@SuppressWarnings("unchecked")
+		List<Invoice> results = query.list();
+		
+		tx.commit();
+		session.close();
+		
+		return results;
+	}
+
+	@Override
+	public List<Invoice> search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, User currentUser, int firstResult, int maxResults) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(Invoice.class);
+		query.add(Restrictions.between("dateTime", datemin, datemax));
+		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
+		if(!invoiceNo.equals("none"))
+			query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
+		query.add(Restrictions.eq("owner", currentUser));
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResults);
+		if (cCode!=-999999)
+			query.add(Restrictions.eq("customerCode", cCode));
 		@SuppressWarnings("unchecked")
 		List<Invoice> results = query.list();
 		

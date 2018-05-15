@@ -39,7 +39,7 @@ function getSelectedDateString(selectedDay){
 
 $(document).ready(function(){
 			
-	$( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
+	$( "input[name=dateTimeInCreateForm]" ).val(getSelectedDateString(selectedDay));
 	
 	//-----------------------------------
 	
@@ -48,13 +48,13 @@ $(document).ready(function(){
 		if($(".invoiceform").valid()){
 		
 		fdata = {};
-		fdata.customerCode= $( "input[name=customerCode]" ).val();
-		fdata.invoiceNo= $( "input[name=invoiceNo]" ).val();
-		fdata.dateTime= $( "input[name=dateTime]" ).val();
-		fdata.amountOfMoney= $( "input[name=amountOfMoney]" ).val();
-		fdata.description= $( "input[name=description]" ).val();
-		fdata.VAT= $( "input[name=VAT]" ).val();
-		fdata.type= $("select[name=type]" ).val();
+		fdata.customerCode= $( "input[name=customerCodeInCreateForm]" ).val();
+		fdata.invoiceNo= $( "input[name=invoiceNoInCreateForm]" ).val();
+		fdata.dateTime= $( "input[name=dateTimeInCreateForm]" ).val();
+		fdata.amountOfMoney= $( "input[name=amountOfMoneyInCreateForm]" ).val();
+		fdata.description= $( "input[name=descriptionInCreateForm]" ).val();
+		fdata.VAT= $( "input[name=VATInCreateForm]" ).val();
+		fdata.type= $("select[name=typeInCreateForm]" ).val();
 
 	fdata.customerCode="1111";
 		item = ajaxsubmitcreate(fdata);
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		
 
 		$(".invoiceform")[0].reset();
-		$( "input[name=dateTime]" ).val(getSelectedDateString(selectedDay));
+		$( "input[name=dateTimeInCreateForm]" ).val(getSelectedDateString(selectedDay));
 		$('#CreateInvoiceFormModal').modal('hide');
 		
 		

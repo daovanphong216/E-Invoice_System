@@ -6,41 +6,41 @@
 	<form class="invoiceform">
 	
 		<div class="form-group">
-			<label for="invoiceNo">Invoice No:</label> <input type="text"
-				class="form-control" id="invoiceNo" placeholder="Enter Invoice No"
-				name="invoiceNo" pattern=".{0}|.{4,20}" required title="Must 4 or more chars (max 20)" maxlength="20">
+			<label for="invoiceNo">Invoice Number:</label> <input type="text"
+				class="form-control" id="invoiceNo" placeholder="Enter Invoice Number"
+				name="invoiceNoInCreateForm" pattern=".{0}|.{4,20}" required title="Must 4 or more chars (max 20)" maxlength="20">
 		</div>
 	
 		<div class="form-group">
 			<label for="customerCode">Customer Code:</label> <input type="number"
 				class="form-control" id="customerCode"
-				placeholder="Enter Customer Code" name="customerCode" min="100000" max="999999999"
+				placeholder="Enter Customer Code" name="customerCodeInCreateForm" min="100000" max="999999999"
 				required title="Must 6 or more chars (max 9)">
 		</div>
 		<div class="form-group">
 			<label for="invoiceNo">Invoice Type:</label> 
-			<select	title="Select your surfboard" name="type" class="form-control typeSelect">
+			<select	title="Select your surfboard" name="typeInCreateForm" class="form-control typeSelect">
 			</select>
 		</div>
 		
 		<div class="form-group">
 			<label for="dateTime">Date Time:</label> <input type="date"
 				class="form-control" id="dateTime" placeholder="Enter Date Time"
-				name="dateTime" required">
+				name="dateTimeInCreateForm" required>
 		</div>
 		<div class="form-group">
 			<label for="amountOfMoney">Amount Of Money:</label> <input
 				type="number" step="0.1" class="form-control" id="amountOfMoney"
-				placeholder="Enter Amount Of Money" name="amountOfMoney" min="0" required>
+				placeholder="Enter Amount Of Money" name="amountOfMoneyInCreateForm" min="0" required>
 		</div>
 		<div class="form-group">
 			<label for="VAT">VAT:</label> <input type="number" step="0.1"
-				class="form-control" id="VAT" placeholder="Enter VAT" name="VAT" min="0" required>
+				class="form-control" id="VAT" placeholder="Enter VAT" name="VATInCreateForm" min="0" required>
 		</div>
 		<div class="form-group">
 			<label for="description">Description:</label> <input type="text"
 				class="form-control" id="description" required
-				placeholder="Enter Description" name="description">
+				placeholder="Enter Description" name="descriptionInCreateForm">
 		</div>
 		<input type="button" value="Create"
 			class="btn btn-default create-button" />

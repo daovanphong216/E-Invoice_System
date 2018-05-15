@@ -121,6 +121,7 @@ public class AjaxController {
 			 t.setId(i.getId());
 			 t.setName(i.getName());
 			 t.setLogo("/getTypeInfor/"+i.getId());
+			 t.setDeleteAble(i.isDeleteAble());
 			 t.setInvoices(this.invoiceService.SearchAllByDateTime(date, i, this.accountService.findbyUserName(principal.getName()).getUser())); // search
 			 l.add(t);
 		 }
@@ -168,10 +169,10 @@ public class AjaxController {
 	public Invoice makeInvoice(Principal principal, Authentication authentication,
 			@RequestParam(value="description", required=true) String description, 
 	        @RequestParam(value="dateTime", required=true) String dateTime, 
-	        @RequestParam(value="amountOfMoney", required=true) String amountOfMoney, 
-	        @RequestParam(value="customerCode", required=true) String customerCode,
+	        @RequestParam(value="amountOfMoney", required=true) double amountOfMoney, 
+	        @RequestParam(value="customerCode", required=true) long customerCode,
 	        @RequestParam(value="invoiceNo", required=true) String invoiceNo,
-	        @RequestParam(value="VAT", required=true) String VAT,
+	        @RequestParam(value="VAT", required=true) double VAT,
 	        @RequestParam(value="type", required=true) long typeId
 	        ) {
 		 String userName= principal.getName();
@@ -186,10 +187,7 @@ public class AjaxController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			 long cCode = Long.parseLong(customerCode);
-			 double money = Double.parseDouble(amountOfMoney);
-			 double vat =  Double.parseDouble(VAT);		 
-			 newinvoice = this.invoiceService.MakeInvoice(description, date, money, cCode, invoiceNo, vat, currentuser, typeId);	 
+			 newinvoice = this.invoiceService.MakeInvoice(description, date, amountOfMoney, customerCode, invoiceNo, VAT, currentuser, typeId);	 
 		 }		
 		 return newinvoice;
 	   }

@@ -79,9 +79,17 @@ public class SearchController {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				InvoiceType type = this.invoiceTypeService.findbyId(typeId);
+				
 				User currentUser = this.accountService.findbyUserName(userName).getUser();
-				return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, currentUser, firstResult, maxResults);
+				if(typeId !=0 && !invoiceNo.equals("none") && cCode!=-999999) {
+					InvoiceType type = this.invoiceTypeService.findbyId(typeId);
+					return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, currentUser, firstResult, maxResults);		
+				}
+				
+			
+				else {
+					return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, currentUser, firstResult, maxResults);
+				}
 		 }		
 	   }
 	
