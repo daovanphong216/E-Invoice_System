@@ -67,5 +67,12 @@ public class UserController {
 			model.addAttribute("user",user);
 	        return "chars";  
 	   }
+	
+	@RequestMapping(value = { "/Search" }, method = RequestMethod.GET)
+	   public String Search(Model model, Principal principal, Authentication authentication) {
+			User user = userService.findbyUserName(principal.getName());
+			model.addAttribute("user",user);
+	        return "searchPage";  
+	   }
 
 }

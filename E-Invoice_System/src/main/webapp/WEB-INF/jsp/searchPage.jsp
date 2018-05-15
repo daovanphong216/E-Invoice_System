@@ -33,89 +33,7 @@
 	<%@ include file="sideBar.jsp"%>
 
 	<article class="page-container article">
-	
-		<div class="page-title">
-			<h2>Invoices List</h2>
-		</div>
-		
-		<!-- Modal -->
-		<div class="modal fade" id="CreateInvoiceFormModal" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<%@ include file="invoiceform.jsp"%>
-				</div>
-
-			</div>
-		</div>
-		
-		
-		<div class="modal fade" id="UpdateInvoiceFormModal" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<%@ include file="updateinvoiceform.jsp"%>
-				</div>
-
-			</div>
-		</div>
-		
-		
-		<div class="modal fade" role="dialog" id= "SetLimitMonneyModal">
-			<div class="modal-dialog">
-			<div class="modal-content">
-					<%@ include file="limitmoneyform.jsp"%>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" role="dialog" id= "AddInvoiceTypeModal">
-			<div class="modal-dialog">
-			<div class="modal-content">
-					<%@ include file="AddInvoiceTypeForm.jsp"%>
-				</div>
-			</div>
-		</div>
-		
-		
-
-		<div class="cal-container" id="main">
-			<div class="calendar-title">
-				<h1 class="text-center">
-					<a id="left" href="#"><</a> <span>&nbsp;</span> <span id="month"></span>
-					<span>&nbsp;</span><span id="year"> </span> <span>&nbsp;</span> <a
-						id="right" href="#">></a>
-				</h1>
-			</div>
-			<div class="calendar-content">
-				<table class="table calendar-table"></table>
-			</div>
-		</div>
-		
-		<div class="list-container">
-			<div class="list-title">
-				<h1 class="text-center">
-					Invoices
-				</h1>
-			</div>
-			<div class="selectedView list pageAll P-List-invoice list-group"></div>
-		</div>
-		<div class="infor">
-			<span><b>Total of date: $</b></span><span class= "totalDateMoney">0.00</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span><b>Total of month: $</b></span><span class= "totalMonthMoney">0.00</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<span><b>Limited Money: $</b></span><span class= "limitedMoney">0.00</span>
-		</div>
-		
-		<div class="buttons">
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#CreateInvoiceFormModal">Create An Invoice</button>
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#SetLimitMonneyModal">Reset Limited Money</button>
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#AddInvoiceTypeModal">Add Type</button>
+		<div class="search-result">
 		</div>
 		
 
@@ -125,13 +43,7 @@
 
 	<%@ include file="footer.jsp"%>
 </div>
-	<script type="text/javascript"
-		src="././resources/assets/js/calendar.js"></script>
-	<script src="././resources/assets/js/InvoicesMain.js"></script>
-	<script type="text/javascript"
-		src="././resources/assets/js/InvoiceForm.js"></script>
-	<script type="text/javascript"
-		src="././resources/assets/js/Setlimit.js"></script>
-
+	
+	
 </body>
 </html>
