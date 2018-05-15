@@ -89,14 +89,14 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	}
 	
 	@Override
-	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName){
+	public List<InvoiceType> findbyInvoiceTypeName(String invoiceTypeName){
 		Session session = getSessionFactory().openSession();
 		Query query= session.createQuery("select it from invoicetypes it where it.name= :name");
 		query.setParameter("name", invoiceTypeName);
 		List<InvoiceType> invoiceTypes = query.list();
 		session.close();
 		if (!invoiceTypes.isEmpty()){
-			return invoiceTypes.get(0);
+			return invoiceTypes;
 		}
         
         return null;

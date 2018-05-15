@@ -183,11 +183,11 @@
 								</c:if>
 								<c:if test="${pageState[index]==0}">
 									<li class='page-item'><a class='page-link'
-										href='${pageContext.request.contextPath}/admin/search/?username=${username}&status=${status}&role=${role}&page=${pageLink[index]}'>${pageValue[index]}</a></li>
+										href='${pageContext.request.contextPath}/admin/search?username=${username}&status=${status}&role=${role}&page=${pageLink[index]}'>${pageValue[index]}</a></li>
 								</c:if>
 								<c:if test="${pageState[index]==1}">
 									<li class='page-item active'><a class='page-link'
-										href='${pageContext.request.contextPath}/admin/search/?username=${username}&status=${status}&role=${role}&page=${pageLink[index]}'>${pageValue[index]}</a></li>
+										href='${pageContext.request.contextPath}/admin/search?username=${username}&status=${status}&role=${role}&page=${pageLink[index]}'>${pageValue[index]}</a></li>
 								</c:if>
 
 							</c:if>

@@ -186,7 +186,7 @@ $(document).ready(function () {
     
     			markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
     			$(".typeSelect" ).append(markup);
-    			if (typesJson[type].deleteAble==false){
+    			if (typesJson[type].deleteAble==true){
     				 markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
     				$("#delete_type" ).append(markup);
     				}
@@ -312,7 +312,7 @@ $(document).ready(function () {
 		for(var type in typesJson){
 			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
 			$(".typeSelect" ).append(markup);
-			if (typesJson[type].deleteAble==false){
+			if (typesJson[type].deleteAble==true){
 				markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
 				$("#delete_type" ).append(markup);
 				}

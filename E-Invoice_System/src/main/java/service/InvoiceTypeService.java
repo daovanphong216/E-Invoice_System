@@ -16,7 +16,8 @@ public interface InvoiceTypeService {
 	public Set<Object> getAlltypeInfor();
 	public void createTypeByAdmin(String name, String file);
 	public void createTypeByMember(String name, String file, User user);
-	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName);
+	public void deleteByName(String invoiceTypeName);
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user);
 	public void DeleteInvoiceType(long invoiceTypeId, User user);
+	public List<InvoiceType> getAll(User user);
 }

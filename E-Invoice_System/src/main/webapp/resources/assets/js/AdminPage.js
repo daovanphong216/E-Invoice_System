@@ -1,5 +1,5 @@
 $("document").ready(function() {
-	$('#table_body td a.last').click(function() {
+	$('#table_body td a').click(function() {
 		var id = $(this).attr("account_id");
 		var status = $(this).attr("status");
 		var pos = $(this).attr("pos");
@@ -88,7 +88,7 @@ $("document").ready(function() {
 			var currentPage = $("#page").val();
 			$.each(results	, function(key, value) {
 				data_get += '<tr>';
-				data_get += '<td>' + (+key+1 + 10*(currentPage-1)) + '</td>';
+				data_get += '<td>' + (+key+1+1 + 10*(currentPage-1)) + '</td>';
 				data_get += "<td><a href='./userinfo/" +value.id+"'>"+value.userName+"</a></td>";
 				if (value.active==true){
 					data_get += '<td>' + "Active" + '</td>';
@@ -111,7 +111,7 @@ $("document").ready(function() {
 			$('#table_body').append(data_get);
 			$(".listTable").show();
 			setGeneralInfo();
-			$('#table_body td a.last').click(function() {
+			$('#table_body td a').click(function() {
 				var id = $(this).attr("account_id");
 				var status = $(this).attr("status");
 				var pos = $(this).attr("pos");

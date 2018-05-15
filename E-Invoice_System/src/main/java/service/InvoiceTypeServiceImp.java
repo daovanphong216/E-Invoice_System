@@ -69,8 +69,11 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	}
 	
 	@Override
-	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName){
-		return this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
+	public void deleteByName(String invoiceTypeName){
+		List<InvoiceType> list = this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
+		for (int i=0; i<list.size(); i++){
+			InvoiceTypeDao.remove(list.get(i).getId());
+		}
 	}
 
 	@Override
@@ -112,5 +115,10 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 				InvoiceTypeDao.remove(invoiceTypeId);
 			//}
 		}
+	}
+	
+	@Override
+	public List<InvoiceType> getAll(User user){
+		return this.InvoiceTypeDao.getAll(user);
 	}
 }

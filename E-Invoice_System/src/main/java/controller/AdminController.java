@@ -46,10 +46,13 @@ public class AdminController {
 			   @RequestParam(value = "username", required = true) String username,
 			   @RequestParam(value = "status", required = true) String status,
 			   @RequestParam(value = "role", required = true) String role,
-			   @RequestParam(value = "page", required = true) String page) {
+			   @RequestParam(value = "page", required = true) int page) {
 		   //model.addAttribute("trigger", adminService.getTrigger());
-		 int pageInt=Integer.parseInt(page);
-		 int offset=  (pageInt-1)*20;
+		 if (page==0) {
+			 page=1;
+		 }
+		 int offset=(page-1)*20;;
+		 
 		 int totalPages = 0, totalResults=0, activeAccount=0, deactiveAccount=0;
 		 String roleStr="";
 		 
@@ -103,44 +106,52 @@ public class AdminController {
 		 model.addAttribute("role",role );
 		 model.addAttribute("username",username );
 		 model.addAttribute("isAdmin",true );
-	
-		 totalResults=accountService.countAccount("all", roleStr);
-		 activeAccount= accountService.countAccount("active", roleStr);
-		 deactiveAccount=totalResults-activeAccount;
+		 
+		 totalResults = searchResults.size();
+		 for(int i=0; i<totalResults; i++){
+			 if (searchResults.get(i).isActive()) {
+				 activeAccount++;
+			 }else{
+				 deactiveAccount++;
+			 }
+		 }
+		 //totalResults=accountService.countAccount("all", roleStr);
+		 //activeAccount= accountService.countAccount("active", roleStr);
+		 //deactiveAccount=totalResults-activeAccount;
 		 if (totalResults > 0) {
 			 totalPages =  (int) Math.ceil(((double)totalResults) / 20);
 		 } else
 		 {
 			 totalPages=0;
-			 page="0";
+			 //page=0;
 		 }
 		 
 		 String[] pageValue={"First","Previous","","","","","","Next","Last"};
 		 int[] pageState={0,0,0,0,0,0,0,0,0};
-		 int[] pageLink={1,pageInt-1,0,0,0,0,0,pageInt+1,totalPages};
+		 int[] pageLink={1,page-1,0,0,0,0,0,page+1,totalPages};
 		 int activePage=3;
 			
 			if (totalPages <= 5){
 				for (int i=1; i<=totalPages;i++){
 					pageValue[i+1] = Integer.toString(i);
 				}
-				activePage = pageInt+1;
+				activePage = page+1;
 			}else{
-				if (pageInt<=3){
+				if (page<=3){
 					for (int i=1; i<=5;i++){
 						pageValue[i+1] = Integer.toString(i);;
 					}
-					activePage = pageInt+1;
-				} else if (pageInt<totalPages-1){
+					activePage = page+1;
+				} else if (page<totalPages-1){
 					for (int i=1; i<=5;i++){
-						pageValue[i+1] = Integer.toString(pageInt+i-3);
+						pageValue[i+1] = Integer.toString(page+i-3);
 					}
 					activePage = 4;
-				} else if (pageInt>=totalPages-1){
+				} else if (page>=totalPages-1){
 					for (int i=1; i<=5;i++){
 						pageValue[i+1] = Integer.toString(totalPages-5+i);
 					}
-					activePage = 6 - (totalPages-pageInt);
+					activePage = 6 - (totalPages-page);
 				}
 			}
 			
@@ -161,13 +172,13 @@ public class AdminController {
 				pageState[8]=-1;
 				break;			
 			default:
-				if (pageInt == 1)
+				if (page == 1)
 				{
 				
 					pageState[0]=-1;
 					pageState[1]=-1;
 				}
-				else if(pageInt == totalPages){
+				else if(page == totalPages){
 					pageState[7]=-1;
 					pageState[8]=-1;
 				}

@@ -19,6 +19,8 @@ $("document").ready(function() {
 					dataType : "json",
 					success : function(data) {
 						alert(data[0]);
+						
+						$("#add-admin_form")[0].reset();
 						//getAllAdmin();
 					}
 				});
@@ -39,9 +41,9 @@ $("document").ready(function() {
     }
 
 	$('#add_type').click(function(){
-		var file=getBase64Image(document.getElementById("image"));
 		var name=$("#typename").val();
-		if(file !="" && file!=null && name!="" && name!=null){
+		if($('#file').get(0).files.length > 0 && name!="" && name!=null){
+			var file=getBase64Image(document.getElementById("image"));
 		$.ajax({
 			type : "POST",
 			url : "/E-Invoice_System/createtype",
@@ -51,10 +53,54 @@ $("document").ready(function() {
 			},
 			dataType : "json",
 			success : function(data) {
+				$("#add_type_form")[0].reset();
+				showType();
 				alert(data[0]);
 			}
 		});
 		}
 	});
 	
+	
+	 function showType(){
+			 $.ajax({
+			        url: "/E-Invoice_System/getAllTypesByAdmin/",
+			        type: 'GET',
+			        async: false,
+			        contentType: "application/json; charset=utf-8",
+			        dataType: "json",
+			        processData: true,
+			        success: function (data) {
+			        	$("#delete_select" ).empty();
+			        	for(var type in data){
+							if (data[type].deleteAble==false){
+								var markup = `<option value="${data[type].id}">${data[type].name}</option>`;
+								$("#delete_select" ).append(markup);
+								}
+						}
+			        },
+			        failure: function (data) {
+			            alert("Fail " + data);
+			        }
+	
+			    });
+			
+		}
+	 showType();
+	 
+	 
+	  $('#del_type').click(function () {
+	    	var type_id= $("#delete_select").val();
+	    	$.ajax({
+				type : "POST",
+				url : "/E-Invoice_System/deleteTypeByAdmin",
+				data : {
+					'id' : type_id,
+				},
+				dataType : "json",
+				success : function(data) {
+					showType();
+				}
+			});
+	    });
 });
