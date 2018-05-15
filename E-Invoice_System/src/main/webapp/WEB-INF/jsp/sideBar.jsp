@@ -55,5 +55,16 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/searchAll.js"></script>	
 	</form>
 	
+	<hr>
+	<div class="search-form-monthly">
+	<label class="control-label ">Delete Invoice Type</label>
+		<div class="input-group">
+			<select id ="select-option" >
+				<option value="volvo">Electric</option>
+				<option value="saab">Food</option>
+				<option value="audi" selected>Shopping</option>
+			</select>
+		</div>
+	</div>
 </nav>
 

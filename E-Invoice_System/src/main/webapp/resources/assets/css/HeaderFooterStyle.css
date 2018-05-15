@@ -128,7 +128,7 @@ footer{
     padding-bottom: 5%;
     padding-top: 10%;
     color: white;
-    margin-top: 32%;
+    margin-top: 10%;
     border-radius: 15px
 }
 
@@ -136,7 +136,7 @@ footer{
 {
 	color: black;
     height: 30px;
-    width: 95px;
+    width: 185px;
 }
 
 #endday-input
