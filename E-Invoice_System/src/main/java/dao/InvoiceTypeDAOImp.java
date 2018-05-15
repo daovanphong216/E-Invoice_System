@@ -7,10 +7,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import model.Invoice;
 import model.InvoiceType;
 import model.User;
 
@@ -101,9 +103,47 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	}
 
 	@Override
-	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user ) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(InvoiceType.class);
+		query.add(Restrictions.eq("name", invoiceTypeName));
+		query.add(Restrictions.eq("owner", user));
+
+		@SuppressWarnings("unchecked")
+		List<InvoiceType> results = query.list();
+		
+		tx.commit();
+		session.close();
+		
+		if (!results.isEmpty()){
+			return results.get(0);
+		}
+        
+        return null;
+	}
+	
+	@Override
+	public InvoiceType findbyInvoiceId(long invoiceTypeId, User user ) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(InvoiceType.class);
+		query.add(Restrictions.eq("id", invoiceTypeId));
+		query.add(Restrictions.eq("owner", user));
+
+		@SuppressWarnings("unchecked")
+		List<InvoiceType> results = query.list();
+		
+		tx.commit();
+		session.close();
+		
+		if (!results.isEmpty()){
+			return results.get(0);
+		}
+        
+        return null;
 	}
 	
 }

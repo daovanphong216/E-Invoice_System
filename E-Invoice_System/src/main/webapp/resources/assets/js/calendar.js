@@ -181,7 +181,14 @@ $(document).ready(function () {
     		for(var i in typesJson[type].invoices){
     			updateItemToViewList(typesJson[type].invoices[i],typesJson[type].id);
     		}
-    		
+
+    
+    			markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
+    			$(".typeSelect" ).append(markup);
+    			if (typesJson[type].deleteAble==false){
+    				 markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
+    				$("#delete_type" ).append(markup);
+    				}
     		
     	}
     }
@@ -296,18 +303,36 @@ $(document).ready(function () {
     });
     generateCalendar(currentDate);
     
+    
+    function showType(){
+		$("#typeSelect" ).empty();
+		$("#delete_type" ).empty();
+		var typesJson = getAllTypesjson(getSelectedDateString(selectedDay));
+		for(var type in typesJson){
+			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
+			$(".typeSelect" ).append(markup);
+			if (typesJson[type].deleteAble==false){
+				markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
+				$("#delete_type" ).append(markup);
+				}
+		}
+	}
+
+	
+	//----------------------------------
+	 
+	 
     $('#delete_type_btn').click(function () {
     	var type_id= $("#delete_type").val();
     	$.ajax({
 			type : "POST",
-			url : "/E-Invoice_System/deleteInvoicetype",
+			url : "/E-Invoice_System/deleteTypeByUser",
 			data : {
 				'id' : type_id,
 			},
 			dataType : "json",
 			success : function(data) {
 				showType();
-				showTypeDelete();
 			}
 		});
     });

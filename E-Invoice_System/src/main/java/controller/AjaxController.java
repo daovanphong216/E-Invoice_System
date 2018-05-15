@@ -423,7 +423,7 @@ public class AjaxController {
 			Account account = this.accountService.findbyUserName(principal.getName());
 			List<String> response = new ArrayList<String>();
 			if(account.getRole().equals("ROLE_ADMIN")) {
-				if(this.invoiceTypeService.findbyInvoiceTypeName(name,this.accountService.findbyId(1).getUser())==null) {
+				if(this.invoiceTypeService.findbyInvoiceTypeName(name,userService.findbyUserName("admin"))==null) {
 					this.invoiceTypeService.createTypeByAdmin(name, file);
 					response.add("success");
 				}else {
@@ -439,11 +439,18 @@ public class AjaxController {
 
 				}
 				
-			}
-			
-		 	
-
-			
+			}	
 			return response;
 	   }
+	
+	
+	@RequestMapping(value = { "/deleteTypeByUser" }, method = RequestMethod.POST)
+	public List<String>  deleteTypeByUser(Principal principal, Authentication authentication,
+	        @RequestParam(value="id", required=true) long id) {
+		User user = userService.findbyUserName(principal.getName());
+		invoiceTypeService.DeleteInvoiceType(id, user);
+		List<String> response = new ArrayList<String>();
+		response.add("success");
+		return response;
+	}
 }
