@@ -10,13 +10,13 @@
 		<!-- Top Menu Items -->
 		<div class="header-col header-space">
 		</div>
-		
+		<sec:authorize access="isAuthenticated()">
 		<div class="header-col header-account-control">
 		<ul>
-			<sec:authorize access="isAuthenticated()">
+			
 				<li><a href="${pageContext.request.contextPath}/logout">
 						Log Out </a></li>
-			</sec:authorize>
+			
 			<c:if test="${isAdmin != true}">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i>${user.name}</i>
@@ -36,4 +36,5 @@
 		</ul>
 
 	</div>
+	</sec:authorize>
 </header>
