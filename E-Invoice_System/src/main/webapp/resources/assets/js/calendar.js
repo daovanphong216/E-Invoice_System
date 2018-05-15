@@ -20,6 +20,7 @@ function getInvoicejsonByDate(dateStr) {
 
 
 function getAllTypesjson(dateStr) {
+	console.log(dateStr);
     var str;
     $.ajax({
         url: "/E-Invoice_System/getAllTypeInforByDate/"+dateStr,

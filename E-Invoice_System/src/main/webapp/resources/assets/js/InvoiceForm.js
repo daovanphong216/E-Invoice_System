@@ -21,6 +21,7 @@ function ajaxsubmitcreate(data) {
 }
 
 function getSelectedDateString(selectedDay){
+	console.log(selectedDay);
 	var sdd= selectedDay.getDate();
 	if (sdd <10){
 		sdd = '0'+sdd;
@@ -31,7 +32,9 @@ function getSelectedDateString(selectedDay){
 	}
 	var sdy= selectedDay.getFullYear();
 	
-	return datestr = sdy+'-'+sdm+'-'+sdd;
+	var datestr = sdy+'-'+sdm+'-'+sdd;
+	console.log(datestr);
+	return datestr;
 }
 
 $(document).ready(function(){
