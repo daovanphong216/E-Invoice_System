@@ -296,5 +296,20 @@ $(document).ready(function () {
     });
     generateCalendar(currentDate);
     
+    $('#delete_type_btn').click(function () {
+    	var type_id= $("#delete_type").val();
+    	$.ajax({
+			type : "POST",
+			url : "/E-Invoice_System/deleteInvoicetype",
+			data : {
+				'id' : type_id,
+			},
+			dataType : "json",
+			success : function(data) {
+				showType();
+				showTypeDelete();
+			}
+		});
+    });
     
 })

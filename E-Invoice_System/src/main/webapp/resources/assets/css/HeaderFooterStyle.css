@@ -132,7 +132,8 @@ footer{
     border-radius: 15px
 }
 
-#select-option
+#select-option,
+#delete_type
 {
 	color: black;
     height: 30px;
@@ -149,7 +150,8 @@ footer{
 	margin-top: 5%;
 }
 
-#search-btn
+#search-btn,
+#delete_type_btn
 {
 	margin-left: 18%;
     width: 55%;

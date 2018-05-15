@@ -13,11 +13,8 @@
 	<form class="search-form-monthly">
 	
 		<label class="control-label">Invoice Type</label>
-		<div class="input-group">
-			<select id ="select-option" >
-				<option value="volvo">Electric</option>
-				<option value="saab">Food</option>
-				<option value="audi" selected>Shopping</option>
+		<div class="input-group ">
+			<select id ="select-option" class="typeSelect">
 			</select>
 		</div>
 		<br>
@@ -59,12 +56,12 @@
 	<div class="search-form-monthly">
 	<label class="control-label ">Delete Invoice Type</label>
 		<div class="input-group">
-			<select id ="select-option" >
-				<option value="volvo">Electric</option>
-				<option value="saab">Food</option>
-				<option value="audi" selected>Shopping</option>
+			<select id ="delete_type">
 			</select>
 		</div>
+		<button id = "delete_type_btn" type="button" class="btn btn-info">
+			<span class="glyphicon glyphicon-search"></span> Delete
+		</button>
 	</div>
 </nav>
 

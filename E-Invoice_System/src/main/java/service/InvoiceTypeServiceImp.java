@@ -93,6 +93,7 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 		newtype.setLogo(file);
 		newtype.setName(name);
 		newtype.setOwner(user);
+		newtype.setDeleteAble(true);
 		this.InvoiceTypeDao.create(newtype);
 		
 	}
