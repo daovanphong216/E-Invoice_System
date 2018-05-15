@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,6 @@ import service.UserService;
 
 @RestController
 public class SearchController {
-	@Autowired
-	 @Qualifier("userService")
-	 UserService userService;
 	
 	@Autowired
 	 @Qualifier("accountService")
@@ -36,9 +34,7 @@ public class SearchController {
 	
 
 	
-	@Autowired
-	@Qualifier("emailService")
-	EmailService emailService;
+	
 	
 	@Autowired
 	 @Qualifier("invoiceService")
@@ -81,7 +77,7 @@ public class SearchController {
 				}
 				
 				User currentUser = this.accountService.findbyUserName(userName).getUser();
-				if(typeId !=0 && !invoiceNo.equals("none") && cCode!=-999999) {
+				if(typeId !=0) {
 					InvoiceType type = this.invoiceTypeService.findbyId(typeId);
 					return this.invoiceService.Search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, currentUser, firstResult, maxResults);		
 				}

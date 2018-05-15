@@ -51,7 +51,7 @@ public class AdminController {
 		 if (page==0) {
 			 page=1;
 		 }
-		 int offset=(page-1)*20;;
+		 int offset=(page-1)*10;;
 		 
 		 int totalPages = 0, totalResults=0, activeAccount=0, deactiveAccount=0;
 		 String roleStr="";
@@ -96,7 +96,7 @@ public class AdminController {
 				 break;
 		 }
 		 		 
-		 List<Account> searchResults = accountService.searchAccount(username, status, roleStr, offset, 20);
+		 List<Account> searchResults = accountService.searchAccount(username, status, roleStr, offset, 10);
 		 String  trigger=emailService.getTrigger();
 		 String[] triggers = trigger.split(" ");
 		 for (int i=0; i<3; i++){
@@ -119,7 +119,7 @@ public class AdminController {
 		 //activeAccount= accountService.countAccount("active", roleStr);
 		 //deactiveAccount=totalResults-activeAccount;
 		 if (totalResults > 0) {
-			 totalPages =  (int) Math.ceil(((double)totalResults) / 20);
+			 totalPages =  (int) Math.ceil(((double)totalResults) / 10);
 		 } else
 		 {
 			 totalPages=0;

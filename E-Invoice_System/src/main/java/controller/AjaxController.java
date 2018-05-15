@@ -458,6 +458,12 @@ public class AjaxController {
 			return this.invoiceTypeService.getAll(user);
 	   }
 	
+	@RequestMapping(value = { "/getAllTypesByUser" }, method = RequestMethod.GET)
+	public List<InvoiceType> getAllTypesByUser(Principal principal, Authentication authentication) {
+			User user = userService.findbyUserName(principal.getName());
+			return this.invoiceTypeService.getAll(user);
+	   }
+	
 	@RequestMapping(value = { "/deleteTypeByAdmin" }, method = RequestMethod.POST)
 	public List<String>  deleteTypeByAdmin(Principal principal, Authentication authentication,
 	        @RequestParam(value="id", required=true) long id) {

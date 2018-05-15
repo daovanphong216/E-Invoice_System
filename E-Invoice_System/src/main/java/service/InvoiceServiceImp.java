@@ -135,8 +135,15 @@ public class InvoiceServiceImp implements InvoiceService{
 		return this.invoiceDAO.search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, currentUser, firstResult, maxResults);
 	}
 
+	@Override
+	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, User currentUser){
+		return this.invoiceDAO.count(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, currentUser);
+	}
 
-
-
-
+	@Override
+	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, InvoiceType type, User owner){
+		return this.invoiceDAO.count(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, owner);
+	}
 }

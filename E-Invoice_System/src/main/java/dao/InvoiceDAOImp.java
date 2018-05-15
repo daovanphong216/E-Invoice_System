@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -88,15 +89,16 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		query.add(Restrictions.between("dateTime", datemin, datemax));
 		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
 		query.add(Restrictions.eqOrIsNull("type", type));
-		query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
-		query.add(Restrictions.eq("customerCode", cCode));
+		if(!invoiceNo.equals("none"))
+			query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
 		query.add(Restrictions.eq("owner", owner));
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
+		if (cCode!=-999999)
+			query.add(Restrictions.eq("customerCode", cCode));
 		
 		@SuppressWarnings("unchecked")
 		List<Invoice> results = query.list();
-		
 		tx.commit();
 		session.close();
 		
@@ -148,6 +150,59 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		return results;
 	}
 	
+	@Override
+	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, User currentUser) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(Invoice.class);
+		query.add(Restrictions.between("dateTime", datemin, datemax));
+		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
+		if(!invoiceNo.equals("none"))
+			query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
+		query.add(Restrictions.eq("owner", currentUser));
+		if (cCode!=-999999)
+			query.add(Restrictions.eq("customerCode", cCode));
+		query.setProjection(Projections.rowCount());
+		@SuppressWarnings("unchecked")
+		Long countResults = (Long) query.uniqueResult();
+	    
+		tx.commit();
+		session.close();
+		
+		return countResults.intValue();
+	}
+	
+	
+	@Override
+	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, InvoiceType type, User owner) {
+		
+		
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(Invoice.class);
+		query.add(Restrictions.between("dateTime", datemin, datemax));
+		query.add(Restrictions.between("amountOfMoney", moneyMin, moneyMax));
+		query.add(Restrictions.eqOrIsNull("type", type));
+		if(!invoiceNo.equals("none"))
+			query.add(Restrictions.ilike("invoiceNo", invoiceNo, MatchMode.ANYWHERE));
+		query.add(Restrictions.eq("owner", owner));
+		if (cCode!=-999999)
+			query.add(Restrictions.eq("customerCode", cCode));
+		query.setProjection(Projections.rowCount());
+		
+		@SuppressWarnings("unchecked")
+		Long countResults = (Long) query.uniqueResult();
+	    
+		tx.commit();
+		session.close();
+		
+		return countResults.intValue();
+		
+	}
 	
 	
 }

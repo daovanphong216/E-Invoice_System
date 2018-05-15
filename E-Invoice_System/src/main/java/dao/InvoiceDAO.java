@@ -20,5 +20,9 @@ public interface InvoiceDAO {
 	public List<Invoice> SearchAllByDateTime(Date dateTime, InvoiceType type, User owner);
 	public List<Invoice> search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
 			String invoiceNo, User currentUser, int firstResult, int maxResults);
+	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, User currentUser);
+	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, InvoiceType type, User owner);
 	
 }

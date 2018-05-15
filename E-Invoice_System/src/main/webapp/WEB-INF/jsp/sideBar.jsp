@@ -14,7 +14,7 @@
 	
 		<label class="control-label">Invoice Type</label>
 		<div class="input-group ">
-			<select id ="select-option" class="typeSelect">
+			<select id ="select-option" >
 				<option value="0">All</option>
 			</select>
 		</div>

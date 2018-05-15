@@ -161,6 +161,10 @@ $(document).ready(function () {
     function generateType(sd){
     	var datestr = getSelectedDateString(sd)
     	var typesJson = getAllTypesjson(datestr);
+    	$(".select-option" ).empty();
+    	$("#select-option" ).empty();
+    	$("#select-option" ).append("<option value='0'>All</option>");
+		$("#delete_type" ).empty();
     	for(var type in typesJson){
     		var markup = `<div class="type-block style${(typesJson[type].id%3)+1} type${typesJson[type].id}">
         <div class="">
@@ -185,9 +189,12 @@ $(document).ready(function () {
 
     
     			markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-    			$(".typeSelect" ).append(markup);
+    			$(".typeSelect" ).append(markup);    			
+    			
+    			$("#select-option" ).append(markup);
     			if (typesJson[type].deleteAble==true){
-    					$("#delete_type" ).append(markup);
+    				markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
+    				$("#delete_type" ).append(markup);
     				}
     		
     	}
@@ -304,37 +311,52 @@ $(document).ready(function () {
     generateCalendar(currentDate);
     
     
-    function showType(){
-		$(".typeSelect" ).empty();
-		$("#delete_type" ).empty();
-		var typesJson = getAllTypesjson(getSelectedDateString(selectedDay));
-		for(var type in typesJson){
-			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-			$(".typeSelect" ).append(markup);
-			if (typesJson[type].deleteAble==true){
-				markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-				$("#delete_type" ).append(markup);
-				}
-		}
-	}
 
 	
 	//----------------------------------
-	 
-	 
+    function showType(){
+		 $.ajax({
+		        url: "/E-Invoice_System/getAllTypesByUser",
+		        type: 'GET',
+		        async: false,
+		        contentType: "application/json; charset=utf-8",
+		        dataType: "json",
+		        processData: true,
+		        success: function (data) {
+		        	$("#select-option" ).empty();
+		        	$("#select-option" ).append("<option value='0'>All</option>");
+		    		$("#delete_type" ).empty();
+		    		for(var type in data){
+		    			var markup = `<option value="${data[type].id}">${data[type].name}</option>`;
+		    			$("#select-option" ).append(markup);
+		    			if (data[type].deleteAble==true){
+		    				markup = `<option value="${data[type].id}">${data[type].name}</option>`;
+		    				$("#delete_type" ).append(markup);
+		    				}
+		    		}
+		        },
+		        failure: function (data) {
+		            alert("Fail " + data);
+		        }
+
+		    });
+		
+	}
+    
     $('#delete_type_btn').click(function () {
-    	var type_id= $("#delete_type").val();
-    	$.ajax({
-			type : "POST",
+     	var type_id= $("#delete_type").val();
+     	$.ajax({
+ 			type : "POST",
 			url : "/E-Invoice_System/deleteTypeByUser",
-			data : {
-				'id' : type_id,
-			},
-			dataType : "json",
-			success : function(data) {
-				showType();
-			}
-		});
-    });
+ 			data : {
+ 				'id' : type_id,
+ 			},
+ 			dataType : "json",
+ 			success : function(data) {
+ 				showType();
+ 			}
+ 		});
+     });
+    
     
 })

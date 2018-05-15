@@ -4,9 +4,6 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
 <title>Daily Invoices</title>
@@ -31,12 +28,22 @@
 <div class= "flex-container">
 	<%@ include file="header.jsp"%>
 	<%@ include file="sideBar.jsp"%>
-
+	
 	<article class="page-container article">
-		<div class="search-result">
-		</div>
+		<c:if test="${totalResults ==0}">
+			<h5>0 invoice founded</h5>
+		</c:if>
+		<c:if test="${totalResults >0}">
+			<h5>From ${from} to ${to} of ${totalResults} invoices founded</h5>
 		
-
+		
+			<input type="hidden" value="${totalPages}" name="totalPages" id="totalPages">
+			<input type="hidden" value="${currentPage}" name="currentPage" id="currentPage">
+			<div class="search-result"></div>
+			<div class="col-lg-12">
+				<div class="pager-center pagination" id="pager"></div>
+			</div>
+		</c:if>
 	</article>
 
 	

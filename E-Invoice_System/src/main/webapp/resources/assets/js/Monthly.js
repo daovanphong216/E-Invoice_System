@@ -144,7 +144,31 @@ function drawChart() {
         });
         
         
-     
+        $.ajax({
+	        url: "/E-Invoice_System/getAllTypesByUser",
+	        type: 'GET',
+	        async: false,
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json",
+	        processData: true,
+	        success: function (data) {
+	        	$("#select-option" ).empty();
+	        	$("#select-option" ).append("<option value='0'>All</option>");
+	    		$("#delete_type" ).empty();
+	    		for(var type in data){
+	    			var markup = `<option value="${data[type].id}">${data[type].name}</option>`;
+	    			$("#select-option" ).append(markup);
+	    			if (data[type].deleteAble==true){
+	    				markup = `<option value="${data[type].id}">${data[type].name}</option>`;
+	    				$("#delete_type" ).append(markup);
+	    				}
+	    		}
+	        },
+	        failure: function (data) {
+	            alert("Fail " + data);
+	        }
+
+	    });
       
     });
    
