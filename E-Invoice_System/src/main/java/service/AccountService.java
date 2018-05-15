@@ -14,5 +14,5 @@ public interface AccountService {
 	public List<Account> searchAccount(String username, String type, String role, int offset, int limit);
 	public List<Account> getAllAdmins();
 	public Account findbyUserName(String userName);
-	public int countAccount(String status, String role);
+	public int countAccount(String status, String role, String username);
 }

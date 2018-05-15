@@ -11,7 +11,7 @@ public interface AccountDAO {
 	public void remove(long id);
 	public List<Account> searchAccount(String username, String type, String role, int offset, int limit);
 	public List<Account> getAll();
-	public int countAccount(String status, String role);
+	public int countAccount(String status, String role, String username);
 	public void update(Account account);
 	public Account findbyUserName(String userName);
 	public List<Account> getAllAdmins();

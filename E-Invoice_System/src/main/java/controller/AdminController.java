@@ -76,16 +76,23 @@ public class AdminController {
 				 model.addAttribute("all","selected" );
 				 model.addAttribute("active","" );
 				 model.addAttribute("deactive","" );
+				 totalResults = accountService.countAccount(status, roleStr, username);
+				 activeAccount = accountService.countAccount("active", roleStr, username);
+				 deactiveAccount = totalResults - activeAccount; 
 				 break;
 			 case "active":
 				 model.addAttribute("all","" );
 				 model.addAttribute("active","selected" );
 				 model.addAttribute("deactive","" );
+				 totalResults = accountService.countAccount(status, roleStr, username);
+				 activeAccount = accountService.countAccount("active", roleStr, username);
 				 break;
 			 case "deactive":
 				 model.addAttribute("all","" );
 				 model.addAttribute("active","" );
 				 model.addAttribute("deactive","selected" );
+				 totalResults = accountService.countAccount(status, roleStr, username);
+				 deactiveAccount = accountService.countAccount("deactive", roleStr, username);
 				 break;
 		 }
 		 		 
@@ -107,14 +114,7 @@ public class AdminController {
 		 model.addAttribute("username",username );
 		 model.addAttribute("isAdmin",true );
 		 
-		 totalResults = searchResults.size();
-		 for(int i=0; i<totalResults; i++){
-			 if (searchResults.get(i).isActive()) {
-				 activeAccount++;
-			 }else{
-				 deactiveAccount++;
-			 }
-		 }
+		 
 		 //totalResults=accountService.countAccount("all", roleStr);
 		 //activeAccount= accountService.countAccount("active", roleStr);
 		 //deactiveAccount=totalResults-activeAccount;

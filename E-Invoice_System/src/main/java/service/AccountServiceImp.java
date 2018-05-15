@@ -78,7 +78,7 @@ public class AccountServiceImp implements AccountService {
 	}
 	
 	@Override
-	public int countAccount(String status, String role){
-		return this.accountDao.countAccount(status, role);
+	public int countAccount(String status, String role, String username){
+		return this.accountDao.countAccount(status, role, username);
 	}
 }

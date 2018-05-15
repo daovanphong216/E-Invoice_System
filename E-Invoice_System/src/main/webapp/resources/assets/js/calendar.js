@@ -306,7 +306,7 @@ $(document).ready(function () {
     
     
     function showType(){
-		$("#typeSelect" ).empty();
+		$(".typeSelect" ).empty();
 		$("#delete_type" ).empty();
 		var typesJson = getAllTypesjson(getSelectedDateString(selectedDay));
 		for(var type in typesJson){

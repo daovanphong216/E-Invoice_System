@@ -134,16 +134,19 @@ public class AccountDAOImp implements AccountDAO{
 	}
 	
 	@Override
-	public int countAccount(String status, String role){
+	public int countAccount(String status, String role, String username){
 		Session session = getSessionFactory().openSession();
 		Query query=null;
 		if (status.equals("all")){
-			query=session.createQuery("Select count (*) from accounts ac where ac.role= :role");
+			query=session.createQuery("Select count (*) from accounts ac where lower(ac.userName) LIKE lower(:username) and  ac.role= :role");
 			query.setParameter("role", role);
+			query.setParameter("username", "%"+username+"%");
 		}
 		else{
-			query=session.createQuery("Select count (*) from accounts ac where ac.role= :role and ac.isActive=:status");
+			query=session.createQuery("Select count (*) from accounts ac where lower(ac.userName) LIKE lower(:username) and ac.role= :role and ac.isActive=:status");
 			query.setParameter("role", role);
+			query.setParameter("username", "%"+username+"%");
+			
 			switch (status){
 	        case "active":
 	        	query.setParameter("status", true);

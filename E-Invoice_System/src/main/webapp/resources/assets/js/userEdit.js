@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	function isEmail(email) {
-		  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+$/;
+		  var regex = /\S+@\S+/;
 		  return regex.test(email);
 	}
 	

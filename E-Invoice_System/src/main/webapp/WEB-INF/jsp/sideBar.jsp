@@ -5,7 +5,7 @@
 				Dashboard
 		</a></li>
 		<li>		
-			<a href="${pageContext.request.contextPath}/yearlychart"> Charts</a>			
+			<a href="${pageContext.request.contextPath}/charts"> Charts</a>			
 		</li>
 	</ul>
 	<hr>
@@ -51,7 +51,7 @@
 			<span class="glyphicon glyphicon-search"></span> Search
 		</button>
 				
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/searchAll.js"></script>	
+		
 	</form>
 	
 	<hr>
@@ -66,4 +66,4 @@
 		</button>
 	</div>
 </nav>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/searchAll.js"></script>	
