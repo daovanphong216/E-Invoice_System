@@ -62,8 +62,8 @@ $(document).ready(function(){
 			updateItemToViewList(item,fdata.type);
 			$.get("/E-Invoice_System/gettypereport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
         		for(i in data){
-        			$('.'+data[i].name+'no').html(data[i].noOfInvoice);
-        			$('.'+data[i].name+'money').html(data[i].totalMonney);
+        			$('.type'+data[i].id+'no').html(data[i].noOfInvoice);
+        			$('.type'+data[i].id+'money').html(data[i].totalMonney);
         		}      		
             });
 			
@@ -104,8 +104,8 @@ $(document).ready(function(){
 	
 	$.get("/E-Invoice_System/gettypereport/"+year+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
 		for(i in data){
-			$('.'+data[i].name+'no').html(data[i].noOfInvoice);
-			$('.'+data[i].name+'money').html(data[i].totalMonney);
+			$('.type'+data[i].id+'no').html(data[i].noOfInvoice);
+			$('.type'+data[i].id+'money').html(data[i].totalMonney);
 		}
 		
     });

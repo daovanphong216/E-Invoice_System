@@ -112,8 +112,38 @@ $(document).ready(function () {
 	
 			var index=this.getAttribute("item-id");
 			var item = `[item-div-id=${index}]`
-			$(item).remove();
-			removeinvoice(index);
+			
+			var invoice = removeinvoice(index);
+			if(invoice!=null){
+				$(item).remove();
+				
+				var returnedDay = new Date(invoice.dateTime);
+				if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
+					$('.typeno').text('0');
+        			$('.typemoney').text('0.00');
+					$.get("/E-Invoice_System/gettypereport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
+		        		for(i in data){
+		        			
+		        			$('.type'+data[i].id+'no').html(data[i].noOfInvoice);
+		        			$('.type'+data[i].id+'money').html(data[i].totalMonney);
+		        		}      		
+		            });
+					
+					
+					$.get("/E-Invoice_System/getreport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1), function(data, status){
+						$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+				    });
+				}
+				if((selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
+
+					var year = selectedDay.getFullYear();
+					$.get("/E-Invoice_System/getreport/"+year, function(data, status){
+						$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
+				    });
+					}
+					
+				
+			}
 
 		});
 		
@@ -173,8 +203,8 @@ $(document).ready(function () {
             <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
                 ${typesJson[type].name}
             </a>
-            <span>(</span><span class='${typesJson[type].name}no'>0</span><span> invoices)</span>
-            <span class='numberofinvoices'>$</span><span class="${typesJson[type].name}money">0.00</span>
+            <span>(</span><span class='type${typesJson[type].id}no typeno'>0</span><span> invoices)</span>
+            <span class='numberofinvoices'>$</span><span class="type${typesJson[type].id}money typemoney">0.00</span>
             </div>
         <div>
         <div class="collapse" id="collapse${typesJson[type].id}">
@@ -279,8 +309,8 @@ $(document).ready(function () {
         	
         	$.get("/E-Invoice_System/gettypereport/"+year+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
         		for(i in data){
-        			$('.'+data[i].name+'no').html(data[i].noOfInvoice);
-        			$('.'+data[i].name+'money').html(data[i].totalMonney);
+        			$('.type'+data[i].id+'no').html(data[i].noOfInvoice);
+        			$('.type'+data[i].id+'money').html(data[i].totalMonney);
         		}
         		
             });

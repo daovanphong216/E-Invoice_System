@@ -142,6 +142,17 @@ public class InvoiceServiceImp implements InvoiceService{
 	}
 
 	@Override
+	public model.Invoice removeInvoice(long id, User user) {
+		Invoice invoice = this.invoiceDAO.findbyId(id);
+		user.getInvoices().remove(invoice);
+		this.userDao.update(user);
+		this.invoiceDAO.remove(id, user);
+		return invoice;
+	}
+
+
+
+	@Override
 	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
 			String invoiceNo, InvoiceType type, User owner){
 		return this.invoiceDAO.count(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, owner);
