@@ -5,7 +5,7 @@
 				Dashboard
 		</a></li>
 		<li>		
-			<a href="${pageContext.request.contextPath}/yearlychart"> Charts</a>			
+			<a href="${pageContext.request.contextPath}/charts"> Charts</a>			
 		</li>
 	</ul>
 	<hr>
@@ -15,6 +15,7 @@
 		<label class="control-label">Invoice Type</label>
 		<div class="input-group ">
 			<select id ="select-option" class="typeSelect">
+				<option value="0">All</option>
 			</select>
 		</div>
 		<br>
@@ -22,14 +23,14 @@
 		<label class="control-label">Customer Code</label>
 		<div class="input-group">
 			<input id="customer-code-input" class="form-control" type="text" placeholder="Enter customer code" 
-			name="customerCode" min="100000" max="999999999" required title="Must 6 or more chars (max 9)"/>
+			name="customerCode" min="100000" max="999999999" title="Must 6 or more chars (max 9)"/>
 		</div>
 		<br>	
 		
 		<label class="control-label">Invoice No</label>
 		<div class="input-group">
 			<input id="invoice-code-input" class="form-control" type="text" placeholder="Enter invoice code" 
-			name="invoiceNo" pattern=".{0}|.{4,20}" required title="Must 4 or more chars (max 20)" maxlength="20"/>
+			name="invoiceNo" pattern=".{0}|.{4,20}" title="Must 4 or more chars (max 20)" maxlength="20"/>
 		</div>
 		<br>	
 		

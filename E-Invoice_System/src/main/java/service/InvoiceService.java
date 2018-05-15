@@ -34,4 +34,8 @@ import model.User;
 	public List<Invoice> SearchAllByDateTime(Date dateTime,
 			InvoiceType type, User owner);
 
+
+	public List<model.Invoice> Search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, User currentUser, int firstResult, int maxResults);
+
 }

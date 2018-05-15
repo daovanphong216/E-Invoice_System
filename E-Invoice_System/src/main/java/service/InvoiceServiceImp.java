@@ -129,6 +129,12 @@ public class InvoiceServiceImp implements InvoiceService{
 		return this.invoiceDAO.SearchAllByDateTime(dateTime, type, owner);
 	}
 
+	@Override
+	public List<model.Invoice> Search(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
+			String invoiceNo, User currentUser, int firstResult, int maxResults) {
+		return this.invoiceDAO.search(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, currentUser, firstResult, maxResults);
+	}
+
 
 
 
