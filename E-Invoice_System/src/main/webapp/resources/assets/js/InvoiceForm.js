@@ -56,7 +56,6 @@ $(document).ready(function(){
 		fdata.VAT= $( "input[name=VATInCreateForm]" ).val();
 		fdata.type= $("select[name=typeInCreateForm]" ).val();
 
-	fdata.customerCode="1111";
 		item = ajaxsubmitcreate(fdata);
 		var returnedDay = new Date(item.dateTime);
 		if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
