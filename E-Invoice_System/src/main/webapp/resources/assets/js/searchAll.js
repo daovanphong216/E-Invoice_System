@@ -1,17 +1,42 @@
-function get_start_time() {
-	var x = document.getElementById("startday-input").value;
-	document.getElementById("endday-input").min = x;
-}
+$("document").ready(function() {
+	
+	$('#search-btn').click(function(){
+		var searchdata={};
+		searchdata.dateMin= $('#startday-input').val();
+		searchdata.dateMax= $('#endday-input').val();
+		searchdata.typeId= $('#select-option').val();
+		searchdata.cCode= $('#customer-code-input').val();
+		searchdata.moneyMin= $('#monneystart-input').val();
+		searchdata.moneyMax= $('#moneyend-input').val();
+		
+		if(searchdata.dateMin==''){
+			searchdata.dateMin= '1970-1-1';
+		}
+		if(searchdata.dateMax==''){
+			searchdata.dateMin= '3000-12-31';
+		}
+		
+		
+		if(searchdata.moneyMin==''){
+			searchdata.dateMin= 0;
+		}
+		
+		if(searchdata.moneyMin==''){
+			searchdata.dateMin= 1000000000;
+		}
+		
+		if(searchdata.typeId==''){
+			searchdata.dateMin= 1;
+		}
+		
+		if(searchdata.cCode==''){
+			searchdata.cCode= '';
+		}
+		
+		
 
-function get_end_time() {
-	var x = document.getElementById("endday-input").value;
-	document.getElementById("startday-input").max = x;
-}
-
-function min_money() {
-	var x = document.getElementById("monneystart-input").value;
-	var y = document.getElementById("moneyend-input").value;
-	if (x > y) {
-		document.getElementById("alert-money").innerHTML = "Your enter value must more than " + x;
-	}
-}
+		
+	});
+	
+	
+});

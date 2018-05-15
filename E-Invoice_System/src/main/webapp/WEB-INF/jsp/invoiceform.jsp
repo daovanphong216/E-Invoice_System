@@ -11,7 +11,7 @@
 		</div>
 		<div class="form-group">
 			<label for="invoiceNo">Invoice Type:</label> 
-			<select	title="Select your surfboard" name="type" class="form-control">
+			<select	title="Select your surfboard" name="type" class="form-control typeSelect">
 			</select>
 		</div>
 		<div class="form-group">

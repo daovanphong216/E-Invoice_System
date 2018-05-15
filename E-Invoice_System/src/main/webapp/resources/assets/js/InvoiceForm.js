@@ -42,7 +42,7 @@ $(document).ready(function(){
 		var typesJson = getAllTypesjson();
 		for(var type in typesJson){
 			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-			$("select[name=type]" ).append(markup);
+			$(".typeSelect" ).append(markup);
 		}
 	
 	//-----------------------------------

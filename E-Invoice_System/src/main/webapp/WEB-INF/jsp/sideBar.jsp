@@ -48,7 +48,7 @@
 		</div>
 		<p id="alert-money"></p>
 		<br>
-		<button id = "search-btn" type="button" class="btn btn-info" onclick="min_money()">
+		<button id = "search-btn" type="button" class="btn btn-info">
 			<span class="glyphicon glyphicon-search"></span> Search
 		</button>
 				
