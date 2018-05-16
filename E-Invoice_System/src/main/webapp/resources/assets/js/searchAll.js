@@ -18,6 +18,7 @@ $("document").ready(function() {
 	});
 	
 	$('#search-btn').click(function(){
+	
 		if ($('.search-form').valid()){
 			var searchdata={};
 			searchdata.dateMin= $('#startday-input').val();
@@ -98,8 +99,16 @@ $("document").ready(function() {
 	 			},
 	 			dataType : "json",
 	 			success : function(data) {
-	 				
+	 				$(`.type${data.id}`).remove();
+	 				$(`option[value=${data.id}]`).remove()
+	 				$.get("/E-Invoice_System/getreport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1), function(data, status){
+	 					$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+	 			    });
+	 				$.get("/E-Invoice_System/getreport/"+selectedDay.getFullYear(), function(data, status){
+	 					$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
+	 			    });
 	 			}
+	 			
 	 		});
 	 });
 	 

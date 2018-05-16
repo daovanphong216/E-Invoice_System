@@ -243,6 +243,20 @@ public class AjaxController {
 	   }
 	
 	
+	
+	
+	@RequestMapping(value = { "/getInvoiceById/{id}" }, method = RequestMethod.GET)
+	public Invoice getInvoiceById(Principal principal, Authentication authentication,
+			@PathVariable("id") long id) {
+		 String userName= principal.getName();
+		 if (userName.equals("")) {
+			 return null;  
+		 } else {
+			 return this.invoiceService.findInvoiceByID(id,this.userService.findbyUserName(userName));
+		 }		
+	   }
+	
+	
 	@RequestMapping(value = { "/getreport/{year}/{month}" }, method = RequestMethod.GET)
 	public double[] getreport(Principal principal, Authentication authentication,
 			@PathVariable("year") int year,

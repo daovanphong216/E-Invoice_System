@@ -24,5 +24,6 @@ public interface InvoiceDAO {
 			String invoiceNo, User currentUser);
 	public int count(Date datemin, Date datemax, double moneyMin, double moneyMax, long cCode,
 			String invoiceNo, InvoiceType type, User owner);
+	public Invoice findbyId(long id, User user);
 	
 }

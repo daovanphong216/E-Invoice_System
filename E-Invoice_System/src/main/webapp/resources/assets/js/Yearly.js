@@ -39,9 +39,12 @@ function forcessdata(data){
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawPieChart);
 function drawPieChart() {
+	
     
     var options = { 'width': 1050, 'height': 900 };
     $("document").ready(function() {
+    	
+    	
     	yyear = new Date().getFullYear();
     	$('#yyear').html(yyear);
     	var data = new google.visualization.DataTable(forcessdata(getReportjson(yyear)));
