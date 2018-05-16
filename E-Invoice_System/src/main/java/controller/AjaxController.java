@@ -453,7 +453,11 @@ public class AjaxController {
 	@RequestMapping(value = { "/getAllTypesByAdmin" }, method = RequestMethod.GET)
 	public List<InvoiceType> getAllTypes(Principal principal, Authentication authentication) {
 			User user = userService.findbyUserName("admin");
-			return this.invoiceTypeService.getAll(user);
+			List<InvoiceType> its= this.invoiceTypeService.getAll(user);
+			 for(InvoiceType i : its) {
+				 i.setLogo("/getTypeInfor/"+i.getId());
+			 }
+			 return its;
 	   }
 	
 	@RequestMapping(value = { "/getAllTypesByUser" }, method = RequestMethod.GET)

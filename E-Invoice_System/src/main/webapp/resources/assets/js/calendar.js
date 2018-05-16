@@ -217,7 +217,6 @@ $(document).ready(function () {
     			
     			$("#select-option" ).append(markup);
     			if (typesJson[type].deleteAble==true){
-    				markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
     				$("#delete_type" ).append(markup);
     				}
     		
@@ -338,49 +337,7 @@ $(document).ready(function () {
 
 	
 	//----------------------------------
-    function showType(){
-		 $.ajax({
-		        url: "/E-Invoice_System/getAllTypesByUser",
-		        type: 'GET',
-		        async: false,
-		        contentType: "application/json; charset=utf-8",
-		        dataType: "json",
-		        processData: true,
-		        success: function (data) {
-		        	$("#select-option" ).empty();
-		        	$("#select-option" ).append("<option value='0'>All</option>");
-		    		$("#delete_type" ).empty();
-		    		for(var type in data){
-		    			var markup = `<option value="${data[type].id}">${data[type].name}</option>`;
-		    			$("#select-option" ).append(markup);
-		    			if (data[type].deleteAble==true){
-		    				markup = `<option value="${data[type].id}">${data[type].name}</option>`;
-		    				$("#delete_type" ).append(markup);
-		    				}
-		    		}
-		        },
-		        failure: function (data) {
-		            alert("Fail " + data);
-		        }
-
-		    });
-		
-	}
     
-    $('#delete_type_btn').click(function () {
-     	var type_id= $("#delete_type").val();
-     	$.ajax({
- 			type : "POST",
-			url : "/E-Invoice_System/deleteTypeByUser",
- 			data : {
- 				'id' : type_id,
- 			},
- 			dataType : "json",
- 			success : function(data) {
- 				showType();
- 			}
- 		});
-     });
     
     
 })
