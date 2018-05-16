@@ -90,37 +90,19 @@ function updateItemToViewList(item, typeid){
 	
 		var divclass = `.list-type${typeid}`
 		$(divclass).append(markup);
-}
-
-
-$(document).ready(function () {
-	
-	
-	// ----------------------------------------------------------------------
-	
-	
-
-
-	function listDataArray(data){
-				for(var i in data){
-					updateItemToViewList(data[i])
-				};
-		
-		
-		
 		$('.removeItem').click(function(){
-	
+			
 			var index=this.getAttribute("item-id");
 			var item = `[item-div-id=${index}]`
 			
 			var invoice = removeinvoice(index);
 			if(invoice!=null){
 				$(item).remove();
-				
+				console.log('gsf');
 				var returnedDay = new Date(invoice.dateTime);
 				if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
-					$('.typeno').text('0');
-        			$('.typemoney').text('0.00');
+					$('.typeno').html('0');
+        			$('.typemoney').html('0.00');
 					$.get("/E-Invoice_System/gettypereport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
 		        		for(i in data){
 		        			
@@ -147,6 +129,26 @@ $(document).ready(function () {
 
 		});
 		
+}
+
+
+$(document).ready(function () {
+	
+	
+	// ----------------------------------------------------------------------
+	
+	
+
+
+	function listDataArray(data){
+				for(var i in data){
+					updateItemToViewList(data[i])
+				};
+		
+		
+		
+		
+		
 		
 	};	
 	
@@ -169,15 +171,7 @@ $(document).ready(function () {
     
     
     generateType(selectedDay);
-    $('.removeItem').click(function(){
-    	
-		var index=this.getAttribute("item-id");
-		var item = `[item-div-id=${index}]`
-		$(item).remove();
-		removeinvoice(index);
-
-	});
-   // generateList(selectedDay);
+   
     
     
     function generateList(sd){ 	
