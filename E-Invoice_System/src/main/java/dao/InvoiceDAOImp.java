@@ -49,7 +49,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 	}	
 	
 	@Override
-	public void remove(long id, User user) {
+	public void remove(long id) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 		Invoice invoice = (Invoice) session.get(Invoice.class, id);
@@ -57,6 +57,8 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		tx.commit();
 		session.close();
 	}
+	
+	
 	
 	@Override
 	public void update(Invoice invoice) {

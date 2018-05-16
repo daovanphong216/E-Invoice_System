@@ -441,13 +441,14 @@ public class AjaxController {
 	
 	
 	@RequestMapping(value = { "/deleteTypeByUser" }, method = RequestMethod.POST)
-	public List<String>  deleteTypeByUser(Principal principal, Authentication authentication,
+	public InvoiceType  deleteTypeByUser(Principal principal, Authentication authentication,
 	        @RequestParam(value="id", required=true) long id) {
+	
 		User user = userService.findbyUserName(principal.getName());
-		invoiceTypeService.DeleteInvoiceType(id, user);
-		List<String> response = new ArrayList<String>();
-		response.add("success");
-		return response;
+		InvoiceType it = invoiceTypeService.findbyId(id);	
+		it.setLogo("/getTypeInfor/"+ it.getId());
+		invoiceTypeService.DeleteInvoiceType(id, user);;
+		return it;
 	}
 	
 	@RequestMapping(value = { "/getAllTypesByAdmin" }, method = RequestMethod.GET)
@@ -470,8 +471,8 @@ public class AjaxController {
 	public List<String>  deleteTypeByAdmin(Principal principal, Authentication authentication,
 	        @RequestParam(value="id", required=true) long id) {
 		User user = userService.findbyUserName("admin");
-		InvoiceType it = invoiceTypeService.findbyId(id);
-		
+		InvoiceType it = invoiceTypeService.findbyId(id);	
+		invoiceTypeService.DeleteInvoiceType(id, user);
 		invoiceTypeService.deleteByName(it.getName());
 		List<String> response = new ArrayList<String>();
 		response.add("success");

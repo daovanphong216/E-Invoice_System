@@ -98,7 +98,7 @@ $("document").ready(function() {
 	 			},
 	 			dataType : "json",
 	 			success : function(data) {
-	 				showType();
+	 				
 	 			}
 	 		});
 	 });

@@ -7,8 +7,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import dao.InvoiceDAO;
 import dao.InvoiceTypeDAO;
 import dao.UserDAO;
+import model.Invoice;
 import model.InvoiceType;
 import model.User;
 
@@ -18,7 +20,12 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 
 	@Autowired
 	@Qualifier("invoiceTypeDAO")
-	InvoiceTypeDAO InvoiceTypeDao;
+	InvoiceTypeDAO invoiceTypeDao;
+
+	@Autowired
+	@Qualifier("invoiceDAO")
+	InvoiceDAO invoiceDao;
+	
 	
 	@Autowired
 	@Qualifier("userDAO")
@@ -26,29 +33,29 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	
 	@Override
 	public void create(InvoiceType type) {
-		this.InvoiceTypeDao.create(type);
+		this.invoiceTypeDao.create(type);
 
 	}
 
 	@Override
 	public void update(InvoiceType type) {
-		this.InvoiceTypeDao.update(type);
+		this.invoiceTypeDao.update(type);
 
 	}
 
 	@Override
 	public List<InvoiceType> getAll() {
-		return this.InvoiceTypeDao.getAll();
+		return this.invoiceTypeDao.getAll();
 	}
 
 	@Override
 	public List<InvoiceType> getAllType() {
-		return this.InvoiceTypeDao.getAll();
+		return this.invoiceTypeDao.getAll();
 	}
 
 	@Override
 	public InvoiceType findbyId(long id) {
-		return this.InvoiceTypeDao.findbyId(id);
+		return this.invoiceTypeDao.findbyId(id);
 	}
 
 	@Override
@@ -70,9 +77,10 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	
 	@Override
 	public void deleteByName(String invoiceTypeName){
-		List<InvoiceType> list = this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
+		List<InvoiceType> list = this.invoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
 		for (int i=0; i<list.size(); i++){
-			InvoiceTypeDao.remove(list.get(i).getId());
+			list.get(i).setDeleteAble(true);
+			invoiceTypeDao.update(list.get(i));
 		}
 	}
 
@@ -85,7 +93,7 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 			newtype.setName(name);
 			newtype.setOwner(user);
 			newtype.setDeleteAble(false);
-			this.InvoiceTypeDao.create(newtype);
+			this.invoiceTypeDao.create(newtype);
 		}
 		
 	}
@@ -97,28 +105,31 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 		newtype.setName(name);
 		newtype.setOwner(user);
 		newtype.setDeleteAble(true);
-		this.InvoiceTypeDao.create(newtype);
+		this.invoiceTypeDao.create(newtype);
 		
 	}
 
 	@Override
 	public InvoiceType findbyInvoiceTypeName(String invoiceTypeName, User user) {
-		return this.InvoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName, user);
+		return this.invoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName, user);
 	}
 
 	@Override
 	public void DeleteInvoiceType(long invoiceTypeId, User user){
-		InvoiceType it = InvoiceTypeDao.findbyInvoiceId(invoiceTypeId, user);
+		InvoiceType it = invoiceTypeDao.findbyInvoiceId(invoiceTypeId, user);
 		if (it!=null){
 			//Set <InvoiceType> its = user.getTypes();
 			//if (its.contains(it)){
-				InvoiceTypeDao.remove(invoiceTypeId);
+				for(Invoice i : it.getInvoices()) {
+					 invoiceDao.remove(i.getId());
+				 }
+				invoiceTypeDao.remove(invoiceTypeId);
 			//}
 		}
 	}
 	
 	@Override
 	public List<InvoiceType> getAll(User user){
-		return this.InvoiceTypeDao.getAll(user);
+		return this.invoiceTypeDao.getAll(user);
 	}
 }
