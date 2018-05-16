@@ -25,7 +25,6 @@
 						<li><a
 							href="${pageContext.request.contextPath}/userinfo">
 								Profile </a></li>
-						<li class="divider"></li>
 					</ul></li>
 			</c:if>
 			<c:if test="${isAdmin == true}">
