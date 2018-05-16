@@ -14,18 +14,17 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="././resources/assets/css/calender.css" />
+<link rel="stylesheet" href="././resources/assets/css/list_style.css" />
+<link rel="stylesheet" href="././resources/assets/css/Invoices.css">
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-<link rel="stylesheet" href="././resources/assets/css/calender.css" />
-<link rel="stylesheet" href="././resources/assets/css/list_style.css" />
-<link rel="stylesheet" href="././resources/assets/css/Invoices.css">
-<link rel="stylesheet"
-	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
-
 </head>
 <body>
 <div class= "flex-container">
