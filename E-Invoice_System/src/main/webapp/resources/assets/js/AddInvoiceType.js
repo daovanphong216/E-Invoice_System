@@ -1,7 +1,4 @@
-$("document").ready(function() {
-	document.getElementById('image').style.display = "none	";
-	
-	function getBase64Image(img) {
+function getBase64Image(img) {
         var canvas, ctx, dataURL, base64;
         canvas = document.createElement("canvas");
         ctx = canvas.getContext("2d");
@@ -13,27 +10,39 @@ $("document").ready(function() {
         return base64;
     }
 
+$("document").ready(function() {
+	document.getElementById('image').style.display = "none	";
+	
+	
+
 	$('#add_type').click(function(){
-		
-		var name=$("#typeaddname").val();
-		if($('#file').get(0).files.length > 0 && name!="" && name!=null){
-			var file=getBase64Image(document.getElementById("image"));
-			$.ajax({
-				
-				type : "POST",
-				url : "/E-Invoice_System/createtype",
-				data : {
-					'name' : name,
-					'file' : file
-				},
-				dataType : "json",
-				success : function(data) {
-					$(".limitform")[1].reset();
-					alert(data[0]);
-					showType();
-				}
-			});
-		}
+		if($('.addtypeform').valid()){
+			var name=$("#typeaddname").val();
+			if($('#file').get(0).files.length > 0 && name!="" && name!=null){
+				var file=getBase64Image(document.getElementById("image"));
+				$.ajax({
+					
+					type : "POST",
+					url : "/E-Invoice_System/createtype",
+					data : {
+						'name' : name,
+						'file' : file
+					},
+					dataType : "json",
+					success : function(data) {
+						$(".limitform")[1].reset();
+						
+						if(data!=null){
+							showType(data);
+							$('#AddInvoiceTypeModal').modal('hide');
+						}
+						else{
+							alert('This type is duplicated')
+						}
+					}
+				});
+			}
+		}	
 	});
 	
 	function getAllTypesjson(dateStr) {
@@ -57,20 +66,7 @@ $("document").ready(function() {
 	    return str;
 	}
 	
-	function showType(){
-    	var typesJson = getAllTypesjson(new Date());
-    	$(".select-option" ).empty();
-    	$("#select-option" ).empty();
-    	$("#select-option" ).append("<option value='0'>All</option>");
-		$("#delete_type" ).empty();
-		     
-		 for(var type in typesJson){
-		    			var markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-		    			$(".select-option" ).append(markup);
-		    			$("#select-option" ).append(markup);
-		    			if (typesJson[type].deleteAble==true){
-		    				$("#delete_type" ).append(markup);
-		    				}
-		    		}		
+	function showType(data){
+		addTypeToAllView(data);	
 	}
 });
