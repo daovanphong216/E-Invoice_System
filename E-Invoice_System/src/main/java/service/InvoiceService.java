@@ -50,4 +50,7 @@ import model.User;
 	public model.Invoice removeInvoice(long id, User user);
 
 
+	public model.Invoice findInvoiceByID(long id, User findbyUserName);
+
+
 }

@@ -157,4 +157,10 @@ public class InvoiceServiceImp implements InvoiceService{
 			String invoiceNo, InvoiceType type, User owner){
 		return this.invoiceDAO.count(datemin, datemax, moneyMin, moneyMax, cCode, invoiceNo, type, owner);
 	}
+
+	@Override
+	public Invoice findInvoiceByID(long id, User user) {
+		Invoice invoice = this.invoiceDAO.findbyId(id, user);
+		return invoice;
+	}
 }

@@ -45,7 +45,9 @@ footer {
 	.nav {
 		text-align: left;
 		-webkit-flex: 1 auto;
+
 		flex: 1 7%;
+
 		-webkit-order: 1;
 		order: 1;
 	}
