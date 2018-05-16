@@ -18,7 +18,7 @@ $("document").ready(function() {
 	});
 	
 	$('#search-btn').click(function(){
-		if ($('.search-form-monthly').valid()){
+		if ($('.search-form').valid()){
 			var searchdata={};
 			searchdata.dateMin= $('#startday-input').val();
 			searchdata.dateMax= $('#endday-input').val();
