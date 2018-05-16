@@ -1,5 +1,7 @@
 package service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
@@ -67,18 +69,27 @@ public class SendEmailJob implements Runnable {
 				if (limitedMoney<sumMoney) {
 					content +="You have exceed the limit. Your limit is " + limitedMoney + "$";
 				}
-				boolean isSend=sendMail(users.get(i).getEmail(), subject, content);
-				System.out.println(isSend);
+				boolean isSend;
+				try {
+					isSend = sendMail(users.get(i).getEmail(), subject, content);
+					System.out.println(isSend);
+				} catch (UnknownHostException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
     	}
 	}
     }
     
    @Async
-    public boolean sendMail(String to, String subject, String content) {
+    public boolean sendMail(String to, String subject, String content) throws UnknownHostException {
+	   	String  host=InetAddress.getLocalHost().getHostName();
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "pop.gmail.com");
+        //props.put("mail.smtp.host", "pop.gmail.com");
+        props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", "25");
         
         Session session = Session.getInstance(props,

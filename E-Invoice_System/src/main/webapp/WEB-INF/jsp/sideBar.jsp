@@ -14,7 +14,7 @@
 	
 		<label class="control-label">Invoice Type</label>
 		<div class="input-group ">
-			<select id ="select-option" >
+			<select id ="select-option" class="form-control">
 				<option value="0">All</option>
 			</select>
 		</div>
@@ -59,7 +59,7 @@
 	<div class="search-form-monthly">
 	<label class="control-label ">Delete Invoice Type</label>
 		<div class="input-group">
-			<select id ="delete_type">
+			<select id ="delete_type" class="form-control">
 			</select>
 		</div>
 		<button id = "delete_type_btn" type="button" class="btn btn-info">

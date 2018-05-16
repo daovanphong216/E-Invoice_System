@@ -45,7 +45,9 @@ footer {
 	.nav {
 		text-align: left;
 		-webkit-flex: 1 auto;
-		flex: 1 20%;
+
+		flex: 1 7%;
+
 		-webkit-order: 1;
 		order: 1;
 	}
@@ -108,8 +110,6 @@ footer {
 	padding-left: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border-style: solid;
-	border-width: 1px;
 }
 
 .search-form-monthly
@@ -129,9 +129,8 @@ footer {
 
 #select-option, #delete_type
 {
-	color: black;
-    height: 30px;
-    width: 185px;
+    color: black;
+    height: auto;
 }
 
 #endday-input
@@ -157,3 +156,14 @@ footer {
 	width: 50%;
 	padding: 10px;
 }
+.input-group
+{
+	width: 100%;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #272727;
+    border-color: #ccc;
+}
+	

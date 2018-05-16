@@ -18,7 +18,8 @@
 						id="yright" href="#">></a>
 		</h1>
 		<div id="piechart"></div>
-	
+		<h3 class="yearChart">Total of money use monthly </h3>
+		
 	<script type="text/javascript"
 		src="././resources/assets/js/Yearly.js"></script>
 

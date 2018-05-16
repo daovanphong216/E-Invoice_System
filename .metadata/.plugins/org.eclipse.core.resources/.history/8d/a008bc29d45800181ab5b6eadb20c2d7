@@ -1,0 +1,15 @@
+h3 {
+  font-weight: bold;
+}
+
+h3.yearChart
+{
+	margin-top: 0%;
+    margin-bottom: 6%;
+    margin-left: 30%;
+}
+
+h3.monthBarChart
+{
+	
+}

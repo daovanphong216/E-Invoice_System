@@ -122,7 +122,7 @@ function drawChart() {
     	typedatajs = getTypeReportjson(year+'/'+(month+1));
     	var linedata = new google.visualization.DataTable(forcessDataD([0.0,...datajs]));
         var piedata = new google.visualization.DataTable(forcessDataT(typedatajs,months));
-        var options = { 'width': 1050, 'height': 1000, curveType: 'function'};
+        var options = { 'width': 1000, 'height': 656, curveType: 'function'};
     	
         var barchart = new google.visualization.PieChart(document.getElementById('barchart'));
         barchart.draw(piedata, options);
