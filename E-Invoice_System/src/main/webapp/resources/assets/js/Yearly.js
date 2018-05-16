@@ -40,7 +40,7 @@ google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawPieChart);
 function drawPieChart() {
     
-    var options = { 'width': 1050, 'height': 900 };
+    var options = { 'width': 649, 'height': 656 };
     $("document").ready(function() {
     	yyear = new Date().getFullYear();
     	$('#yyear').html(yyear);

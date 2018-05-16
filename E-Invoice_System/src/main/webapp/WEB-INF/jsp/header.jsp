@@ -14,18 +14,18 @@
 		<div class="header-col header-account-control">
 		<ul>
 			
-				<li><a href="${pageContext.request.contextPath}/logout">
-						Log Out </a></li>
-			
+				<li><a href="${pageContext.request.contextPath}/logout" class="btn btn-default btn-sm">
+          			<span class="glyphicon glyphicon-log-out"></span> Log out
+       			 </a></li>
+						
 			<c:if test="${isAdmin != true}">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i>${user.name}</i>
+				<li class="dropdown"><a href="#" class="dropdown-toggle btn btn-default btn-sm"
+					data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span><i> ${user.name}</i> </a>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a
 							href="${pageContext.request.contextPath}/userinfo">
 								Profile </a></li>
-						<li class="divider"></li>
 					</ul></li>
 			</c:if>
 			<c:if test="${isAdmin == true}">

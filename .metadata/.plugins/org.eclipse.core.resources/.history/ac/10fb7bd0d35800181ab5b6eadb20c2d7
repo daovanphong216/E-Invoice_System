@@ -1,0 +1,7 @@
+h3 {
+	margin-top: 0%;
+    margin-bottom: 6%;
+    font-weight: bold;
+    margin-left: 30%;
+}
+
