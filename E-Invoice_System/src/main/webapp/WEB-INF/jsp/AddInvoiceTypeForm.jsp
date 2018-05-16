@@ -5,10 +5,10 @@
 	</h4>
 </div>
 <div class="ucontainer">
-	<form class="limitform">
+	<form class="limitform addtypeform">
 		<label for="typename">Invoice Type</label> 
 		<input type="text"
-			step="0.1" class="form-control" id="typeaddname"
+			class="form-control" id="typeaddname"
 			placeholder="Enter Type name" name="typeaddname" required> 
 		<br>
 		<label for="amountOfMoney">Select file</label> 

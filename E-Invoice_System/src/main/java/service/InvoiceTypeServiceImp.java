@@ -32,8 +32,8 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	UserDAO userDao;
 	
 	@Override
-	public void create(InvoiceType type) {
-		this.invoiceTypeDao.create(type);
+	public InvoiceType create(InvoiceType type) {
+		return this.invoiceTypeDao.create(type);
 
 	}
 
@@ -85,7 +85,7 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	}
 
 	@Override
-	public void createTypeByAdmin(String name, String file) {
+	public InvoiceType createTypeByAdmin(String name, String file) {
 		List<User> list = this.userDao.getAll();
 		for(User user : list) {
 			InvoiceType newtype = new InvoiceType();
@@ -95,17 +95,20 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 			newtype.setDeleteAble(false);
 			this.invoiceTypeDao.create(newtype);
 		}
-		
+		InvoiceType defaultType = new InvoiceType();
+		defaultType.setName(name);
+		defaultType.setLogo(file);
+		return defaultType;
 	}
 
 	@Override
-	public void createTypeByMember(String name, String file, User user) {
+	public InvoiceType createTypeByMember(String name, String file, User user) {
 		InvoiceType newtype = new InvoiceType();
 		newtype.setLogo(file);
 		newtype.setName(name);
 		newtype.setOwner(user);
 		newtype.setDeleteAble(true);
-		this.invoiceTypeDao.create(newtype);
+		return this.invoiceTypeDao.create(newtype);
 		
 	}
 

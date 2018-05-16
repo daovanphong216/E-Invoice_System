@@ -7,12 +7,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import model.Invoice;
 import model.InvoiceType;
 import model.User;
 
@@ -31,13 +28,13 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 	
 	
 	@Override
-	public void create(InvoiceType invoiceType) {
+	public InvoiceType create(InvoiceType invoiceType) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 		session.save(invoiceType);
 		tx.commit();
 		session.close();
-		
+		return invoiceType;
 	}
 	
 	@Override
@@ -93,6 +90,7 @@ public class InvoiceTypeDAOImp implements InvoiceTypeDAO{
 		Session session = getSessionFactory().openSession();
 		Query query= session.createQuery("select it from invoicetypes it where it.name= :name");
 		query.setParameter("name", invoiceTypeName);
+		@SuppressWarnings("unchecked")
 		List<InvoiceType> invoiceTypes = query.list();
 		session.close();
 		if (!invoiceTypes.isEmpty()){

@@ -412,26 +412,23 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value = { "/createtype" }, method = RequestMethod.POST)
-	public List<String>  createtype(Principal principal, Authentication authentication,
+	public InvoiceType  createtype(Principal principal, Authentication authentication,
 	        @RequestParam(value="file", required=true) String file,
 	        @RequestParam(value="name", required=true) String name) {
 			
 			Account account = this.accountService.findbyUserName(principal.getName());
-			List<String> response = new ArrayList<String>();
+			InvoiceType response = new InvoiceType();
 			if(account.getRole().equals("ROLE_ADMIN")) {
 				if(this.invoiceTypeService.findbyInvoiceTypeName(name,userService.findbyUserName("admin"))==null) {
-					this.invoiceTypeService.createTypeByAdmin(name, file);
-					response.add("success");
+					
+					response = this.invoiceTypeService.createTypeByAdmin(name, file);
 				}else {
-					response.add("Invoice type name duplicated");
 
 				}
 			}else {
 				if(this.invoiceTypeService.findbyInvoiceTypeName(name,account.getUser())==null) {
-					this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
-					response.add("success");
+					response = this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
 				}else {
-					response.add("Invoice type name duplicated");
 
 				}
 				
