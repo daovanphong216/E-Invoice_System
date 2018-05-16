@@ -188,9 +188,39 @@ $("document").ready(function() {
 	}
 	
 	
+	$('.removeItem').click(function(){
+		
+		var index=this.getAttribute("item-id");
+		var item = `[item-div-id=${index}]`
+		
+		var invoice = removeinvoice(index);
+		if(invoice!=null){
+			$(item).remove();		
+		}
+
+	});
+	
 });
 
+function removeinvoice(dateStr) {
+    var str;
+    $.ajax({
+        url: "http://localhost:8080/E-Invoice_System/removeinvoice/"+dateStr,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
 
+    });
+    return str;
+}
 function updateItemToSearchList(item){
 	var markup =`
 		<div item-div-id='${item.id}' class="l-item">

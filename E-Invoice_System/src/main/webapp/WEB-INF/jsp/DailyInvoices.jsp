@@ -131,6 +131,8 @@
 		src="././resources/assets/js/InvoiceForm.js"></script>
 	<script type="text/javascript"
 		src="././resources/assets/js/Setlimit.js"></script>
+	<script type="text/javascript"
+		src="././resources/assets/js/UpdateForm.js"></script>
 
 </body>
 </html>

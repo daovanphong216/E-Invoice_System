@@ -69,7 +69,7 @@ $("document").ready(function() {
 	});
 	
 	function showType(){
-    	var typesJson = getAllTypesjson(new Date());
+    	var typesJson = getAllTypesjson("2018-01-01");
     	$(".select-option" ).empty();
     	$("#select-option" ).empty();
     	$("#select-option" ).append("<option value='0'>All</option>");
