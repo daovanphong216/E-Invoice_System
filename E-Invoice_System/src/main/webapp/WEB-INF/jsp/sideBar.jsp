@@ -10,7 +10,7 @@
 	</ul>
 	<hr>
 	
-	<form class="search-form-monthly">
+	<form class="search-form-monthly search-form">
 	
 		<label class="control-label">Invoice Type</label>
 		<div class="input-group ">

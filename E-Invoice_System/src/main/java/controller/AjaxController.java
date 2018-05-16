@@ -412,26 +412,23 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value = { "/createtype" }, method = RequestMethod.POST)
-	public List<String>  createtype(Principal principal, Authentication authentication,
+	public InvoiceType  createtype(Principal principal, Authentication authentication,
 	        @RequestParam(value="file", required=true) String file,
 	        @RequestParam(value="name", required=true) String name) {
 			
 			Account account = this.accountService.findbyUserName(principal.getName());
-			List<String> response = new ArrayList<String>();
+			InvoiceType response = new InvoiceType();
 			if(account.getRole().equals("ROLE_ADMIN")) {
 				if(this.invoiceTypeService.findbyInvoiceTypeName(name,userService.findbyUserName("admin"))==null) {
-					this.invoiceTypeService.createTypeByAdmin(name, file);
-					response.add("success");
+					
+					response = this.invoiceTypeService.createTypeByAdmin(name, file);
 				}else {
-					response.add("Invoice type name duplicated");
 
 				}
 			}else {
 				if(this.invoiceTypeService.findbyInvoiceTypeName(name,account.getUser())==null) {
-					this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
-					response.add("success");
+					response = this.invoiceTypeService.createTypeByMember(name, file,account.getUser());
 				}else {
-					response.add("Invoice type name duplicated");
 
 				}
 				
@@ -441,19 +438,24 @@ public class AjaxController {
 	
 	
 	@RequestMapping(value = { "/deleteTypeByUser" }, method = RequestMethod.POST)
-	public List<String>  deleteTypeByUser(Principal principal, Authentication authentication,
+	public InvoiceType  deleteTypeByUser(Principal principal, Authentication authentication,
 	        @RequestParam(value="id", required=true) long id) {
+	
 		User user = userService.findbyUserName(principal.getName());
-		invoiceTypeService.DeleteInvoiceType(id, user);
-		List<String> response = new ArrayList<String>();
-		response.add("success");
-		return response;
+		InvoiceType it = invoiceTypeService.findbyId(id);	
+		it.setLogo("/getTypeInfor/"+ it.getId());
+		invoiceTypeService.DeleteInvoiceType(id, user);;
+		return it;
 	}
 	
 	@RequestMapping(value = { "/getAllTypesByAdmin" }, method = RequestMethod.GET)
 	public List<InvoiceType> getAllTypes(Principal principal, Authentication authentication) {
 			User user = userService.findbyUserName("admin");
-			return this.invoiceTypeService.getAll(user);
+			List<InvoiceType> its= this.invoiceTypeService.getAll(user);
+			 for(InvoiceType i : its) {
+				 i.setLogo("/getTypeInfor/"+i.getId());
+			 }
+			 return its;
 	   }
 	
 	@RequestMapping(value = { "/getAllTypesByUser" }, method = RequestMethod.GET)
@@ -466,8 +468,8 @@ public class AjaxController {
 	public List<String>  deleteTypeByAdmin(Principal principal, Authentication authentication,
 	        @RequestParam(value="id", required=true) long id) {
 		User user = userService.findbyUserName("admin");
-		InvoiceType it = invoiceTypeService.findbyId(id);
-		
+		InvoiceType it = invoiceTypeService.findbyId(id);	
+		invoiceTypeService.DeleteInvoiceType(id, user);
 		invoiceTypeService.deleteByName(it.getName());
 		List<String> response = new ArrayList<String>();
 		response.add("success");

@@ -13,14 +13,18 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="<c:url value='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>" />
-<!-- jQuery library -->
-
+<link rel="stylesheet"
+	href="<c:url value='../resources/assets/css/HeaderFooterStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='../resources/assets/css/UserInfoStyle.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='../resources/assets/css/adminPageStyle.css'/>" />
 <!-- Latest compiled JavaScript -->
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -29,13 +33,6 @@
 
 
 <title>E-Invoice System</title>
-
-<link rel="stylesheet"
-	href="<c:url value='../resources/assets/css/HeaderFooterStyle.css'/>" />
-<link rel="stylesheet"
-	href="<c:url value='../resources/assets/css/UserInfoStyle.css'/>" />
-<link rel="stylesheet"
-	href="<c:url value='../resources/assets/css/adminPageStyle.css'/>" />
 
 
 </head>

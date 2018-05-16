@@ -67,7 +67,7 @@ public class InvoiceServiceImp implements InvoiceService{
 		Invoice invoice = this.invoiceDAO.findbyId(id);
 		user.getInvoices().remove(invoice);
 		this.userDao.update(user);
-		this.invoiceDAO.remove(id, user);
+		this.invoiceDAO.remove(id);
 		
 	}
 
@@ -146,7 +146,7 @@ public class InvoiceServiceImp implements InvoiceService{
 		Invoice invoice = this.invoiceDAO.findbyId(id);
 		user.getInvoices().remove(invoice);
 		this.userDao.update(user);
-		this.invoiceDAO.remove(id, user);
+		this.invoiceDAO.remove(id);
 		return invoice;
 	}
 

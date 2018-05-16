@@ -190,36 +190,7 @@ $(document).ready(function () {
     	$("#select-option" ).append("<option value='0'>All</option>");
 		$("#delete_type" ).empty();
     	for(var type in typesJson){
-    		var markup = `<div class="type-block style${(typesJson[type].id%3)+1} type${typesJson[type].id}">
-        <div class="">
-    		<div class="type-title">
-    		<img src="/E-Invoice_System/getTypeInfor/${typesJson[type].id}">
-            <a class="type-name" data-toggle="collapse" href='#collapse${typesJson[type].id}' aria-expanded="false" aria-controls="collapse${typesJson[type].id}">
-                ${typesJson[type].name}
-            </a>
-            <span>(</span><span class='type${typesJson[type].id}no typeno'>0</span><span> invoices)</span>
-            <span class='numberofinvoices'>$</span><span class="type${typesJson[type].id}money typemoney">0.00</span>
-            </div>
-        <div>
-        <div class="collapse" id="collapse${typesJson[type].id}">
-            <div class="list list-type${typesJson[type].id}">  
-            </div>
-        </div>
-    </div>`;
-    		$(".selectedView").append(markup);
-    		for(var i in typesJson[type].invoices){
-    			updateItemToViewList(typesJson[type].invoices[i],typesJson[type].id);
-    		}
-
-    
-    			markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-    			$(".typeSelect" ).append(markup);    			
-    			
-    			$("#select-option" ).append(markup);
-    			if (typesJson[type].deleteAble==true){
-    				markup = `<option value="${typesJson[type].id}">${typesJson[type].name}</option>`;
-    				$("#delete_type" ).append(markup);
-    				}
+    		addTypeToAllView(typesJson[type]);
     		
     	}
     }
@@ -333,54 +304,36 @@ $(document).ready(function () {
         }
     });
     generateCalendar(currentDate);
-    
-    
-
-	
-	//----------------------------------
-    function showType(){
-		 $.ajax({
-		        url: "/E-Invoice_System/getAllTypesByUser",
-		        type: 'GET',
-		        async: false,
-		        contentType: "application/json; charset=utf-8",
-		        dataType: "json",
-		        processData: true,
-		        success: function (data) {
-		        	$("#select-option" ).empty();
-		        	$("#select-option" ).append("<option value='0'>All</option>");
-		    		$("#delete_type" ).empty();
-		    		for(var type in data){
-		    			var markup = `<option value="${data[type].id}">${data[type].name}</option>`;
-		    			$("#select-option" ).append(markup);
-		    			if (data[type].deleteAble==true){
-		    				markup = `<option value="${data[type].id}">${data[type].name}</option>`;
-		    				$("#delete_type" ).append(markup);
-		    				}
-		    		}
-		        },
-		        failure: function (data) {
-		            alert("Fail " + data);
-		        }
-
-		    });
-		
-	}
-    
-    $('#delete_type_btn').click(function () {
-     	var type_id= $("#delete_type").val();
-     	$.ajax({
- 			type : "POST",
-			url : "/E-Invoice_System/deleteTypeByUser",
- 			data : {
- 				'id' : type_id,
- 			},
- 			dataType : "json",
- 			success : function(data) {
- 				showType();
- 			}
- 		});
-     });
-    
-    
 })
+
+function addTypeToAllView(type){
+	var markup = `<div class="type-block style${(type.id%3)+1} type${type.id}">
+        <div class="">
+    		<div class="type-title">
+    		<img src="/E-Invoice_System/getTypeInfor/${type.id}">
+            <a class="type-name" data-toggle="collapse" href='#collapse${type.id}' aria-expanded="false" aria-controls="collapse${type.id}">
+                ${type.name}
+            </a>
+            <span>(</span><span class='type${type.id}no typeno'>0</span><span> invoices)</span>
+            <span class='numberofinvoices'>$</span><span class="type${type.id}money typemoney">0.00</span>
+            </div>
+        <div>
+        <div class="collapse" id="collapse${type.id}">
+            <div class="list list-type${type.id}">  
+            </div>
+        </div>
+    </div>`;
+    		$(".selectedView").append(markup);
+    		for(var i in type.invoices){
+    			updateItemToViewList(type.invoices[i],type.id);
+    		}
+
+    
+    			markup = `<option value="${type.id}">${type.name}</option>`;
+    			$(".typeSelect" ).append(markup);    			
+    			
+    			$("#select-option" ).append(markup);
+    			if (type.deleteAble==true){
+    				$("#delete_type" ).append(markup);
+    				}
+}
