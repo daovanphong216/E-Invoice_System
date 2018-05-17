@@ -16,9 +16,9 @@
 			<input type="month" name="mmonth">
 		</h1>
 		<div id="barchart"></div>
-		<h3 class="monthBarChart">Total of money use this month visualize in bar chart </h3>
+		<h3 class="monthBarChart">Total of money use this month visualize in bar chart</h3>
 		<div id="linechart"></div>
-		<h3 class="monthLineChart">Total of money use this month visualize in line chart </h3>
+		<h3 class="monthLineChart">Total of money use this month visualize in line chart</h3>
 
 
 	<script type="text/javascript"

@@ -1,0 +1,26 @@
+h5.yearChart
+{
+	margin-top: 0%;
+    margin-bottom: 6%;
+    margin-left: 20%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h5.monthBarChart
+{
+	margin-top: 0%;
+    margin-bottom: 0%;
+    margin-left: 14%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h5.monthLineChart
+{
+	margin-top: 0%;
+    margin-bottom: 5%;
+    margin-left: 20%;
+    font-weight: bold;
+    font-style: italic;
+}

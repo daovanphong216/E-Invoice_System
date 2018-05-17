@@ -51,6 +51,8 @@ import model.User;
 
 
 	public model.Invoice findInvoiceByID(long id, User findbyUserName);
+	
+	public Invoice findbyInvoiceNo(String invoiceNo, InvoiceType type);
 
 
 }

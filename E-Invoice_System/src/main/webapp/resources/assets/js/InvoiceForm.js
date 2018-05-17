@@ -57,37 +57,42 @@ $(document).ready(function(){
 		fdata.type= $("select[name=typeInCreateForm]" ).val();
 
 		item = ajaxsubmitcreate(fdata);
-		var returnedDay = new Date(item.dateTime);
-		if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
-			updateItemToViewList(item,fdata.type);
-			$.get("/E-Invoice_System/gettypereport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
-        		for(i in data){
-        			$('.type'+data[i].id+'no').html(data[i].noOfInvoice);
-        			$('.type'+data[i].id+'money').html(data[i].totalMonney);
-        		}      		
-            });
+		if(item!=null){
+			var returnedDay = new Date(item.dateTime);
+			if((selectedDay.getDate() == returnedDay.getDate()) && (selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
+				updateItemToViewList(item,fdata.type);
+				$.get("/E-Invoice_System/gettypereport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1)+"/"+selectedDay.getDate(), function(data, status){
+	        		for(i in data){
+	        			$('.type'+data[i].id+'no').html(data[i].noOfInvoice);
+	        			$('.type'+data[i].id+'money').html(data[i].totalMonney);
+	        		}      		
+	            });
+				
+				
+				$.get("/E-Invoice_System/getreport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1), function(data, status){
+					$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+			    });
+			}
+				
+				
+			
+
+			$(".invoiceform")[0].reset();
+			$( "input[name=dateTimeInCreateForm]" ).val(getSelectedDateString(selectedDay));
+			$('#CreateInvoiceFormModal').modal('hide');
 			
 			
-			$.get("/E-Invoice_System/getreport/"+selectedDay.getFullYear()+"/"+(selectedDay.getMonth()+1), function(data, status){
-				$('.totalDateMoney').html(data[selectedDay.getDate()-1]);
+			if((selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
+
+			var year = selectedDay.getFullYear();
+			$.get("/E-Invoice_System/getreport/"+year, function(data, status){
+				$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
 		    });
+			}
+		}else{
+			alert('This invovice number is duplicated');
 		}
-			
-			
 		
-
-		$(".invoiceform")[0].reset();
-		$( "input[name=dateTimeInCreateForm]" ).val(getSelectedDateString(selectedDay));
-		$('#CreateInvoiceFormModal').modal('hide');
-		
-		
-		if((selectedDay.getFullYear() == returnedDay.getFullYear())&& (selectedDay.getMonth() == returnedDay.getMonth())){
-
-		var year = selectedDay.getFullYear();
-		$.get("/E-Invoice_System/getreport/"+year, function(data, status){
-			$('.totalMonthMoney').html(data[selectedDay.getMonth()]);
-	    });
-		}
 		
 		}
 		

@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/titleImage.png" type="image/x-icon">
 <link rel="stylesheet" href="<c:url value = '././resources/assets/css/about.css'/>" />
 </head>
 <body>

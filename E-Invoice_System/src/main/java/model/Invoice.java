@@ -61,6 +61,18 @@ public class Invoice {
 	@Column(name = "invoiceNo")
 	private String invoiceNo;
 	
+	@Column(name = "typeName")
+	private String typeName;
+	
+	
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
 	/**
 	 * @return
 	 */
