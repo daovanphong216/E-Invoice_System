@@ -30,9 +30,6 @@
 <link rel="stylesheet"
 	href="<c:url value='https://fonts.googleapis.com/css?family=Roboto|Varela+Round'/>" />
 
-
-<link rel="stylesheet"
-	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/RegisterStyle.css'/>" />
 

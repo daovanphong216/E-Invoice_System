@@ -28,8 +28,6 @@
 <link rel="stylesheet"
 	href="<c:url value='https://fonts.googleapis.com/css?family=Roboto|Varela+Round'/>" />
 <link rel="stylesheet"
-	href="<c:url value='/resources/assets/css/HeaderFooterStyle.css'/>" />
-<link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/LoginStyle.css'/>" />
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script
