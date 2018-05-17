@@ -72,6 +72,7 @@
 								</div>
 							</div>
 							<input type="hidden" value="${page}" name="page" id="page">
+							<input type="hidden" value="${day}" name="dayy" id="dayy">
 						</form>
 					</div>
 					<div class="group-pickertime col-sm-6">
