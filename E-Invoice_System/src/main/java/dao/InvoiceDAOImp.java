@@ -224,6 +224,25 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		}
 		return results.get(0);
 	}
+
+	@Override
+	public Invoice findbyInvoiceNo(String invoiceNo, InvoiceType type) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria query = session.createCriteria(Invoice.class);
+		query.add(Restrictions.eq("type", type));
+		@SuppressWarnings("unchecked")
+		List<Invoice> results = query.list();
+		
+		tx.commit();
+		session.close();
+		if(results.isEmpty()) {
+			return null;
+		}
+		return results.get(0);
+		
+	}
 	
 	
 }
