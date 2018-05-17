@@ -14,12 +14,12 @@
 		<div class="header-col header-account-control">
 		<ul>
 			
-				<li><a href="${pageContext.request.contextPath}/logout" class="btn btn-default btn-sm">
+				<li><a href="${pageContext.request.contextPath}/logout" class="btn btn-default btn-sm btn-header">
           			<span class="glyphicon glyphicon-log-out"></span> Log out
        			 </a></li>
 						
 			<c:if test="${isAdmin != true}">
-				<li class="dropdown"><a href="#" class="dropdown-toggle btn btn-default btn-sm"
+				<li class="dropdown"><a href="#" class="dropdown-toggle btn btn-default btn-sm btn-header"
 					data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span><i> ${user.name}</i> </a>
 				</a>
 					<ul class="dropdown-menu">

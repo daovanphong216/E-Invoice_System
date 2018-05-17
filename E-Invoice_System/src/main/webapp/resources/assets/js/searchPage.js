@@ -259,7 +259,26 @@ function getInvoicejsonById(id) {
     return str;
 }
 
+function getSelectedDateString(selectedDay){
+	console.log(selectedDay);
+	var sdd= selectedDay.getDate();
+	if (sdd <10){
+		sdd = '0'+sdd;
+	}
+	var sdm= selectedDay.getMonth()+1;
+	if (sdm <10){
+		sdm = '0'+sdm;
+	}
+	var sdy= selectedDay.getFullYear();
+	
+	var datestr = sdy+'-'+sdm+'-'+sdd;
+	console.log(datestr);
+	return datestr;
+}
+
 function updateItemToSearchList(item){
+	var itemdate = new Date(item.dateTime);
+	var datestr = getSelectedDateString(itemdate);
 	var markup =`
 		<div item-div-id='${item.id}' class="l-item">
 			<div class="item-col item-ava w3-bar-item w3-circle w3-hide-small">
@@ -271,7 +290,7 @@ function updateItemToSearchList(item){
 				<div class="item-info">
 					<b>No: </b>${item.invoiceNo} | 
 					<b>Money: </b>$${item.amountOfMoney} |
-					<b>Date: </b>${item.dateTime}
+					<b>Date: </b>${datestr}
 				</div>
 			</div>
 			<div class="item-col item-buttons">
