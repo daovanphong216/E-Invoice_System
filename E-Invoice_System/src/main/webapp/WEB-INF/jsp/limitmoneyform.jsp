@@ -5,7 +5,7 @@
 <div class="ucontainer">
 	<form class="limitform">
 			<label for="amountOfMoney">Money:</label> <input
-				type="number" step="0.1" class="form-control" id="amountOfMoney"
+				type="number" step="0.1" min="0" class="form-control" id="amountOfMoney"
 				placeholder="Enter Amount Of Money" name="limitMoney">
 				<br>
 				<input type="button" value="Update"

@@ -53,9 +53,15 @@ $("document").ready(function() {
 			},
 			dataType : "json",
 			success : function(data) {
-				$("#add_type_form")[0].reset();
+				
 				showType();
-				alert(data[0]);
+				if(data.name != null){
+					$("#add_type_form")[0].reset();
+					alert('Added');
+				}else{
+					alert('This invoice type name is duplicated');
+				}
+					
 			}
 		});
 		}

@@ -1036,3 +1036,4 @@ Servers/Tomcat v8.0 Server at localhost-config/web.xml
 .metadata/.plugins/org.eclipse.ui.editors/dialog_settings.xml
 .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.ui.prefs
 .metadata/.plugins/org.eclipse.core.resources/.root/7.tree
+/.metadata/

@@ -78,9 +78,12 @@ public class InvoiceTypeServiceImp implements InvoiceTypeService {
 	@Override
 	public void deleteByName(String invoiceTypeName){
 		List<InvoiceType> list = this.invoiceTypeDao.findbyInvoiceTypeName(invoiceTypeName);
-		for (int i=0; i<list.size(); i++){
-			list.get(i).setDeleteAble(true);
-			invoiceTypeDao.update(list.get(i));
+		if(list==null) {
+			return;
+		}
+		for (InvoiceType i : list){
+			i.setDeleteAble(true);
+			invoiceTypeDao.update(i);
 		}
 	}
 
