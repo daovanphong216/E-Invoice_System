@@ -200,6 +200,23 @@ $("document").ready(function() {
 
 	});
 	
+	
+	$('.updateItem').click(function(){
+		indexToUpdate=this.getAttribute("item-id");
+		var itemInvoice = getInvoicejsonById(indexToUpdate);
+		$('.ucustomerCode').val(itemInvoice.customerCode);
+		$('.uinvoiceNo').val(itemInvoice.invoiceNo);
+		$('.uVAT').val(itemInvoice.vat);
+		$('.uamountOfMoney').val(itemInvoice.amountOfMoney);
+		$('.udescription').val(itemInvoice.description);
+		dd = new Date(itemInvoice.dateTime);
+		$('.udateTime').val(getSelectedDateString(selectedDay));
+		
+		
+		
+	});
+	
+	
 });
 
 function removeinvoice(dateStr) {
@@ -221,6 +238,27 @@ function removeinvoice(dateStr) {
     });
     return str;
 }
+
+function getInvoicejsonById(id) {
+    var str;
+    $.ajax({
+        url: "/E-Invoice_System/getInvoiceById/"+id,
+        type: 'GET',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function (data) {
+            str = data;
+        },
+        failure: function (data) {
+            alert("Fail " + data);
+        }
+
+    });
+    return str;
+}
+
 function updateItemToSearchList(item){
 	var markup =`
 		<div item-div-id='${item.id}' class="l-item">

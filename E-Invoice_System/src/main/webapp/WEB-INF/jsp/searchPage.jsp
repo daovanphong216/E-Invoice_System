@@ -46,12 +46,23 @@
 			</div>
 		</c:if>
 	</article>
+<div class="modal fade" id="UpdateInvoiceFormModal" role="dialog">
+			<div class="modal-dialog">
 
+				<!-- Modal content-->
+				<div class="modal-content">
+					<%@ include file="updateinvoiceform.jsp"%>
+				</div>
+
+			</div>
+		</div>
 	
 
 	<%@ include file="footer.jsp"%>
 </div>
 	
 <script type="text/javascript" src="././resources/assets/js/searchPage.js"></script>	
+<script type="text/javascript"
+		src="././resources/assets/js/UpdateForm.js"></script>
 </body>
 </html>
