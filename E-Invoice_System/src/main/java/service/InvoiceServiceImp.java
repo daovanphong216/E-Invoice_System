@@ -114,6 +114,7 @@ public class InvoiceServiceImp implements InvoiceService{
 		
 		InvoiceType type = this.InvoiceTypeDao.findbyId(typeId);
 		newInvoice.setType(type);
+		newInvoice.setTypeName(type.getName());
 		this.invoiceDAO.create(newInvoice);
 		return newInvoice;
 	}
