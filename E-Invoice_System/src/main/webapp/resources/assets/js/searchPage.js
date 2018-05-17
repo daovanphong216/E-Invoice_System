@@ -161,7 +161,7 @@ $("document").ready(function() {
             		link+=href[j];
             	}
             	link+="firstResult=";
-            	link+=(pageNext[i]*1)-1;
+            	link+=(pageNext[i]-1)*10;
             	for (var j=pos2; j<href.length; j++){
 
             		link+=href[j];
