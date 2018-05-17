@@ -12,7 +12,7 @@
 			placeholder="Enter Type name" name="typeaddname" required> 
 		<br>
 		<label for="amountOfMoney">Select file</label> 
-		<img class="form-group" id='image' name='image' alt='your image' width='150' height='150'>
+		<img class="form-group" id='image' name='image' alt='your image' width='500' height='500'>
 		
 		<input class="form-group" id='file' name='file' , type='file', accept='image/*', 
 		onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0]);
