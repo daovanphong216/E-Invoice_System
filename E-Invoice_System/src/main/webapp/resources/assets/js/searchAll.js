@@ -1,5 +1,6 @@
 
 $("document").ready(function() {
+	$(".search-form").valid();
 	
 	$( "#startday-input" ).change(function() {
 		$( "#endday-input" )[0].min = $( "#startday-input" ).val();
@@ -9,12 +10,14 @@ $("document").ready(function() {
 		$( "#startday-input" )[0].max =  $( "#endday-input" ).val();
 	});
 	
-	$( "#moneyend-input" ).change(function() {
+	$( "#moneyend-input" ).keyup(function() {
 		$( "#monneystart-input" )[0].max = $( "#moneyend-input" ).val();
+		$(".search-form").valid();
 	});
 	
-	$( "#monneystart-input" ).change(function() {
+	$( "#monneystart-input" ).keyup(function() {
 		$( "#moneyend-input" )[0].min = $( "#monneystart-input" ).val();
+		$(".search-form").valid();
 	});
 	
 	$('#search-btn').click(function(){
