@@ -31,8 +31,8 @@ $("document").ready(function() {
 					dataType : "json",
 					success : function(data) {
 						$(".limitform")[1].reset();
-						
-						if(data!=null){
+						console.log(data);
+						if(data.id != 0){
 							showType(data);
 							$('#AddInvoiceTypeModal').modal('hide');
 						}
