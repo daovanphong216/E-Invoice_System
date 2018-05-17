@@ -113,7 +113,11 @@ public class InvoiceServiceImp implements InvoiceService{
 		newInvoice.setOwner(owner);
 		
 		InvoiceType type = this.InvoiceTypeDao.findbyId(typeId);
+		if(this.invoiceDAO.findbyInvoiceNo(invoiceNo, type)!=null) {
+			return null;
+		}
 		newInvoice.setType(type);
+		newInvoice.setTypeName(type.getName());
 		this.invoiceDAO.create(newInvoice);
 		return newInvoice;
 	}
@@ -162,5 +166,10 @@ public class InvoiceServiceImp implements InvoiceService{
 	public Invoice findInvoiceByID(long id, User user) {
 		Invoice invoice = this.invoiceDAO.findbyId(id, user);
 		return invoice;
+	}
+
+	@Override
+	public model.Invoice findbyInvoiceNo(String invoiceNo, InvoiceType type) {
+		return this.findbyInvoiceNo(invoiceNo, type);
 	}
 }

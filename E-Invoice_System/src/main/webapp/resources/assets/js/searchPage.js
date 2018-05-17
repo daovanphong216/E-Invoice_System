@@ -286,11 +286,12 @@ function updateItemToSearchList(item){
 				<span class='glyphicon glyphicon-level-up'>&nbsp;</span>
 			</div>
 			<div class="item-col item-detail">
-				<div class="item-desc">${item.description}</div>
+				<div class="item-desc">${item.typeName}</div>
 				<div class="item-info">
 					<b>No: </b>${item.invoiceNo} | 
 					<b>Money: </b>$${item.amountOfMoney} |
-					<b>Date: </b>${datestr}
+					<b>Date: </b>${datestr} |
+					<b>Detail: </b>${item.description}
 				</div>
 			</div>
 			<div class="item-col item-buttons">
