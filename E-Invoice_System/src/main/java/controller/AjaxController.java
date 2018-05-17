@@ -193,6 +193,42 @@ public class AjaxController {
 	   }
 	
 	
+	@RequestMapping(value = { "/updateInvoice/{id}" }, method = RequestMethod.GET)
+	public Invoice updateInvoice(Principal principal, Authentication authentication,
+			@PathVariable("id") long id,
+			@RequestParam(value="description", required=true) String description, 
+	        @RequestParam(value="dateTime", required=true) String dateTime, 
+	        @RequestParam(value="amountOfMoney", required=true) double amountOfMoney, 
+	        @RequestParam(value="customerCode", required=true) long customerCode,
+	        @RequestParam(value="invoiceNo", required=true) String invoiceNo,
+	        @RequestParam(value="VAT", required=true) double VAT
+	        ) {
+		 String userName= principal.getName();
+		 
+		 Invoice invoice = null;
+		 if (userName.equals("")) {
+		 } else {
+			 User currentuser = this.userService.findbyUserName(userName);
+			 invoice = this.invoiceService.findInvoiceByID(id, currentuser);
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+			 Date date = new Date();
+			try {
+				date = formatter.parse(dateTime+ ", 00:00:00.000");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			invoice.setAmountOfMoney(amountOfMoney);
+			invoice.setCustomerCode(customerCode);
+			invoice.setDateTime(date);
+			invoice.setDescription(description);
+			invoice.setVAT(VAT);
+			invoice.setInvoiceNo(invoiceNo);
+			
+			this.invoiceService.saveOrUpdate(invoice);
+		 }		
+		 return invoice;
+	   }
+	
 	
 	@RequestMapping(value = { "/setlimitmoney" }, method = RequestMethod.GET)
 	public String setlimitmoney(Principal principal, Authentication authentication,

@@ -31,7 +31,7 @@ public class InvoiceServiceImp implements InvoiceService{
 	
 	@Override
 	public void saveOrUpdate(Invoice Invoice) {
-		
+		this.invoiceDAO.update(Invoice);
 		
 	}
 

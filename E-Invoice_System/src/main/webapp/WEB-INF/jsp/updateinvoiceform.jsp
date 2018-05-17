@@ -10,11 +10,6 @@
 				placeholder="Enter Customer Code" name="ucustomerCode">
 		</div>
 		<div class="form-group">
-			<label for="invoiceNo">Invoice Type:</label> 
-			<select	title="Select your surfboard" name="utype" class="form-control typeSelect">
-			</select>
-		</div>
-		<div class="form-group">
 			<label for="invoiceNo">Invoice No:</label> <input type="text"
 				class="form-control uinvoiceNo" id="uinvoiceNo" placeholder="Enter Invoice No"
 				name="uinvoiceNo">
