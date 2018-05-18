@@ -16,4 +16,4 @@
 # run script data.sql in sampleData folder
 # default admin: username: admin, password: admin
 # sample user: username: phongdao, password: phongdao
-# 
+# database diagram, usecase diagram in file Silde presentation in Presentation folder
