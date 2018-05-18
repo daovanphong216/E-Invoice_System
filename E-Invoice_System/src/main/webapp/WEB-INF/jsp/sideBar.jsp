@@ -63,7 +63,7 @@
 			</select>
 		</div>
 		<button id = "delete_type_btn" type="button" class="btn btn-info">
-			<span class="glyphicon glyphicon-search"></span> Delete
+			<span class="glyphicon "></span> Delete
 		</button>
 	</div>
 </nav>

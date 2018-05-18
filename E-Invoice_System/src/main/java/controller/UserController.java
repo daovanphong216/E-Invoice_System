@@ -131,9 +131,13 @@ public class UserController {
 					 //page=0;
 				 }
 				currentPage=(firstResult/10)+1;
+				int to = firstResult+10;
+				if (to>totalResults) {
+					to = totalResults;
+				}
 				model.addAttribute("totalResults",totalResults);
 				model.addAttribute("from",firstResult+1);
-				model.addAttribute("to",totalResults-firstResult);
+				model.addAttribute("to",to);
 				model.addAttribute("totalPages",totalPages);
 				model.addAttribute("currentPage",currentPage);
 	        return "searchPage";  

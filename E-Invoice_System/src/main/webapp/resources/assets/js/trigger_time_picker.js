@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$("#time_submit").on('click', function() {
 		   checkData();
 		});
-	
+	$("#day").val($("#dayy").val());
 	
 	function sendTrigger(day, time){
 		$.ajax({

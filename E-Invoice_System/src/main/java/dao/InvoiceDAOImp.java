@@ -232,6 +232,7 @@ public class InvoiceDAOImp implements InvoiceDAO{
 		
 		Criteria query = session.createCriteria(Invoice.class);
 		query.add(Restrictions.eq("type", type));
+		query.add(Restrictions.eq("invoiceNo", invoiceNo));
 		@SuppressWarnings("unchecked")
 		List<Invoice> results = query.list();
 		
